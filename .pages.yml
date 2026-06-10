@@ -1,0 +1,106 @@
+# =====================================================================
+# PagesCMS 後台設定檔（草案 v1）
+# 作用：定義「玲玲在後台能編輯哪些內容」。
+# 重點：這裡只列出「內容類」檔案 → 後台就只看得到這些。
+#       程式碼／版面檔（index.html、各分頁、assets/js/site.js、
+#       assets/css/style.css）刻意不列入 → 後台看不到、動不到，
+#       由 Justin 維護。這就是「你管功能/版面、玲玲管內容」的分工機制。
+#
+# 注意：本檔對應「部署後」的資料結構（內文改為 Markdown，
+#       extra.js 改為 community.yml / course.yml）。
+#       這些轉換會在「接後台」時一起完成（見：建置記錄/後台規劃_PagesCMS.md）。
+# =====================================================================
+
+# 圖片上傳區（玲玲在後台插圖會存到這裡）
+media:
+  input: assets/images
+  output: /assets/images
+  extensions: [jpg, jpeg, png, webp, gif]
+
+content:
+  # ---------- 1. 心情日誌（文章） ----------
+  - name: articles
+    label: 心情日誌（文章）
+    type: collection
+    path: content/articles
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, category, date]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: 標題, type: string, required: true }
+      - { name: date, label: 發布日期, type: date, required: true }
+      - name: category
+        label: 分類
+        type: select
+        options:
+          values:
+            - { value: ai,        label: AI 學習應用 }
+            - { value: growth,    label: 媽媽自我成長 }
+            - { value: parenting, label: 親子生活指南 }
+            - { value: travel,    label: 親子旅遊 }
+            - { value: diy,       label: 親子手作 }
+      - { name: cover,   label: 封面圖,        type: image }
+      - { name: excerpt, label: 摘要（卡片顯示）, type: text }
+      - { name: tags,    label: 標籤,          type: string, list: true }
+      - { name: body,    label: 內文,          type: rich-text }
+
+  # ---------- 2. 分享天地（每週分享） ----------
+  - name: weekly
+    label: 分享天地（每週分享）
+    type: collection
+    path: content/weekly
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, type, date]
+      default: { sort: date, order: desc }
+    fields:
+      - { name: title, label: 標題, type: string, required: true }
+      - { name: date,  label: 日期, type: date, required: true }
+      - name: type
+        label: 類型
+        type: select
+        options:
+          values:
+            - { value: tool, label: AI 工具 }
+            - { value: news, label: 親子新聞 }
+      - { name: link, label: 原文／工具連結, type: string }
+      - { name: note, label: Vicky 心情分享,  type: text }
+
+  # ---------- 3. 社群交流圈（單頁設定） ----------
+  - name: community
+    label: 社群交流圈（設定）
+    type: file
+    path: content/community.yml
+    fields:
+      - { name: socialIntro, label: 社群介紹文, type: text }
+      - { name: socialImage, label: 社群主圖,   type: image }
+      - name: videos
+        label: 影片清單
+        type: object
+        list: true
+        fields:
+          - { name: id,    label: YouTube 影片 ID, type: string }
+          - { name: title, label: 影片標題,        type: string }
+      - { name: line,     label: LINE 共學團連結, type: string }
+      - { name: fb,       label: Facebook,        type: string }
+      - { name: ig,       label: Instagram,       type: string }
+      - { name: channel,  label: YouTube 頻道,    type: string }
+      - { name: playlist, label: 播放清單,        type: string }
+
+  # ---------- 4. 課程（單頁設定） ----------
+  - name: course
+    label: 課程（設定）
+    type: file
+    path: content/course.yml
+    fields:
+      - { name: title,    label: 課程名稱,   type: string }
+      - { name: sub,      label: 副標,       type: string }
+      - { name: desc,     label: 課程說明,   type: text }
+      - { name: outline,  label: 課程大綱,   type: string, list: true }
+      - { name: meta,     label: 形式／時長, type: string }
+      - { name: suitable, label: 適合對象,   type: string }
+      - { name: link,     label: 報名連結,   type: string }
