@@ -1,0 +1,39 @@
+name: 重建 data JSON
+
+# 觸發時機：推送到 main 分支，且 content/ 有更動時
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+  # 也可手動在 GitHub Actions 頁面點「Run workflow」
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 需要寫入權限才能 push 更新後的 JSON
+
+    steps:
+      - name: Checkout 倉庫
+        uses: actions/checkout@v4
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安裝相依套件
+        run: pip install pyyaml
+
+      - name: 執行建置腳本
+        run: python scripts/build.py
+
+      - name: 提交並推送更新後的 JSON
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/articles.json data/community.json data/course.json
+          git diff --staged --quiet || git commit -m "auto: 重建 data JSON [skip ci]"
+          git push

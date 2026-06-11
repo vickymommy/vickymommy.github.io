@@ -1,5 +1,5 @@
 {
-  "_說明": "這是玲玲文章的資料檔。每篇文章一筆，後台（PagesCMS）可直接新增/編輯。category 對應：ai=AI學習應用, growth=媽媽自我成長, parenting=親子生活指南, travel=親子旅遊, diy=親子手作。body 為完整內文（HTML），未搬遷者暫時留空，前台會顯示『完整內文整理中』。",
+  "_說明": "由 GitHub Action 自動從 content/articles/*.md 重建，請勿手動編輯此檔。",
   "categories": {
     "ai": "AI 學習應用",
     "growth": "媽媽自我成長",
@@ -22,8 +22,7 @@
         "信任"
       ],
       "source": "https://vocus.cc/article/6a277110fd8978000151f033",
-      "readMin": 7,
-      "bodyFile": "articles/6a277110.html"
+      "readMin": 7
     },
     {
       "id": "6a143b7f",
@@ -38,8 +37,7 @@
         "iPAS"
       ],
       "source": "https://vocus.cc/article/6a143b7ffd8978000193e21e",
-      "readMin": 5,
-      "bodyFile": "articles/6a143b7f.html"
+      "readMin": 5
     },
     {
       "id": "6a0d2406",
@@ -54,8 +52,7 @@
         "VickyMommy玲玲"
       ],
       "source": "https://vocus.cc/article/6a0d2406fd8978000173955e",
-      "readMin": 4,
-      "bodyFile": "articles/6a0d2406.html"
+      "readMin": 4
     },
     {
       "id": "6a075e22",
@@ -69,8 +66,7 @@
         "經濟部產業人才能力鑑定"
       ],
       "source": "https://vocus.cc/article/6a075e22fd89780001f42633",
-      "readMin": 4,
-      "bodyFile": "articles/6a075e22.html"
+      "readMin": 4
     },
     {
       "id": "6a02c96c",
@@ -85,8 +81,7 @@
         "AI應用規劃師"
       ],
       "source": "https://vocus.cc/article/6a02c96cfd897800011de452",
-      "readMin": 3,
-      "bodyFile": "articles/6a02c96c.html"
+      "readMin": 3
     },
     {
       "id": "69eea15f",
@@ -101,8 +96,7 @@
         "感謝"
       ],
       "source": "https://vocus.cc/article/69eea15ffd897800015f2e20",
-      "readMin": 5,
-      "bodyFile": "articles/69eea15f.html"
+      "readMin": 5
     },
     {
       "id": "69ec5f62",
@@ -117,8 +111,7 @@
         "產業人才能力鑑定"
       ],
       "source": "https://vocus.cc/article/69ec5f62fd89780001cfd2eb",
-      "readMin": 4,
-      "bodyFile": "articles/69ec5f62.html"
+      "readMin": 4
     },
     {
       "id": "69ace97b",
@@ -133,8 +126,7 @@
         "AI學習"
       ],
       "source": "https://vocus.cc/article/69ace97bfd89780001181f64",
-      "readMin": 5,
-      "bodyFile": "articles/69ace97b.html"
+      "readMin": 5
     },
     {
       "id": "69a94c59",
@@ -149,8 +141,7 @@
         "VickyMommy玲玲"
       ],
       "source": "https://vocus.cc/article/69a94c59fd8978000130eb02",
-      "readMin": 8,
-      "bodyFile": "articles/69a94c59.html"
+      "readMin": 8
     },
     {
       "id": "697457bb",
@@ -165,8 +156,7 @@
         "AI新創"
       ],
       "source": "https://vocus.cc/article/697457bbfd89780001d61aee",
-      "readMin": 6,
-      "bodyFile": "articles/697457bb.html"
+      "readMin": 6
     },
     {
       "id": "69323c48",
@@ -181,8 +171,7 @@
         "經濟部iPAS"
       ],
       "source": "https://vocus.cc/article/69323c48fd89780001f0464a",
-      "readMin": 10,
-      "bodyFile": "articles/69323c48.html"
+      "readMin": 10
     },
     {
       "id": "6925483b",
@@ -197,8 +186,7 @@
         "AI競賽"
       ],
       "source": "https://vocus.cc/article/6925483bfd89780001d2bf50",
-      "readMin": 5,
-      "bodyFile": "articles/6925483b.html"
+      "readMin": 5
     },
     {
       "id": "68d2b049",
@@ -213,8 +201,7 @@
         "vickymommy"
       ],
       "source": "https://vocus.cc/article/68d2b049fd8978000147525c",
-      "readMin": 4,
-      "bodyFile": "articles/68d2b049.html"
+      "readMin": 4
     },
     {
       "id": "68cd1360",
@@ -229,8 +216,7 @@
         "AI學習"
       ],
       "source": "https://vocus.cc/article/68cd1360fd897800019ae885",
-      "readMin": 6,
-      "bodyFile": "articles/68cd1360.html"
+      "readMin": 6
     },
     {
       "id": "68a8359d",
@@ -245,8 +231,7 @@
         "YouTube"
       ],
       "source": "https://vocus.cc/article/68a8359dfd89780001f005b2",
-      "readMin": 7,
-      "bodyFile": "articles/68a8359d.html"
+      "readMin": 7
     },
     {
       "id": "6888dfca",
@@ -261,8 +246,7 @@
         "個人品牌打造"
       ],
       "source": "https://vocus.cc/article/6888dfcafd897800019c2ccb",
-      "readMin": 7,
-      "bodyFile": "articles/6888dfca.html"
+      "readMin": 7
     },
     {
       "id": "685f5ce4",
@@ -277,8 +261,7 @@
         "AI考試"
       ],
       "source": "https://vocus.cc/article/685f5ce4fd89780001542b76",
-      "readMin": 6,
-      "bodyFile": "articles/685f5ce4.html"
+      "readMin": 6
     },
     {
       "id": "6840102e",
@@ -293,8 +276,7 @@
         "iPAS證照"
       ],
       "source": "https://vocus.cc/article/6840102efd8978000145a07b",
-      "readMin": 5,
-      "bodyFile": "articles/6840102e.html"
+      "readMin": 5
     },
     {
       "id": "68303150",
@@ -309,8 +291,7 @@
         "產業人才能力鑑定"
       ],
       "source": "https://vocus.cc/article/68303150fd89780001c66c3d",
-      "readMin": 4,
-      "bodyFile": "articles/68303150.html"
+      "readMin": 4
     },
     {
       "id": "682aeb4c",
@@ -325,8 +306,7 @@
         "AI證照"
       ],
       "source": "https://vocus.cc/article/682aeb4cfd8978000149e8dc",
-      "readMin": 4,
-      "bodyFile": "articles/682aeb4c.html"
+      "readMin": 4
     },
     {
       "id": "68158d93",
@@ -340,8 +320,7 @@
         "NotebookLM"
       ],
       "source": "https://vocus.cc/article/68158d93fd897800011f3fa5",
-      "readMin": 5,
-      "bodyFile": "articles/68158d93.html"
+      "readMin": 5
     },
     {
       "id": "67f72317",
@@ -356,8 +335,7 @@
         "AI應用"
       ],
       "source": "https://vocus.cc/article/67f72317fd89780001aaf5de",
-      "readMin": 4,
-      "bodyFile": "articles/67f72317.html"
+      "readMin": 4
     },
     {
       "id": "67f5cbf8",
@@ -372,8 +350,7 @@
         "ChatGPT"
       ],
       "source": "https://vocus.cc/article/67f5cbf8fd89780001533652",
-      "readMin": 6,
-      "bodyFile": "articles/67f5cbf8.html"
+      "readMin": 6
     },
     {
       "id": "67ebfd05",
@@ -388,8 +365,7 @@
         "AI"
       ],
       "source": "https://vocus.cc/article/67ebfd05fd89780001fa7814",
-      "readMin": 5,
-      "bodyFile": "articles/67ebfd05.html"
+      "readMin": 5
     },
     {
       "id": "67e63b2b",
@@ -404,8 +380,7 @@
         "心聲"
       ],
       "source": "https://vocus.cc/article/67e63b2bfd897800018c27d6",
-      "readMin": 5,
-      "bodyFile": "articles/67e63b2b.html"
+      "readMin": 5
     },
     {
       "id": "67a9735f",
@@ -420,8 +395,7 @@
         "自我覺察"
       ],
       "source": "https://vocus.cc/article/67a9735ffd89780001a80697",
-      "readMin": 8,
-      "bodyFile": "articles/67a9735f.html"
+      "readMin": 8
     },
     {
       "id": "67a4f91a",
@@ -436,8 +410,7 @@
         "AI應用"
       ],
       "source": "https://vocus.cc/article/67a4f91afd89780001c69ed7",
-      "readMin": 4,
-      "bodyFile": "articles/67a4f91a.html"
+      "readMin": 4
     },
     {
       "id": "678868e4",
@@ -452,8 +425,7 @@
         "NotebookLM"
       ],
       "source": "https://vocus.cc/article/678868e4fd89780001d5a8cb",
-      "readMin": 5,
-      "bodyFile": "articles/678868e4.html"
+      "readMin": 5
     },
     {
       "id": "6780d4d2",
@@ -468,8 +440,7 @@
         "親子手作"
       ],
       "source": "https://vocus.cc/article/6780d4d2fd89780001c3cd0c",
-      "readMin": 4,
-      "bodyFile": "articles/6780d4d2.html"
+      "readMin": 4
     },
     {
       "id": "677dec8f",
@@ -484,8 +455,7 @@
         "媽媽"
       ],
       "source": "https://vocus.cc/article/677dec8ffd89780001909c99",
-      "readMin": 5,
-      "bodyFile": "articles/677dec8f.html"
+      "readMin": 5
     },
     {
       "id": "6752be7e",
@@ -500,8 +470,7 @@
         "二手物品販售"
       ],
       "source": "https://vocus.cc/article/6752be7efd897800017871a8",
-      "readMin": 4,
-      "bodyFile": "articles/6752be7e.html"
+      "readMin": 4
     },
     {
       "id": "6747d430",
@@ -516,8 +485,7 @@
         "ChatGPT"
       ],
       "source": "https://vocus.cc/article/6747d430fd89780001a5c1fc",
-      "readMin": 5,
-      "bodyFile": "articles/6747d430.html"
+      "readMin": 5
     },
     {
       "id": "673f2e7f",
@@ -531,8 +499,7 @@
         "健康生活"
       ],
       "source": "https://vocus.cc/article/673f2e7ffd8978000167fa70",
-      "readMin": 4,
-      "bodyFile": "articles/673f2e7f.html"
+      "readMin": 4
     },
     {
       "id": "672c6aba",
@@ -547,8 +514,7 @@
         "女力學院"
       ],
       "source": "https://vocus.cc/article/672c6abafd89780001777029",
-      "readMin": 5,
-      "bodyFile": "articles/672c6aba.html"
+      "readMin": 5
     },
     {
       "id": "67121091",
@@ -563,8 +529,7 @@
         "日本"
       ],
       "source": "https://vocus.cc/article/67121091fd89780001e81953",
-      "readMin": 6,
-      "bodyFile": "articles/67121091.html"
+      "readMin": 6
     },
     {
       "id": "66fcb9be",
@@ -579,8 +544,7 @@
         "自我成長"
       ],
       "source": "https://vocus.cc/article/66fcb9befd8978000126d572",
-      "readMin": 6,
-      "bodyFile": "articles/66fcb9be.html"
+      "readMin": 6
     },
     {
       "id": "66da4e75",
@@ -595,8 +559,7 @@
         "日本"
       ],
       "source": "https://vocus.cc/article/66da4e75fd897800012bc121",
-      "readMin": 8,
-      "bodyFile": "articles/66da4e75.html"
+      "readMin": 8
     },
     {
       "id": "66d520de",
@@ -607,8 +570,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/66d520defd897800013b0a92",
-      "readMin": 5,
-      "bodyFile": "articles/66d520de.html"
+      "readMin": 5
     },
     {
       "id": "66be1314",
@@ -619,20 +581,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/66be1314fd897800011d42e6",
-      "readMin": 5,
-      "bodyFile": "articles/66be1314.html"
-    },
-    {
-      "id": "66b4399c",
-      "title": "東京幻視藝術館：利用視覺錯覺，展開一場視覺的奇幻之旅",
-      "category": "travel",
-      "date": "2024-08-08",
-      "cover": "assets/images/0a7eedd2-b6f1-463d-bd6c-a6ee1017c94c.jpg",
-      "excerpt": "",
-      "tags": [],
-      "source": "https://vocus.cc/article/66b4399cfd89780001fdbb98",
-      "readMin": 5,
-      "bodyFile": "articles/66b4399c.html"
+      "readMin": 5
     },
     {
       "id": "66b4155f",
@@ -643,8 +592,18 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/66b4155ffd89780001f9f4a0",
-      "readMin": 5,
-      "bodyFile": "articles/66b4155f.html"
+      "readMin": 5
+    },
+    {
+      "id": "66b4399c",
+      "title": "東京幻視藝術館：利用視覺錯覺，展開一場視覺的奇幻之旅",
+      "category": "travel",
+      "date": "2024-08-08",
+      "cover": "assets/images/0a7eedd2-b6f1-463d-bd6c-a6ee1017c94c.jpg",
+      "excerpt": "",
+      "tags": [],
+      "source": "https://vocus.cc/article/66b4399cfd89780001fdbb98",
+      "readMin": 5
     },
     {
       "id": "66a3b008",
@@ -655,8 +614,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/66a3b008fd89780001cfc1e7",
-      "readMin": 5,
-      "bodyFile": "articles/66a3b008.html"
+      "readMin": 5
     },
     {
       "id": "669b2bec",
@@ -671,8 +629,7 @@
         "閱讀"
       ],
       "source": "https://vocus.cc/article/669b2becfd89780001dfd66b",
-      "readMin": 6,
-      "bodyFile": "articles/669b2bec.html"
+      "readMin": 6
     },
     {
       "id": "664da295",
@@ -687,8 +644,7 @@
         "菲律賓"
       ],
       "source": "https://vocus.cc/article/664da295fd897800012f98ad",
-      "readMin": 9,
-      "bodyFile": "articles/664da295.html"
+      "readMin": 9
     },
     {
       "id": "662c1ff4",
@@ -703,8 +659,7 @@
         "學習"
       ],
       "source": "https://vocus.cc/article/662c1ff4fd897800011d73c0",
-      "readMin": 5,
-      "bodyFile": "articles/662c1ff4.html"
+      "readMin": 5
     },
     {
       "id": "6615e813",
@@ -719,8 +674,7 @@
         "免費下載"
       ],
       "source": "https://vocus.cc/article/6615e813fd89780001eaf434",
-      "readMin": 6,
-      "bodyFile": "articles/6615e813.html"
+      "readMin": 6
     },
     {
       "id": "65e91527",
@@ -735,8 +689,7 @@
         "成長"
       ],
       "source": "https://vocus.cc/article/65e91527fd897800013f917b",
-      "readMin": 5,
-      "bodyFile": "articles/65e91527.html"
+      "readMin": 5
     },
     {
       "id": "65bb64e0",
@@ -751,8 +704,7 @@
         "食譜"
       ],
       "source": "https://vocus.cc/article/65bb64e0fd89780001f3fa6f",
-      "readMin": 3,
-      "bodyFile": "articles/65bb64e0.html"
+      "readMin": 3
     },
     {
       "id": "65b8bfab",
@@ -767,8 +719,7 @@
         "時間小偷"
       ],
       "source": "https://vocus.cc/article/65b8bfabfd89780001554796",
-      "readMin": 5,
-      "bodyFile": "articles/65b8bfab.html"
+      "readMin": 5
     },
     {
       "id": "659c9c36",
@@ -779,8 +730,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/659c9c36fd89780001d26a6d",
-      "readMin": 5,
-      "bodyFile": "articles/659c9c36.html"
+      "readMin": 5
     },
     {
       "id": "657e3995",
@@ -795,8 +745,7 @@
         "閱讀"
       ],
       "source": "https://vocus.cc/article/657e3995fd8978000183453f",
-      "readMin": 6,
-      "bodyFile": "articles/657e3995.html"
+      "readMin": 6
     },
     {
       "id": "654c3959",
@@ -811,8 +760,7 @@
         "親子共讀"
       ],
       "source": "https://vocus.cc/article/654c3959fd8978000172a702",
-      "readMin": 6,
-      "bodyFile": "articles/654c3959.html"
+      "readMin": 6
     },
     {
       "id": "6538820e",
@@ -823,8 +771,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/6538820efd89780001a006a2",
-      "readMin": 5,
-      "bodyFile": "articles/6538820e.html"
+      "readMin": 5
     },
     {
       "id": "6530a2b6",
@@ -839,8 +786,7 @@
         "婚姻"
       ],
       "source": "https://vocus.cc/article/6530a2b6fd89780001a595d4",
-      "readMin": 4,
-      "bodyFile": "articles/6530a2b6.html"
+      "readMin": 4
     },
     {
       "id": "64e88858",
@@ -851,8 +797,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/64e88858fd89780001241581",
-      "readMin": 5,
-      "bodyFile": "articles/64e88858.html"
+      "readMin": 5
     },
     {
       "id": "64e4d638",
@@ -863,8 +808,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/64e4d638fd8978000150b57b",
-      "readMin": 5,
-      "bodyFile": "articles/64e4d638.html"
+      "readMin": 5
     },
     {
       "id": "64d2f65f",
@@ -875,8 +819,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/64d2f65ffd897800010d5b1e",
-      "readMin": 5,
-      "bodyFile": "articles/64d2f65f.html"
+      "readMin": 5
     },
     {
       "id": "64cc5878",
@@ -887,8 +830,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/64cc5878fd89780001dc4f9c",
-      "readMin": 5,
-      "bodyFile": "articles/64cc5878.html"
+      "readMin": 5
     },
     {
       "id": "64b0e5a6",
@@ -899,8 +841,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/64b0e5a6fd8978000121755a",
-      "readMin": 5,
-      "bodyFile": "articles/64b0e5a6.html"
+      "readMin": 5
     },
     {
       "id": "649ba760",
@@ -911,8 +852,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/649ba760fd897800010ccfc9",
-      "readMin": 5,
-      "bodyFile": "articles/649ba760.html"
+      "readMin": 5
     },
     {
       "id": "64985658",
@@ -923,8 +863,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/64985658fd89780001de4404",
-      "readMin": 5,
-      "bodyFile": "articles/64985658.html"
+      "readMin": 5
     },
     {
       "id": "6481e868",
@@ -935,8 +874,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/6481e868fd89780001f8a4fb",
-      "readMin": 5,
-      "bodyFile": "articles/6481e868.html"
+      "readMin": 5
     },
     {
       "id": "647f4995",
@@ -947,8 +885,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/647f4995fd89780001cddcd8",
-      "readMin": 5,
-      "bodyFile": "articles/647f4995.html"
+      "readMin": 5
     },
     {
       "id": "64798d42",
@@ -959,8 +896,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/64798d42fd89780001971fef",
-      "readMin": 5,
-      "bodyFile": "articles/64798d42.html"
+      "readMin": 5
     },
     {
       "id": "6475acd6",
@@ -971,8 +907,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/6475acd6fd8978000165a947",
-      "readMin": 5,
-      "bodyFile": "articles/6475acd6.html"
+      "readMin": 5
     },
     {
       "id": "646ec6c5",
@@ -983,8 +918,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/646ec6c5fd897800013073c6",
-      "readMin": 5,
-      "bodyFile": "articles/646ec6c5.html"
+      "readMin": 5
     },
     {
       "id": "6464491c",
@@ -995,8 +929,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/6464491cfd897800017eefac",
-      "readMin": 5,
-      "bodyFile": "articles/6464491c.html"
+      "readMin": 5
     },
     {
       "id": "645b1d61",
@@ -1007,8 +940,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/645b1d61fd89780001389148",
-      "readMin": 5,
-      "bodyFile": "articles/645b1d61.html"
+      "readMin": 5
     },
     {
       "id": "6458b318",
@@ -1019,8 +951,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/6458b318fd89780001ccaaaf",
-      "readMin": 5,
-      "bodyFile": "articles/6458b318.html"
+      "readMin": 5
     },
     {
       "id": "64507df0",
@@ -1035,8 +966,7 @@
         "陪伴"
       ],
       "source": "https://vocus.cc/article/64507df0fd897800018b3d50",
-      "readMin": 5,
-      "bodyFile": "articles/64507df0.html"
+      "readMin": 5
     },
     {
       "id": "644df8cd",
@@ -1047,8 +977,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/644df8cdfd897800016bd516",
-      "readMin": 5,
-      "bodyFile": "articles/644df8cd.html"
+      "readMin": 5
     },
     {
       "id": "641813ff",
@@ -1059,8 +988,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/641813fffd89780001ea1651",
-      "readMin": 5,
-      "bodyFile": "articles/641813ff.html"
+      "readMin": 5
     },
     {
       "id": "63d9cf8d",
@@ -1071,8 +999,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/63d9cf8dfd89780001f7cb15",
-      "readMin": 5,
-      "bodyFile": "articles/63d9cf8d.html"
+      "readMin": 5
     },
     {
       "id": "63c787dd",
@@ -1083,8 +1010,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/63c787ddfd897800015cc71c",
-      "readMin": 5,
-      "bodyFile": "articles/63c787dd.html"
+      "readMin": 5
     },
     {
       "id": "63a27869",
@@ -1095,8 +1021,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/63a27869fd8978000110d607",
-      "readMin": 5,
-      "bodyFile": "articles/63a27869.html"
+      "readMin": 5
     },
     {
       "id": "639f5d00",
@@ -1107,8 +1032,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/639f5d00fd89780001f71691",
-      "readMin": 5,
-      "bodyFile": "articles/639f5d00.html"
+      "readMin": 5
     },
     {
       "id": "639829f8",
@@ -1119,8 +1043,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/639829f8fd89780001ba4898",
-      "readMin": 5,
-      "bodyFile": "articles/639829f8.html"
+      "readMin": 5
     },
     {
       "id": "63687a99",
@@ -1131,8 +1054,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/63687a99fd89780001b27c56",
-      "readMin": 5,
-      "bodyFile": "articles/63687a99.html"
+      "readMin": 5
     },
     {
       "id": "6363cf9d",
@@ -1143,8 +1065,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/6363cf9dfd897800019f0a37",
-      "readMin": 5,
-      "bodyFile": "articles/6363cf9d.html"
+      "readMin": 5
     },
     {
       "id": "6356b6ce",
@@ -1155,8 +1076,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/6356b6cefd897800019fc8d2",
-      "readMin": 5,
-      "bodyFile": "articles/6356b6ce.html"
+      "readMin": 5
     },
     {
       "id": "634d62d5",
@@ -1167,8 +1087,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/634d62d5fd8978000135e75b",
-      "readMin": 5,
-      "bodyFile": "articles/634d62d5.html"
+      "readMin": 5
     },
     {
       "id": "633bd5b0",
@@ -1179,8 +1098,7 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/633bd5b0fd897800017590de",
-      "readMin": 5,
-      "bodyFile": "articles/633bd5b0.html"
+      "readMin": 5
     }
   ]
 }
