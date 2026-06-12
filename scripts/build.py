@@ -77,8 +77,91 @@ def build_yaml_to_json(src_rel, dst_rel):
         json.dump(data, f, ensure_ascii=False, indent=2)
     print(f'✓ {src_rel} → {dst_rel}')
 
+def build_weekly():
+    """
+    讀取 content/weekly/*.md，分別產生：
+      - data/weekly.json          已發布（status=published），依 publish_week 分組
+      - data/weekly_pending.json  待審（status=pending），供管理參考
+    """
+    weekly_dir = os.path.join(BASE, 'content', 'weekly')
+    if not os.path.isdir(weekly_dir):
+        print('找不到 content/weekly/ — 跳過')
+        return
+
+    published = []
+    pending   = []
+
+    for fname in sorted(os.listdir(weekly_dir), reverse=True):
+        if not fname.endswith('.md') or fname.startswith('.'):
+            continue
+        fpath = os.path.join(weekly_dir, fname)
+        try:
+            with open(fpath, encoding='utf-8') as f:
+                fm, _ = parse_frontmatter(f.read())
+        except Exception:
+            continue
+
+        item = {
+            'id':          str(fm.get('id', fname[:-3])),
+            'title':       fm.get('title', ''),
+            'url':         fm.get('url', ''),
+            'source_name': fm.get('source_name', ''),
+            'category':    fm.get('category', 'news'),   # news | tool
+            'pub_date':    str(fm.get('pub_date', '')),
+            'fetch_date':  str(fm.get('fetch_date', '')),
+            'auto_excerpt': fm.get('auto_excerpt', ''),
+            'note':        fm.get('note', ''),
+            'status':      fm.get('status', 'pending'),
+            'publish_week': str(fm.get('publish_week', '')),
+        }
+
+        if item['status'] == 'published':
+            published.append(item)
+        else:
+            pending.append(item)
+
+    # ── 已發布：依 publish_week 分組 ─────────────────────────────────────────
+    # 排序（最新在前）
+    published.sort(key=lambda x: x.get('publish_week', ''), reverse=True)
+
+    # 取得所有週次（維持順序）
+    weeks_seen = []
+    for item in published:
+        wk = item.get('publish_week', '')
+        if wk and wk not in weeks_seen:
+            weeks_seen.append(wk)
+
+    weekly_by_week = []
+    for wk in weeks_seen:
+        week_items = [i for i in published if i.get('publish_week') == wk]
+        weekly_by_week.append({
+            'week':  wk,
+            'tools': [i for i in week_items if i['category'] == 'tool'],
+            'news':  [i for i in week_items if i['category'] == 'news'],
+        })
+
+    out_weekly = {
+        '_說明': '由 GitHub Action 自動從 content/weekly/*.md 重建，請勿手動編輯此檔。',
+        'weeks': weekly_by_week,
+    }
+    os.makedirs(os.path.join(BASE, 'data'), exist_ok=True)
+    with open(os.path.join(BASE, 'data', 'weekly.json'), 'w', encoding='utf-8') as f:
+        json.dump(out_weekly, f, ensure_ascii=False, indent=2)
+    print(f'✓ {len(published)} 筆已發布 → data/weekly.json（{len(weeks_seen)} 週）')
+
+    # ── 待審：直接存成清單 ────────────────────────────────────────────────────
+    out_pending = {
+        '_說明': '待玲玲審核的每週精選候選。請勿手動編輯，由 GitHub Action 自動更新。',
+        'count':   len(pending),
+        'items':   pending,
+    }
+    with open(os.path.join(BASE, 'data', 'weekly_pending.json'), 'w', encoding='utf-8') as f:
+        json.dump(out_pending, f, ensure_ascii=False, indent=2)
+    print(f'✓ {len(pending)} 筆待審 → data/weekly_pending.json')
+
 if __name__ == '__main__':
     build_articles()
     build_yaml_to_json('content/community.yml', 'data/community.json')
     build_yaml_to_json('content/course.yml',    'data/course.json')
+    build_weekly()
     print('全部完成。')

@@ -1,0 +1,58 @@
+name: 每日自動同步（Vocus ＋ 每週精選）
+
+# ── 觸發時機 ──────────────────────────────────────────────────────────────────
+on:
+  # 每天台灣時間 02:00 自動執行（UTC 18:00 = 台灣 02:00 次日）
+  schedule:
+    - cron: '0 18 * * *'
+
+  # 也可在 GitHub Actions 頁面手動點「Run workflow」測試
+  workflow_dispatch:
+
+# ── 工作 ──────────────────────────────────────────────────────────────────────
+jobs:
+  sync:
+    name: 同步 Vocus 文章 ＋ 抓每週精選候選
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 需要寫入權限才能 push 新檔案
+
+    steps:
+      # 1. 取得最新倉庫
+      - name: Checkout 倉庫
+        uses: actions/checkout@v4
+        with:
+          # fetch-depth: 0 確保取得完整歷史（偵測修改需要）
+          fetch-depth: 1
+
+      # 2. 設定 Python
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3. 安裝套件（含 beautifulsoup4 用於頁面解析）
+      - name: 安裝相依套件
+        run: |
+          pip install requests beautifulsoup4 pyyaml lxml
+
+      # 4. 執行 Vocus RSS 同步（新文章 + 修改偵測）
+      - name: 同步 Vocus 文章
+        run: python scripts/sync_vocus.py
+
+      # 5. 執行每週精選抓取（存入 content/weekly/ 待審）
+      - name: 抓取每週精選候選
+        run: python scripts/fetch_weekly.py
+
+      # 6. 重建 data/*.json（articles + weekly + community + course）
+      - name: 重建 data JSON
+        run: python scripts/build.py
+
+      # 7. 提交並推送（若有任何異動）
+      - name: 提交並推送更新
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/articles/ assets/images/ content/weekly/ data/
+          git diff --staged --quiet || git commit -m "auto: 每日同步 Vocus + 每週精選候選 [skip ci]"
+          git push

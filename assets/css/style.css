@@ -191,3 +191,19 @@ footer a:hover{color:var(--brand)}
   .hero h1{font-size:32px}.article-head h1{font-size:26px}
 }
 @media(max-width:560px){.grid,.com-grid,.entry-grid,.vgrid,.join-row{grid-template-columns:1fr}}
+
+/* ── 每週精選 YouTube 縮圖（全域，weekly.html 使用）─────── */
+.weekly-ytlink{position:relative;display:block;margin:.6rem 0 .5rem;border-radius:10px;overflow:hidden;
+  background:#000;line-height:0;width:100%;max-width:320px}
+.weekly-ytlink img{width:100%;display:block;opacity:.88;transition:opacity .2s,transform .2s;
+  aspect-ratio:16/9;object-fit:cover}
+.weekly-ytlink:hover img{opacity:1;transform:scale(1.02)}
+.weekly-ytplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  gap:10px;color:#fff;font-size:13px;font-weight:700;background:rgba(0,0,0,.32);
+  text-shadow:0 1px 6px rgba(0,0,0,.7);pointer-events:none}
+.weekly-ytplay::before{content:'';display:block;width:38px;height:38px;flex-shrink:0;border-radius:50%;
+  background:rgba(255,72,90,.88);border-left:14px solid #fff;
+  border-top:9px solid transparent;border-bottom:9px solid transparent;box-sizing:border-box}
+.item.has-yt{flex-direction:column}
+.item.has-yt .ico{display:none}
+.item.has-yt>div{width:100%}

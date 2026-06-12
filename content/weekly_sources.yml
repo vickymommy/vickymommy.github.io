@@ -1,0 +1,64 @@
+# 每週精選自動抓取來源設定
+# =====================================================================
+# 這份設定檔控制「每天自動去哪些網站抓文章/工具」。
+# 玲玲可以在後台（分享天地來源管理）直接新增、停用或刪除來源。
+#
+# RSS 網址怎麼找？
+#   大多數網站的 RSS 網址是：
+#     https://網站網址/feed
+#     https://網站網址/rss
+#   不確定的話請 Justin 幫忙查。
+#
+# ⚠️ 注意：
+#   - enabled: false  → 暫時停用（不抓），資料保留
+#   - 刪除整筆        → 永久移除
+#   - 新增後，隔天凌晨 2:00 才會開始抓取
+# =====================================================================
+
+sources:
+
+  # ── 親子新聞 ─────────────────────────────────────────────────────
+
+  - name: 親子天下
+    url: https://www.parenting.com.tw/api/rss/article
+    category: news
+    max_items: 5
+    enabled: true
+
+  - name: 翻轉教育
+    url: https://flipedu.parenting.com.tw/rss
+    category: news
+    max_items: 3
+    enabled: true
+
+  - name: 未來親子
+    url: https://futureparenting.cwgv.com.tw/rss
+    category: news
+    max_items: 3
+    enabled: true
+
+  - name: 媽媽經
+    url: https://www.familymatters.com.tw/feed/
+    category: news
+    max_items: 3
+    enabled: true
+
+  # ── AI 工具 ───────────────────────────────────────────────────────
+
+  - name: Product Hunt（AI 工具）
+    url: https://www.producthunt.com/feed
+    category: tool
+    max_items: 5
+    enabled: true
+
+  - name: The Rundown AI
+    url: https://www.therundown.ai/rss
+    category: tool
+    max_items: 3
+    enabled: true
+
+  - name: AI 工具王
+    url: https://www.toolify.ai/zh/rss
+    category: tool
+    max_items: 3
+    enabled: true

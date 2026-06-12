@@ -53,29 +53,69 @@ content:
       - { name: readMin,  label: 閱讀分鐘數,          type: number }
       - { name: body,     label: 內文,               type: rich-text }
 
-  # ---------- 2. 分享天地（每週分享） ----------
+  # ---------- 2. 分享天地（每週精選） ----------
+  # 說明：auto（自動抓取）的項目由 GitHub Action 自動寫入，status=pending。
+  #       玲玲在這裡填寫「Vicky 心情分享」並把 status 改為 published 後，
+  #       下次 build.py 執行就會出現在前台。
   - name: weekly
-    label: 分享天地（每週分享）
+    label: 分享天地（每週精選）
     type: collection
     path: content/weekly
     filename: "{year}-{month}-{day}-{primary}.md"
     view:
-      fields: [title, type, date]
-      default: { sort: date, order: desc }
+      fields: [title, status, category, fetch_date]
+      default: { sort: fetch_date, order: desc }
     fields:
-      - { name: title, label: 標題, type: string, required: true }
-      - { name: date,  label: 日期, type: date, required: true }
-      - name: type
+      - { name: title,       label: 標題,                 type: string, required: true }
+      - { name: url,         label: 原文／工具連結,        type: string }
+      - { name: source_name, label: 來源（親子天下 等）,   type: string }
+      - name: category
         label: 類型
         type: select
         options:
           values:
             - { value: tool, label: AI 工具 }
             - { value: news, label: 親子新聞 }
-      - { name: link, label: 原文／工具連結, type: string }
-      - { name: note, label: Vicky 心情分享,  type: text }
+      - { name: auto_excerpt, label: 自動摘要（參考用）,   type: text }
+      - { name: note,         label: Vicky 心情分享（必填，發布前請填寫）, type: text }
+      - name: status
+        label: 狀態
+        type: select
+        options:
+          values:
+            - { value: pending,   label: 待審（尚未上線） }
+            - { value: published, label: 已發布（上線中） }
+            - { value: rejected,  label: 不採用 }
+      - { name: publish_week, label: 發布週次（格式 2026-W24）, type: string }
+      - { name: fetch_date,   label: 自動抓取日期,              type: date }
+      - { name: pub_date,     label: 原文發布日期,              type: date }
 
-  # ---------- 3. 社群交流圈（單頁設定） ----------
+  # ---------- 3. 每週精選來源管理 ----------
+  # 玲玲可以在這裡新增/停用/刪除自動抓取的 RSS 來源。
+  # 說明：RSS 網址通常是「網站首頁/feed」或「網站首頁/rss」，不確定的話請 Justin 幫忙查。
+  - name: weekly_sources
+    label: 每週精選來源管理
+    type: file
+    path: content/weekly_sources.yml
+    fields:
+      - name: sources
+        label: RSS 來源清單
+        type: object
+        list: true
+        fields:
+          - { name: name,      label: 來源名稱（例：親子天下）,                  type: string, required: true }
+          - { name: url,       label: RSS 網址（通常是網站/feed 或 網站/rss）,   type: string, required: true }
+          - name: category
+            label: 類型
+            type: select
+            options:
+              values:
+                - { value: news, label: 親子新聞 }
+                - { value: tool, label: AI 工具 }
+          - { name: max_items, label: 每次最多抓幾篇（建議 3～5）, type: number }
+          - { name: enabled,   label: 啟用此來源,                  type: boolean }
+
+  # ---------- 4. 社群交流圈（單頁設定） ----------
   - name: community
     label: 社群交流圈（設定）
     type: file

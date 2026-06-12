@@ -5,6 +5,103 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>分享天地｜Vicky Mommy</title>
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* ── 每週精選版面補充樣式 ──────────────────────────────── */
+  .week-block { margin-bottom: 3rem; }
+  .week-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--brand, #ff485a);
+    letter-spacing: .05em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .weekly-note {
+    margin-top: .5rem;
+    font-size: .9rem;
+    color: #555;
+    background: #fff8f8;
+    border-left: 3px solid var(--brand, #ff485a);
+    padding: .4rem .75rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .weekly-note b { color: var(--brand, #ff485a); }
+  .weekly-empty {
+    padding: 3rem 0;
+    text-align: center;
+    color: #aaa;
+    font-size: 1rem;
+  }
+  .item-link {
+    font-size: .8rem;
+    color: #aaa;
+    display: inline-block;
+    margin-top: .3rem;
+  }
+  .item-link:hover { color: var(--brand, #ff485a); }
+
+  /* ── YouTube 縮圖（.weekly-ytlink）─────────────────────── */
+  .weekly-ytlink {
+    position: relative;
+    display: block;
+    margin: .6rem 0 .5rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    line-height: 0;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 320px;
+  }
+  .weekly-ytlink img {
+    width: 100%;
+    display: block;
+    opacity: .88;
+    transition: opacity .2s, transform .2s;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  .weekly-ytlink:hover img {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  .weekly-ytplay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    background: rgba(0, 0, 0, .32);
+    text-shadow: 0 1px 6px rgba(0,0,0,.7);
+    pointer-events: none;
+  }
+  .weekly-ytplay::before {
+    content: '';
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 72, 90, .88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* 用 border trick 畫三角播放鈕 */
+    border-left: 14px solid #fff;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    box-sizing: border-box;
+  }
+  /* 有 YouTube 縮圖時，item 改為直向排列（縮圖上、文字下） */
+  .item.has-yt {
+    flex-direction: column;
+  }
+  .item.has-yt .ico { display: none; } /* 有縮圖就不顯示文字 icon */
+  .item.has-yt > div { width: 100%; }
+</style>
 </head>
 <body data-page="weekly">
 <div id="site-header"></div>
@@ -14,33 +111,164 @@
     <div class="sec-head">
       <span class="pill">分享天地</span>
       <h2>Vicky 的分享天地</h2>
+      <p class="sub">每週精選 AI 工具、親子好文——都是 Vicky 親自試過、覺得值得的才推薦。</p>
     </div>
-    <div class="weekly-grid">
-      <div class="panel">
-        <h3>🛠️ 本週 AI 工具 / 影片 / 案例</h3>
-        <div class="sub">適合媽媽上手、真的用得到的 AI 應用</div>
-        <div class="item"><div class="ico">🎬</div><div>
-          <h4>用 AI 幫孩子做專屬故事繪本</h4><p>不用會畫畫，10 分鐘做出一本床邊故事書。</p>
-          <div class="note"><b>Vicky心情分享：</b>我自己做給小籠包，他超愛，還會自己想下一頁的劇情。</div></div></div>
-        <div class="item"><div class="ico">📝</div><div>
-          <h4>家庭行事曆自動整理術</h4><p>把家人零散的行程，丟給 AI 一次排好。</p>
-          <div class="note"><b>Vicky心情分享：</b>媽媽時間最零碎，這招幫我省下每週一小時。</div></div></div>
-      </div>
-      <div class="panel">
-        <h3>📰 本週親子新聞 / 優質文章</h3>
-        <div class="sub">來自親子天下、未來親子、翻轉教育等優質來源</div>
-        <div class="item"><div class="ico">📚</div><div>
-          <h4>(示意) 與孩子談 AI：家長可以怎麼開始</h4><p>來源：親子天下</p>
-          <div class="note"><b>Vicky心情分享：</b>裡面提到的對話方式，很適合在晚餐時間跟孩子聊。</div></div></div>
-        <div class="item"><div class="ico">💡</div><div>
-          <h4>(示意) 一位媽媽作者的 AI 育兒實驗</h4><p>來源：媽媽 AI 創作者</p>
-          <div class="note"><b>Vicky心情分享：</b>同樣是媽媽，她的角度讓我很有共鳴。</div></div></div>
-      </div>
+
+    <!-- 內容由 JS 動態渲染 -->
+    <div id="weekly-content">
+      <div class="weekly-empty">載入中…</div>
     </div>
   </div>
 </section>
 
 <div id="site-footer"></div>
 <script src="assets/js/site.js"></script>
+<script>
+(function () {
+
+  /* ── YouTube 工具函式 ─────────────────────────────────────── */
+
+  /**
+   * 從各種 YouTube URL 格式中抽出 video ID。
+   * 支援：
+   *   https://www.youtube.com/watch?v=VIDEO_ID
+   *   https://youtu.be/VIDEO_ID
+   *   https://www.youtube.com/shorts/VIDEO_ID
+   *   https://www.youtube.com/embed/VIDEO_ID
+   * 不是 YouTube URL 回傳 null。
+   */
+  function extractYouTubeId(url) {
+    if (!url) return null;
+    var patterns = [
+      /[?&]v=([A-Za-z0-9_-]{11})/,
+      /youtu\.be\/([A-Za-z0-9_-]{11})/,
+      /\/shorts\/([A-Za-z0-9_-]{11})/,
+      /\/embed\/([A-Za-z0-9_-]{11})/,
+    ];
+    for (var i = 0; i < patterns.length; i++) {
+      var m = url.match(patterns[i]);
+      if (m) return m[1];
+    }
+    return null;
+  }
+
+  /* ── HTML 跳脫 ───────────────────────────────────────────── */
+  function escHtml(str) {
+    return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── 單筆項目 HTML ───────────────────────────────────────── */
+  function renderItem(item) {
+    var ytId     = extractYouTubeId(item.url);
+    var isYt     = !!ytId;
+    var thumbUrl = isYt
+      ? 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg'
+      : null;
+
+    var html = '<div class="item' + (isYt ? ' has-yt' : '') + '">';
+
+    if (!isYt) {
+      /* 非 YouTube：顯示左側 icon */
+      var ico = item.category === 'tool' ? '🎬' : '📚';
+      html += '<div class="ico">' + ico + '</div>';
+    }
+
+    html += '<div>';
+
+    /* 標題（若有 URL 則可點擊） */
+    if (item.url) {
+      html += '<h4><a href="' + escHtml(item.url) + '" target="_blank" rel="noopener">'
+            + escHtml(item.title) + '</a></h4>';
+    } else {
+      html += '<h4>' + escHtml(item.title) + '</h4>';
+    }
+
+    /* YouTube 縮圖 */
+    if (isYt) {
+      html += '<a class="weekly-ytlink" href="' + escHtml(item.url) + '" target="_blank" rel="noopener">';
+      html += '<img src="' + thumbUrl + '" loading="lazy" alt="觀看 YouTube 影片：' + escHtml(item.title) + '">';
+      html += '<span class="weekly-ytplay"> 在 YouTube 觀看</span>';
+      html += '</a>';
+    }
+
+    /* 自動摘要（非 YouTube 或有 YouTube 但也有摘要） */
+    if (item.auto_excerpt && !isYt) {
+      html += '<p>' + escHtml(item.auto_excerpt) + '</p>';
+    }
+
+    /* 來源連結（非 YouTube 才顯示，YouTube 縮圖本身已是連結） */
+    if (item.url && !isYt) {
+      var srcLabel = item.source_name || '查看原文';
+      html += '<a class="item-link" href="' + escHtml(item.url) + '" target="_blank" rel="noopener">';
+      html += '🔗 ' + escHtml(srcLabel) + '</a>';
+    } else if (item.source_name && isYt) {
+      html += '<span style="font-size:.8rem;color:#aaa">來源：' + escHtml(item.source_name) + '</span>';
+    }
+
+    /* Vicky 心情分享 */
+    if (item.note) {
+      html += '<div class="weekly-note"><b>Vicky 心情分享：</b>' + escHtml(item.note) + '</div>';
+    }
+
+    html += '</div></div>';
+    return html;
+  }
+
+  /* ── 整頁渲染 ────────────────────────────────────────────── */
+  function renderWeekly(data) {
+    var container = document.getElementById('weekly-content');
+    if (!container) return;
+
+    var weeks = (data && data.weeks) ? data.weeks : [];
+
+    if (weeks.length === 0) {
+      container.innerHTML = '<div class="weekly-empty">每週精選即將登場，敬請期待！</div>';
+      return;
+    }
+
+    var html = '';
+    weeks.forEach(function (wk) {
+      var tools = wk.tools || [];
+      var news  = wk.news  || [];
+      if (tools.length === 0 && news.length === 0) return;
+
+      html += '<div class="week-block">';
+      html += '<div class="week-label">📅 ' + escHtml(wk.week) + '</div>';
+      html += '<div class="weekly-grid">';
+
+      /* ── AI 工具欄 ──────────────────────────────────────── */
+      if (tools.length > 0) {
+        html += '<div class="panel">';
+        html += '<h3>🛠️ 本週 AI 工具 ／ 影片 ／ 案例</h3>';
+        html += '<div class="sub">適合媽媽上手、真的用得到的 AI 應用</div>';
+        tools.forEach(function (item) { html += renderItem(item); });
+        html += '</div>';
+      }
+
+      /* ── 親子新聞欄 ─────────────────────────────────────── */
+      if (news.length > 0) {
+        html += '<div class="panel">';
+        html += '<h3>📰 本週親子新聞 ／ 優質文章</h3>';
+        html += '<div class="sub">來自親子天下、未來親子、翻轉教育等優質來源</div>';
+        news.forEach(function (item) { html += renderItem(item); });
+        html += '</div>';
+      }
+
+      html += '</div></div>';  /* .weekly-grid / .week-block */
+    });
+
+    container.innerHTML = html || '<div class="weekly-empty">每週精選即將登場，敬請期待！</div>';
+  }
+
+  /* ── fetch data/weekly.json ──────────────────────────────── */
+  fetch('data/weekly.json')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) { renderWeekly(data); })
+    .catch(function () {
+      var c = document.getElementById('weekly-content');
+      if (c) c.innerHTML = '<div class="weekly-empty">每週精選即將登場，敬請期待！</div>';
+    });
+})();
+</script>
 </body>
 </html>
