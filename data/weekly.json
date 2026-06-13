@@ -18,7 +18,21 @@
           "publish_week": "2026-W25"
         }
       ],
-      "news": []
+      "news": [
+        {
+          "id": "2026-06-13_3646efcf",
+          "title": "11個 AI 當管家！矽谷最狂「全自動育兒」，爸媽也能無痛照抄？ - 親子天下Premium",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5XYmVEWDhpSy1iVkhoWXBtNEtXbHc4ZGs4NUp5UTlwalNqY0Roa3Vsclh6WHRtX2d0bU9KWUFVQ1VObDBNSm1LUFVBUlFLTF95bmZULV9tUFNxTFMx?oc=5",
+          "source_name": "媽媽育兒AI（Google 新聞搜尋）",
+          "category": "news",
+          "pub_date": "2026-04-21",
+          "fetch_date": "2026-06-13",
+          "auto_excerpt": "11個 AI 當管家！矽谷最狂「全自動育兒」，爸媽也能無痛照抄？ &nbsp;&nbsp; 親子天下Premium",
+          "note": "測試",
+          "status": "published",
+          "publish_week": "2026-W25"
+        }
+      ]
     }
   ]
 }
