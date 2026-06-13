@@ -19,7 +19,7 @@ fetch_weekly.py — 每日自動從第三方 RSS 來源抓文章，存入 conten
   5. build.py 把 published 的項目輸出到 data/weekly.json 供前台顯示
 """
 
-import os, re, hashlib, time, sys
+import os, re, hashlib, time, sys, html as html_mod
 from datetime import datetime
 from urllib.parse import urlparse
 
@@ -53,13 +53,13 @@ HEADERS = {
 # 正常情況下不會用到這份清單；它的作用只是讓腳本在 YAML 遺失時也能繼續運作。
 
 FALLBACK_SOURCES = [
-    # 【2026-06 更新】原有來源（親子天下/翻轉教育/未來親子/媽媽經/Product Hunt/
-    # The Rundown AI/AI工具王）已全數失效，改用以下有效來源。
-    {"name": "親子教育（Google 新聞）",  "url": "https://news.google.com/rss/search?q=%E8%A6%AA%E5%AD%90+%E6%95%99%E8%82%B2&hl=zh-TW&gl=TW&ceid=TW:zh-Hant", "category": "news", "max_items": 5, "enabled": True},
-    {"name": "媽媽育兒AI（Google 新聞）","url": "https://news.google.com/rss/search?q=%E5%AA%BD%E5%AA%BD+%E8%82%B2%E5%85%92+AI&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",  "category": "news", "max_items": 3, "enabled": True},
-    {"name": "TechOrange 科技報橘",     "url": "https://buzzorange.com/techorange/feed/",    "category": "tool", "max_items": 5, "enabled": True},
-    {"name": "iThome 科技新聞",         "url": "https://www.ithome.com.tw/rss/0",             "category": "tool", "max_items": 5, "enabled": True},
-    {"name": "TechNews 科技新報",       "url": "https://technews.tw/feed/",                   "category": "tool", "max_items": 5, "enabled": True},
+    {"name": "親子天下",      "url": "https://www.parenting.com.tw/api/rss/article", "category": "news", "max_items": 5, "enabled": True},
+    {"name": "翻轉教育",      "url": "https://flipedu.parenting.com.tw/rss",          "category": "news", "max_items": 3, "enabled": True},
+    {"name": "未來親子",      "url": "https://futureparenting.cwgv.com.tw/rss",       "category": "news", "max_items": 3, "enabled": True},
+    {"name": "媽媽經",        "url": "https://www.familymatters.com.tw/feed/",        "category": "news", "max_items": 3, "enabled": True},
+    {"name": "Product Hunt（AI 工具）", "url": "https://www.producthunt.com/feed",    "category": "tool", "max_items": 5, "enabled": True},
+    {"name": "The Rundown AI","url": "https://www.therundown.ai/rss",                 "category": "tool", "max_items": 3, "enabled": True},
+    {"name": "AI 工具王",     "url": "https://www.toolify.ai/zh/rss",                 "category": "tool", "max_items": 3, "enabled": True},
 ]
 
 # ── 關鍵字篩選規則（由 Justin 維護，不對玲玲開放）──────────────────────────────
@@ -69,15 +69,8 @@ FALLBACK_SOURCES = [
 # value = 至少要出現其中一個關鍵字才納入（在標題 + 描述中搜尋）
 
 KEYWORD_FILTERS = {
-    # iThome/TechNews/TechOrange 內容廣，過濾只留 AI 相關
-    "ithome": ["AI", "人工智慧", "機器學習", "生成式", "ChatGPT", "LLM", "大模型",
-               "Copilot", "Gemini", "Claude", "自動化", "深度學習"],
-    "technews": ["AI", "人工智慧", "機器學習", "生成式", "ChatGPT", "LLM",
-                 "Copilot", "Gemini", "Claude", "自動化"],
-    "techorange": ["AI", "人工智慧", "機器學習", "生成式", "ChatGPT", "LLM",
-                   "Copilot", "Gemini", "Claude", "自動化", "大模型"],
-    "hackernews": ["AI", "machine learning", "LLM", "GPT", "artificial intelligence",
-                   "automation", "deep learning", "neural"],
+    "product hunt": ["AI", "ai", "GPT", "LLM", "automation", "generator",
+                     "machine learning", "chatbot", "artificial intelligence"],
 }
 
 # ── 載入來源設定 ──────────────────────────────────────────────────────────────
@@ -119,8 +112,9 @@ def short_id(url):
     return hashlib.md5(url.encode()).hexdigest()[:8]
 
 def clean_text(html_or_text, max_len=300):
-    """移除 HTML 標籤，截取前 max_len 字。"""
+    """移除 HTML 標籤、解碼 HTML 實體（&#8230; → …），截取前 max_len 字。"""
     text = re.sub(r"<[^>]+>", " ", html_or_text or "")
+    text = html_mod.unescape(text)          # ← 解碼 &#8230; &amp; 等實體
     text = re.sub(r"\s+", " ", text).strip()
     return text[:max_len] + ("…" if len(text) > max_len else "")
 

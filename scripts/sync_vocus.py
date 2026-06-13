@@ -219,7 +219,11 @@ def get_existing_vocus_articles():
             continue
         src = fm.get("source", "")
         if src.startswith("https://vocus.cc/"):
-            aid = fm.get("id", fname.replace(".md", ""))
+            # 優先從 source URL 取完整 24 碼 article_id（相容舊式 8 碼短 ID 檔）
+            if src.startswith("https://vocus.cc/article/"):
+                aid = src.rstrip("/").split("/")[-1]
+            else:
+                aid = fm.get("id", fname.replace(".md", ""))
             result[aid] = {
                 "filepath":  fpath,
                 "fm":        fm,

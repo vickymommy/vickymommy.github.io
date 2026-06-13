@@ -1,0 +1,48 @@
+name: 內容變動時重建 JSON
+
+# ── 觸發時機 ──────────────────────────────────────────────────────────────────
+# 當 PagesCMS（或手動）把 content/ 下的檔案推到 main 分支時自動執行
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+
+# ── 避免重複執行（同時有多個 push 時只跑最新的）───────────────────────────────
+concurrency:
+  group: build-on-push
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: 重建 data JSON
+    runs-on: ubuntu-latest
+    # 跳過 github-actions[bot] 的自動推送（避免無限循環）
+    if: github.actor != 'github-actions[bot]'
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout 倉庫
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安裝相依套件
+        run: pip install pyyaml
+
+      - name: 重建 data JSON
+        run: python scripts/build.py
+
+      - name: 提交並推送（若有異動）
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "auto: 重建 data JSON [skip ci]"
+          git push
