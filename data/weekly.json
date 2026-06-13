@@ -1,4 +1,24 @@
 {
   "_說明": "由 GitHub Action 自動從 content/weekly/*.md 重建，請勿手動編輯此檔。",
-  "weeks": []
+  "weeks": [
+    {
+      "week": "2026-W25",
+      "tools": [
+        {
+          "id": "2026-06-13_183691e0",
+          "title": "G7 高峰會將聚焦 AI 管理：OpenAI、Google 與 Anthropic 高層共襄盛舉",
+          "url": "https://technews.tw/2026/06/12/anthropic-openai-google-executives-to-join-g7-summit-in-france/",
+          "source_name": "TechNews 科技新報",
+          "category": "tool",
+          "pub_date": "2026-06-12",
+          "fetch_date": "2026-06-13",
+          "auto_excerpt": "法國總統府公布名單，OpenAI、Google 與 Anthropic 等多位人工智慧高層將出席下週法國舉行的 [&#8230;]",
+          "note": "測試",
+          "status": "published",
+          "publish_week": "2026-W25"
+        }
+      ],
+      "news": []
+    }
+  ]
 }
