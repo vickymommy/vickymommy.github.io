@@ -1,6 +1,6 @@
 {
   "_說明": "待玲玲審核的每週精選候選。請勿手動編輯，由 GitHub Action 自動更新。",
-  "count": 27,
+  "count": 26,
   "items": [
     {
       "id": "fc424663",
@@ -297,19 +297,6 @@
       "pub_date": "2026-06-13",
       "fetch_date": "2026-06-13",
       "auto_excerpt": "上週落幕的Computex以「AI Together」為主題，輝達（Nvidia）執行長黃仁勳更在演講中宣示「AI is now useful」，意味著AI已從技術展示正式走向產業應用階段，不會使用AI的人，將被「會使用AI的人」所取代。 資策會副執行長兼數位轉型研究所院長林玉凡表示，在這樣的時代背景下，「我們到底是被AI打敗，還是要擁抱它？」她點出關鍵：未來最有競爭力的人才，不只會用AI，更要能將AI轉化為產業價值，而這正是臺灣職場當前最稀缺的能力。 「市場不是沒有人才，而是缺少企業看得懂、用得上的AI能力表現。」資策會教研所主任劉錦芳坦言，人才供給端與需求端之間，缺乏的不是意願，而是一套可…",
-      "note": "",
-      "status": "pending",
-      "publish_week": ""
-    },
-    {
-      "id": "3646efcf",
-      "title": "11個 AI 當管家！矽谷最狂「全自動育兒」，爸媽也能無痛照抄？ - 親子天下Premium",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5XYmVEWDhpSy1iVkhoWXBtNEtXbHc4ZGs4NUp5UTlwalNqY0Roa3Vsclh6WHRtX2d0bU9KWUFVQ1VObDBNSm1LUFVBUlFLTF95bmZULV9tUFNxTFMx?oc=5",
-      "source_name": "媽媽育兒AI（Google 新聞搜尋）",
-      "category": "news",
-      "pub_date": "2026-04-21",
-      "fetch_date": "2026-06-13",
-      "auto_excerpt": "11個 AI 當管家！矽谷最狂「全自動育兒」，爸媽也能無痛照抄？ &nbsp;&nbsp; 親子天下Premium",
       "note": "",
       "status": "pending",
       "publish_week": ""
