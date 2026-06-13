@@ -1,12 +1,14 @@
 name: 內容變動時重建 JSON
 
 # ── 觸發時機 ──────────────────────────────────────────────────────────────────
-# 當 PagesCMS（或手動）把 content/ 下的檔案推到 main 分支時自動執行
+# 1. PagesCMS 存檔後推到 content/ → 自動觸發
+# 2. 手動在 GitHub Actions 頁面點「Run workflow」也可觸發
 on:
   push:
     branches: [main]
     paths:
       - 'content/**'
+  workflow_dispatch:
 
 # ── 避免重複執行（同時有多個 push 時只跑最新的）───────────────────────────────
 concurrency:

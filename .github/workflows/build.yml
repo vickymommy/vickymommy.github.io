@@ -1,12 +1,10 @@
-name: 重建 data JSON
+name: 重建 data JSON（舊版，保留手動觸發）
 
-# 觸發時機：推送到 main 分支，且 content/ 有更動時
+# ── 觸發時機 ──────────────────────────────────────────────────────────────────
+# 注意：content/** push 觸發已移至 build_on_push.yml
+#       （功能更完整，含 weekly.json 重建與 bot 防護）
+# 此 workflow 僅保留 workflow_dispatch，供手動觸發使用
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'content/**'
-  # 也可手動在 GitHub Actions 頁面點「Run workflow」
   workflow_dispatch:
 
 jobs:
