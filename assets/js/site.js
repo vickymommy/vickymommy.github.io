@@ -44,13 +44,13 @@ function injectChrome(active) {
       nav('courses',   'courses.html',   '課程') +
       nav('community', 'community.html', '社群交流圈') +
     '</nav>' +
-    '<a class="btn" href="https://lin.ee/JM7WXWo" target="_blank">加入共學團</a>' +
+    '<a class="btn" href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">加入共學團</a>' +
     '</div></header>';
   document.getElementById('site-footer').innerHTML =
     '<footer><div class="wrap"><div class="foot-grid">' +
     '<div><h4>Vicky Mommy</h4><p style="font-size:13.5px;line-height:1.7">從今天生活裡的一個小地方開始，持續學習、持續分享。</p></div>' +
     '<div><h4>逛逛</h4><a href="articles.html">心情日誌</a><a href="weekly.html">分享天地</a><a href="ipas.html">iPAS 專區</a><a href="courses.html">課程</a><a href="community.html">社群交流圈</a></div>' +
-    '<div><h4>Vicky天地</h4><a href="https://www.youtube.com/c/VickyMommy" target="_blank">YouTube</a><a href="https://lin.ee/JM7WXWo" target="_blank">LINE 共學團</a><a href="https://www.facebook.com/HiVickyMommy" target="_blank">Facebook</a><a href="https://www.instagram.com/vickytsai927/" target="_blank">Instagram</a><a href="mailto:vickytsai927@gmail.com">合作邀約信箱</a></div>' +
+    '<div><h4>Vicky天地</h4><a href="https://www.youtube.com/c/VickyMommy" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">LINE 共學團</a><a href="https://www.facebook.com/HiVickyMommy" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/vickytsai927/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="mailto:vickytsai927@gmail.com">合作邀約信箱</a></div>' +
     '</div><div class="foot-bottom">&copy; 2026 Vicky Mommy</div></div></footer>';
 }
 
@@ -65,7 +65,7 @@ function cardHTML(a) {
 }
 
 function ytCard(v) {
-  return '<a class="vcard" href="https://www.youtube.com/watch?v=' + v.id + '" target="_blank" rel="noopener">' +
+  return '<a class="vcard" href="https://www.youtube.com/watch?v=' + v.id + '" target="_blank" rel="noopener noreferrer">' +
     '<div class="vthumb"><img src="https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg" loading="lazy" alt=""><span class="vplay">&#9658;</span></div>' +
     '<div class="vtitle">' + v.title + '</div></a>';
 }
@@ -122,6 +122,22 @@ async function renderArticle() {
     return;
   }
   document.title = a.title + '｜Vicky Mommy';
+  /* 動態更新文章頁 OG / canonical meta */
+  function setMeta(sel, attr, val) {
+    let el = document.querySelector(sel);
+    if (!el) { el = document.createElement('meta'); document.head.appendChild(el); }
+    el.setAttribute(attr, val);
+  }
+  const pageUrl = 'https://vickymommy.github.io/article.html?id=' + a.id;
+  const ogImg   = a.cover || 'https://vickymommy.github.io/assets/images/vicky.webp';
+  setMeta('meta[property="og:title"]',       'content', a.title + '｜Vicky Mommy');
+  setMeta('meta[property="og:description"]', 'content', a.excerpt || document.querySelector('meta[name="description"]')?.content || '');
+  setMeta('meta[property="og:url"]',         'content', pageUrl);
+  setMeta('meta[property="og:image"]',       'content', ogImg);
+  setMeta('meta[property="og:type"]',        'content', 'article');
+  let canon = document.querySelector('link[rel="canonical"]');
+  if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
+  canon.href = pageUrl;
 
   /* 先渲染頭部，body 區放「載入中」*/
   box.innerHTML =
@@ -133,7 +149,7 @@ async function renderArticle() {
     '<div id="article-body-slot"><p style="text-align:center;padding:40px;color:var(--ink-soft)">內文載入中…</p></div>' +
     '<div class="article-tags">' + (a.tags || []).map(t => '<span>#' + t + '</span>').join('') + '</div>' +
     '<div class="article-foot"><a class="btn ghost" href="articles.html">回文章列表</a>' +
-    '<a class="btn" href="https://lin.ee/JM7WXWo" target="_blank">加入媽咪 AI 賦能共學團</a></div>';
+    '<a class="btn" href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">加入媽咪 AI 賦能共學團</a></div>';
 
   /* 非同步取得 .md 內文 */
   try {
@@ -163,14 +179,14 @@ function renderCommunity() {
     '<div class="sec-head"><span class="pill">社群交流圈</span><h2>Vicky 的 AI 社群交流圈</h2><p>' + (E.socialIntro || '') + '</p></div>' +
     '<div class="community-hero"><img src="' + (E.socialImage || '') + '" alt="社群交流圈"></div>' +
     '<div class="chip-row">' +
-      '<a class="btn" href="' + (E.playlist || '#') + '" target="_blank">AI應用交流分享會</a>' +
-      '<a class="btn ghost" href="' + (E.channel || '#') + '" target="_blank">YouTube 頻道</a>' +
+      '<a class="btn" href="' + (E.playlist || '#') + '" target="_blank" rel="noopener noreferrer">AI應用交流分享會</a>' +
+      '<a class="btn ghost" href="' + (E.channel || '#') + '" target="_blank" rel="noopener noreferrer">YouTube 頻道</a>' +
     '</div>' +
     '<div class="vgrid">' + (E.videos || []).map(ytCard).join('') + '</div>' +
     '<div class="join-row">' +
-      '<a class="com2" href="' + (E.line || '#') + '" target="_blank"><h4>媽咪 AI 賦能共學團</h4><p>1000+ 夥伴一起學</p></a>' +
-      '<a class="com2" href="' + (E.fb || '#') + '" target="_blank"><h4>Facebook</h4><p>HiVickyMommy</p></a>' +
-      '<a class="com2" href="' + (E.ig || '#') + '" target="_blank"><h4>Instagram</h4><p>@vickytsai927</p></a>' +
+      '<a class="com2" href="' + (E.line || '#') + '" target="_blank" rel="noopener noreferrer"><h4>媽咪 AI 賦能共學團</h4><p>1000+ 夥伴一起學</p></a>' +
+      '<a class="com2" href="' + (E.fb || '#') + '" target="_blank" rel="noopener noreferrer"><h4>Facebook</h4><p>HiVickyMommy</p></a>' +
+      '<a class="com2" href="' + (E.ig || '#') + '" target="_blank" rel="noopener noreferrer"><h4>Instagram</h4><p>@vickytsai927</p></a>' +
     '</div></div></section>';
 }
 
@@ -188,10 +204,10 @@ function renderIpas() {
     '<section><div class="wrap">' +
     '<div class="sec-head"><span class="pill">iPAS 專區</span><h2>iPAS AI 應用規劃師</h2></div>' +
     '<div class="chip-row">' +
-      '<a class="btn" href="' + (E.ipasStudy || '#') + '" target="_blank">前往 iPAS 備考站</a>' +
-      '<a class="btn ghost" href="' + (E.playlist || '#') + '" target="_blank">AI應用交流分享會</a>' +
-      '<a class="btn ghost" href="' + (E.ipasChannel || '#') + '" target="_blank">iPAS 官方頻道</a>' +
-      '<a class="btn ghost" href="https://www.ipas.org.tw/AIAP" target="_blank">官方專區</a>' +
+      '<a class="btn" href="' + (E.ipasStudy || '#') + '" target="_blank" rel="noopener noreferrer">前往 iPAS 備考站</a>' +
+      '<a class="btn ghost" href="' + (E.playlist || '#') + '" target="_blank" rel="noopener noreferrer">AI應用交流分享會</a>' +
+      '<a class="btn ghost" href="' + (E.ipasChannel || '#') + '" target="_blank" rel="noopener noreferrer">iPAS 官方頻道</a>' +
+      '<a class="btn ghost" href="https://www.ipas.org.tw/AIAP" target="_blank" rel="noopener noreferrer">官方專區</a>' +
     '</div>' +
     '<h3 class="block-title">iPAS 相關影片</h3>' +
     '<div class="vgrid">' + (E.videos || []).map(ytCard).join('') + '</div>' +
@@ -216,8 +232,8 @@ function renderCourses() {
     '<ul class="course-outline">' + (c.outline || []).map(o => '<li>' + o + '</li>').join('') + '</ul>' +
     '<div class="course-meta">' + (c.meta || '') + '　｜　' + (c.suitable || '') + '</div>' +
     '<div class="chip-row" style="margin-top:18px">' +
-      '<a class="btn" href="' + (c.link || E.line || '#') + '" target="_blank">前往課程頁面（報名）</a>' +
-      '<a class="btn ghost" href="' + (E.channel || '#') + '" target="_blank">先看免費影片</a>' +
+      '<a class="btn" href="' + (c.link || E.line || '#') + '" target="_blank" rel="noopener noreferrer">前往課程頁面（報名）</a>' +
+      '<a class="btn ghost" href="' + (E.channel || '#') + '" target="_blank" rel="noopener noreferrer">先看免費影片</a>' +
     '</div></div></div></section>';
 }
 
