@@ -35,6 +35,8 @@ def build_articles():
             continue
         with open(os.path.join(articles_dir, fname), encoding='utf-8') as f:
             fm, _ = parse_frontmatter(f.read())
+        if fm.get('_duplicate_of'):  # 跳過重複條目（24碼 ID 的空白副本）
+            continue
         articles.append({
             'id':       fm.get('id', fname[:-3]),
             'title':    fm.get('title', ''),
@@ -106,7 +108,7 @@ def build_weekly():
             'title':       fm.get('title', ''),
             'url':         fm.get('url', ''),
             'source_name': fm.get('source_name', ''),
-            'category':    fm.get('category', 'news'),   # news | tool
+            'category':    fm.get('category', 'news'),
             'pub_date':    str(fm.get('pub_date', '')),
             'fetch_date':  str(fm.get('fetch_date', '')),
             'auto_excerpt': fm.get('auto_excerpt', ''),
@@ -120,11 +122,8 @@ def build_weekly():
         else:
             pending.append(item)
 
-    # ── 已發布：依 publish_week 分組 ─────────────────────────────────────────
-    # 排序（最新在前）
     published.sort(key=lambda x: x.get('publish_week', ''), reverse=True)
 
-    # 取得所有週次（維持順序）
     weeks_seen = []
     for item in published:
         wk = item.get('publish_week', '')
@@ -149,7 +148,6 @@ def build_weekly():
         json.dump(out_weekly, f, ensure_ascii=False, indent=2)
     print(f'✓ {len(published)} 筆已發布 → data/weekly.json（{len(weeks_seen)} 週）')
 
-    # ── 待審：直接存成清單 ────────────────────────────────────────────────────
     out_pending = {
         '_說明': '待玲玲審核的每週精選候選。請勿手動編輯，由 GitHub Action 自動更新。',
         'count':   len(pending),

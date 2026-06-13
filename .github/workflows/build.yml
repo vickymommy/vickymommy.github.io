@@ -31,7 +31,3 @@ jobs:
       - name: 提交並推送更新後的 JSON
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/articles.json data/community.json data/course.json
-          git diff --staged --quiet || git commit -m "auto: 重建 data JSON [skip ci]"
-          git push
