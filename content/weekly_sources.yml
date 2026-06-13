@@ -13,52 +13,50 @@
 #   - enabled: false  → 暫時停用（不抓），資料保留
 #   - 刪除整筆        → 永久移除
 #   - 新增後，隔天凌晨 2:00 才會開始抓取
+#
+# 【2026-06 更新】原有的親子天下/翻轉教育/未來親子/媽媽經/Product Hunt/
+# The Rundown AI/AI工具王 等 RSS 全數失效（網站停供或 403/404）。
+# 改用以下有效來源。若想換回原來的網站，待其 RSS 恢復後再更新即可。
 # =====================================================================
 
 sources:
 
   # ── 親子新聞 ─────────────────────────────────────────────────────
 
-  - name: 親子天下
-    url: https://www.parenting.com.tw/api/rss/article
+  - name: 親子教育（Google 新聞搜尋）
+    url: "https://news.google.com/rss/search?q=%E8%A6%AA%E5%AD%90+%E6%95%99%E8%82%B2&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
     category: news
     max_items: 5
     enabled: true
 
-  - name: 翻轉教育
-    url: https://flipedu.parenting.com.tw/rss
-    category: news
-    max_items: 3
-    enabled: true
-
-  - name: 未來親子
-    url: https://futureparenting.cwgv.com.tw/rss
-    category: news
-    max_items: 3
-    enabled: true
-
-  - name: 媽媽經
-    url: https://www.familymatters.com.tw/feed/
+  - name: 媽媽育兒AI（Google 新聞搜尋）
+    url: "https://news.google.com/rss/search?q=%E5%AA%BD%E5%AA%BD+%E8%82%B2%E5%85%92+AI&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
     category: news
     max_items: 3
     enabled: true
 
   # ── AI 工具 ───────────────────────────────────────────────────────
 
-  - name: Product Hunt（AI 工具）
-    url: https://www.producthunt.com/feed
+  - name: TechOrange 科技報橘
+    url: "https://buzzorange.com/techorange/feed/"
     category: tool
     max_items: 5
     enabled: true
 
-  - name: The Rundown AI
-    url: https://www.therundown.ai/rss
+  - name: iThome 科技新聞
+    url: "https://www.ithome.com.tw/rss/0"
     category: tool
-    max_items: 3
+    max_items: 5
     enabled: true
 
-  - name: AI 工具王
-    url: https://www.toolify.ai/zh/rss
+  - name: TechNews 科技新報
+    url: "https://technews.tw/feed/"
+    category: tool
+    max_items: 5
+    enabled: true
+
+  - name: HackerNews 精選（英文）
+    url: "https://hnrss.org/best"
     category: tool
     max_items: 3
-    enabled: true
+    enabled: false
