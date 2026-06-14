@@ -1,7 +1,72 @@
 {
   "_說明": "待玲玲審核的每週精選候選。請勿手動編輯，由 GitHub Action 自動更新。",
-  "count": 36,
+  "count": 41,
   "items": [
+    {
+      "id": "aca37375",
+      "title": "當細胞開始交換 DNA：可能改寫癌症演化觀點的新發現",
+      "url": "https://technews.tw/2026/06/14/genome-instability-triggers-intercellular-dna-transfer-between-human-cells/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-06-14",
+      "fetch_date": "2026-06-14",
+      "auto_excerpt": "人類細胞的基因組（genome）咸認是高度封閉系統，每個細胞通常只會將自己的 DNA 傳給子細胞。然而，最近美 […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "7eb417af",
+      "title": "85% 串流音樂具詐騙性質，Deezer 搶先推出適用各串流平台的 AI 音樂偵測器",
+      "url": "https://infosecu.technews.tw/2026/06/14/deezers-new-tool-can-identify-ai-music-from-spotify-apple-music-and-others/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-06-14",
+      "fetch_date": "2026-06-14",
+      "auto_excerpt": "AI 生成音樂在各串流平台上的數量持續增加，串流平台 Deezer 曾公布一項數據指出，目前上傳至其平台的所有 […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "6c144aa7",
+      "title": "次世代運輸機緩不濟急，美國會要求空軍評估重啟 C-17 產線",
+      "url": "https://technews.tw/2026/06/14/us-congress-requests-the-usaf-to-evaluate-the-possibilities-of-reactive-c-17-production/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-06-14",
+      "fetch_date": "2026-06-14",
+      "auto_excerpt": "面對日益嚴峻的地緣政治衝突與頻繁的全球人道任務，美國空軍的戰略空運主力 C-17「全球霸王 III」（Glob […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "5a90ac22",
+      "title": "Supermicro 推搭載英特爾 Xeon 6+ 處理器新伺服器方案，助大型雲端及資料中心降低總擁有成本，加速服務上線",
+      "url": "https://technews.tw/2026/06/14/supermicro-intel-xeon-6-dcbbs/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-06-14",
+      "fetch_date": "2026-06-14",
+      "auto_excerpt": "AI、企業級運算、儲存及 5G／邊緣運算整體解決方案供應商 Super Micro Computer, Inc […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "1562f5e7",
+      "title": "美國海軍還是要雙發動機，波音繼洛馬之後退出初級教練機標案",
+      "url": "https://technews.tw/2026/06/14/beoing-also-announced-to-quit-us-navys-ujts-bid/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-06-14",
+      "fetch_date": "2026-06-14",
+      "auto_excerpt": "波音近日正式宣布退出美國海軍「初級噴射訓練系統」（UJTS）標案，不再推動以空軍 T-7A「紅鷹」為基礎的改裝 […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
     {
       "id": "fc424663",
       "title": "影／彰化家扶帶親子展開兩日旅遊冒險 親子共學融入理財教育培養長期思維 - 互傳媒",
