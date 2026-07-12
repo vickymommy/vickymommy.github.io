@@ -1,7 +1,72 @@
 {
   "_說明": "待玲玲審核的每週精選候選。請勿手動編輯，由 GitHub Action 自動更新。",
-  "count": 445,
+  "count": 450,
   "items": [
+    {
+      "id": "f1bba89c",
+      "title": "男性脖子上的「青春期化石」，生物學家解密喉結真實作用",
+      "url": "https://technews.tw/2026/07/12/why-do-men-have-adams-apple/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-07-12",
+      "fetch_date": "2026-07-12",
+      "auto_excerpt": "觀察男性的頸部，你很難不注意到鎖骨上方那塊突出的硬塊，俗稱的「喉結」。然而，這項特徵在黑猩猩、大猩猩，甚至多數 […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "c6b10dc2",
+      "title": "蘋果告 OpenAI 竊密，馬斯克加入戰局嗆奧特曼「詐騙全新境界」",
+      "url": "https://ccc.technews.tw/2026/07/12/elon-musk-sam-altman-openai-apple/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-07-12",
+      "fetch_date": "2026-07-12",
+      "auto_excerpt": "馬斯克不會放過任何一次可以言語攻擊 OpenAI 執行長奧特曼的機會。最近蘋果對 OpenAI 提起訴訟，指控 […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "a6987918",
+      "title": "嘉義科學園區二期基地正式動土，台積電先進封裝擴產進入新里程",
+      "url": "https://finance.technews.tw/2026/07/12/the-groundbreaking-ceremony-for-the-second-phase-of-the-chiayi-science-park-was-officially-held/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-07-12",
+      "fetch_date": "2026-07-12",
+      "auto_excerpt": "國家科學及技術委員會南科管理局於12日舉辦開工祈福動土儀式，正式宣布嘉義科學園區二期基地正式啟動，也代表由台積 […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "35f1ee46",
+      "title": "NASA 以迄今最細緻半人馬座 A 影像慶祝韋伯望遠鏡四週年，中心黑洞與塵埃結構清晰可見",
+      "url": "https://technews.tw/2026/07/12/nasa-webb-uncovers-unusual-galaxy-shaped-by-cosmic-collision/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-07-12",
+      "fetch_date": "2026-07-12",
+      "auto_excerpt": "美國國家航空暨太空總署（NASA）6 日公布詹姆斯韋伯太空望遠鏡（JWST）的半人馬座 A（Centaurus […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "11ab5b8c",
+      "title": "一台 100 美元口袋型探測器，就能偵測穿越你身體的宇宙粒子",
+      "url": "https://technews.tw/2026/07/12/cosmicwatch-particle-muon/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-07-12",
+      "fetch_date": "2026-07-12",
+      "auto_excerpt": "來自宇宙的各種微小粒子正穿越你周圍空間，但它們不會留下任何聲音、氣味或感覺。最近德拉瓦大學物理學教授 Spen […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
     {
       "id": "f14399cc",
       "title": "美國放寬對阿聯 AI 晶片與軍備出口，民主黨痛批新制淪為川普腐敗交易",
