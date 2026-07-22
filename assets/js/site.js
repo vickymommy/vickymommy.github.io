@@ -1,4 +1,4 @@
-/* Vicky Mommy 網站 — 共用前台程式 v2（fetch 架構）
+/* Vicky Mommy 玲玲 網站 — 共用前台程式 v2（fetch 架構）
    資料來源：data/articles.json、data/community.json、data/course.json
    文章內文：content/articles/<id>.md（按需 fetch）
    新增文章：在後台（PagesCMS）操作，GitHub Action 自動重建 JSON。 */
@@ -25,7 +25,7 @@ async function initData() {
     COMMUNITY = comm   || {};
     COURSE    = course || {};
   } catch (e) {
-    console.error('[Vicky Mommy] 資料載入失敗：', e);
+    console.error('[Vicky Mommy 玲玲] 資料載入失敗：', e);
   }
 }
 
@@ -35,7 +35,7 @@ function injectChrome(active) {
     '<a href="' + href + '" class="' + (active === id ? 'active' : '') + '">' + label + '</a>';
   document.getElementById('site-header').innerHTML =
     '<header class="nav"><div class="wrap nav-inner">' +
-    '<a class="logo" href="index.html"><span class="heart">&#9829;</span> Vicky Mommy</a>' +
+    '<a class="logo" href="index.html"><span class="heart">&#9829;</span> Vicky Mommy 玲玲</a>' +
     '<nav class="menu">' +
       nav('home',      'index.html',     '首頁') +
       nav('articles',  'articles.html',  '心情日誌') +
@@ -48,10 +48,10 @@ function injectChrome(active) {
     '</div></header>';
   document.getElementById('site-footer').innerHTML =
     '<footer><div class="wrap"><div class="foot-grid">' +
-    '<div><h4>Vicky Mommy</h4><p style="font-size:13.5px;line-height:1.7">從今天生活裡的一個小地方開始，持續學習、持續分享。</p></div>' +
+    '<div><h4>Vicky Mommy 玲玲</h4><p style="font-size:13.5px;line-height:1.7">從今天生活裡的一個小地方開始，持續學習、持續分享。</p></div>' +
     '<div><h4>逛逛</h4><a href="articles.html">心情日誌</a><a href="weekly.html">分享天地</a><a href="ipas.html">iPAS 專區</a><a href="courses.html">課程</a><a href="community.html">社群交流圈</a></div>' +
-    '<div><h4>Vicky天地</h4><a href="https://www.youtube.com/c/VickyMommy" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">LINE 共學團</a><a href="https://www.facebook.com/HiVickyMommy" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/vickytsai927/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="mailto:vickytsai927@gmail.com">合作邀約信箱</a></div>' +
-    '</div><div class="foot-bottom">&copy; 2026 Vicky Mommy</div></div></footer>';
+    '<div><h4>Vicky天地</h4><a href="https://www.youtube.com/c/VickyMommy" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">LINE 共學團</a><a href="https://www.facebook.com/HiVickyMommy" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/vickytsai927/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.threads.net/@vickytsai927" target="_blank" rel="noopener noreferrer">Threads</a><a href="mailto:vickytsai927@gmail.com">合作邀約信箱</a></div>' +
+    '</div><div class="foot-bottom">&copy; 2026 Vicky Mommy 玲玲</div></div></footer>';
 }
 
 /* ---------- 卡片 HTML ---------- */
@@ -121,7 +121,7 @@ async function renderArticle() {
     box.innerHTML = '<div class="pending">找不到這篇文章，<a href="articles.html">回到文章列表</a></div>';
     return;
   }
-  document.title = a.title + '｜Vicky Mommy';
+  document.title = a.title + '｜Vicky Mommy 玲玲';
   /* 動態更新文章頁 OG / canonical meta */
   function setMeta(sel, attr, val) {
     let el = document.querySelector(sel);
@@ -130,7 +130,7 @@ async function renderArticle() {
   }
   const pageUrl = 'https://vickymommy.github.io/article.html?id=' + a.id;
   const ogImg   = a.cover || 'https://vickymommy.github.io/assets/images/vicky.webp';
-  setMeta('meta[property="og:title"]',       'content', a.title + '｜Vicky Mommy');
+  setMeta('meta[property="og:title"]',       'content', a.title + '｜Vicky Mommy 玲玲');
   setMeta('meta[property="og:description"]', 'content', a.excerpt || document.querySelector('meta[name="description"]')?.content || '');
   setMeta('meta[property="og:url"]',         'content', pageUrl);
   setMeta('meta[property="og:image"]',       'content', ogImg);
@@ -144,7 +144,7 @@ async function renderArticle() {
     '<div class="article-head"><div class="wrap" style="max-width:760px">' +
     '<span class="cat-tag">' + (CAT_LABELS[a.category] || '') + '</span>' +
     '<h1>' + a.title + '</h1>' +
-    '<div class="info"><span>' + a.date + '</span><span>閱讀 ' + (a.readMin || 5) + ' 分鐘</span><span>Vicky Mommy</span></div>' +
+    '<div class="info"><span>' + a.date + '</span><span>閱讀 ' + (a.readMin || 5) + ' 分鐘</span><span>Vicky Mommy 玲玲</span></div>' +
     '</div></div>' +
     '<div id="article-body-slot"><p style="text-align:center;padding:40px;color:var(--ink-soft)">內文載入中…</p></div>' +
     '<div class="article-tags">' + (a.tags || []).map(t => '<span>#' + t + '</span>').join('') + '</div>' +

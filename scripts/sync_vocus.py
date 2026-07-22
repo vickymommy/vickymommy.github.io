@@ -12,11 +12,17 @@ sync_vocus.py — 每日自動從 Vocus 沙龍同步玲玲的新文章到 conten
 
 執行方式（GitHub Action 或本機）：
   cd vickymommy.github.io
-  pip install requests beautifulsoup4 pyyaml lxml
+  pip install requests beautifulsoup4 pyyaml lxml pillow
   python scripts/sync_vocus.py
+
+【2026-07 更新】修正圖片模糊問題：
+  Vocus 內文圖片原本是透過 img.vocus.cc 的縮圖代理網址下載（固定寬 740px），
+  在高解析度（Retina/高 DPI）螢幕上會顯得模糊。現在改為：
+  1. 還原成 Vocus 未經縮放的原圖網址下載（畫質最佳，但檔案可能達數 MB）
+  2. 用 Pillow 等比縮到最寬 1600px（約 2 倍於文章版面寬度，兼顧 Retina 清晰度與檔案大小）
 """
 
-import os, re, time, hashlib, json, sys
+import os, re, time, hashlib, json, sys, io
 from datetime import datetime
 from urllib.parse import urlparse
 
@@ -28,6 +34,16 @@ try:
 except ImportError:
     print("缺少 pyyaml，執行 pip install pyyaml", file=sys.stderr)
     sys.exit(1)
+
+try:
+    from PIL import Image
+except ImportError:
+    Image = None
+    print("⚠️ 缺少 pillow，圖片將不會自動壓縮／修正解析度（pip install pillow）", file=sys.stderr)
+
+# 圖片下載後等比縮放的最大寬度／輸出品質
+IMAGE_MAX_WIDTH = 1600
+IMAGE_QUALITY   = 82
 
 # ── 設定 ─────────────────────────────────────────────────────────────────────
 
@@ -299,11 +315,24 @@ def clean_vocus_content(html):
 
 # ── 圖片下載 ──────────────────────────────────────────────────────────────────
 
+# Vocus 內文圖片會經過 img.vocus.cc 的縮圖代理（imgproxy），網址格式：
+#   https://img.vocus.cc/<簽章>/w:740/f:webp/plain/https://images.vocus.cc/<uuid>.jpg
+# 直接下載這種網址只會拿到寬 740px 的縮圖版本，在較高解析度（Retina/高 DPI）螢幕上
+# 會顯得模糊。真正的原始圖檔網址就藏在 "/plain/" 之後，是完全未經縮放的原圖，
+# 這裡在下載前先偵測並還原成原圖網址。
+VOCUS_PROXY_RE = re.compile(r'^https?://img\.vocus\.cc/.+?/plain/(https?://.+)$')
+
+def resolve_original_image_url(url):
+    """若 url 是 Vocus imgproxy 縮圖網址，回傳其後綴的原始圖檔網址；否則原樣回傳。"""
+    m = VOCUS_PROXY_RE.match(url)
+    return m.group(1) if m else url
+
 def download_image(url, article_id, img_idx, is_cover=False):
     if not url or url.startswith("data:"):
         return None
     if url.startswith("//"):
         url = "https:" + url
+    url = resolve_original_image_url(url)
 
     path_part = urlparse(url).path
     ext = os.path.splitext(path_part)[1].lower()
@@ -322,13 +351,50 @@ def download_image(url, article_id, img_idx, is_cover=False):
         time.sleep(0.5)
         resp = requests.get(url, headers=HEADERS, timeout=30)
         resp.raise_for_status()
+        content = resp.content
+        content, fname, local_path, rel_path = _shrink_image_if_needed(
+            content, article_id, img_idx, is_cover, ext
+        )
         with open(local_path, "wb") as f:
-            f.write(resp.content)
-        print(f"   📷 下載圖片：{fname}")
+            f.write(content)
+        print(f"   📷 下載圖片：{fname}（{len(content)//1024} KB）")
         return rel_path
     except Exception as e:
         print(f"   ⚠️ 圖片下載失敗（{url[:60]}）：{e}", file=sys.stderr)
         return None
+
+def _shrink_image_if_needed(content, article_id, img_idx, is_cover, ext):
+    """
+    若圖片寬度超過 IMAGE_MAX_WIDTH，等比縮小並轉存為 JPEG（品質 IMAGE_QUALITY），
+    避免 Vocus 原圖（手機拍照常見 3000~4000px 寬、數 MB）直接塞進 repo。
+    沒有安裝 Pillow 時，原樣回傳（不縮放，只是不會修正過大圖片）。
+    """
+    fname = (f"{article_id}_cover{ext}" if is_cover
+             else f"{article_id}_{img_idx:03d}{ext}")
+    local_path = os.path.join(IMAGES_DIR, fname)
+    rel_path   = f"assets/images/{fname}"
+
+    if Image is None or ext == ".gif":  # 動圖不處理，避免破壞動畫
+        return content, fname, local_path, rel_path
+
+    try:
+        im = Image.open(io.BytesIO(content))
+        w, h = im.size
+        if w <= IMAGE_MAX_WIDTH:
+            return content, fname, local_path, rel_path
+        new_h = round(h * IMAGE_MAX_WIDTH / w)
+        im = im.convert("RGB").resize((IMAGE_MAX_WIDTH, new_h), Image.LANCZOS)
+        buf = io.BytesIO()
+        im.save(buf, "JPEG", quality=IMAGE_QUALITY, optimize=True)
+        # 縮放後一律轉存為 .jpg
+        fname = (f"{article_id}_cover.jpg" if is_cover
+                 else f"{article_id}_{img_idx:03d}.jpg")
+        local_path = os.path.join(IMAGES_DIR, fname)
+        rel_path   = f"assets/images/{fname}"
+        return buf.getvalue(), fname, local_path, rel_path
+    except Exception as e:
+        print(f"   ⚠️ 圖片縮放失敗，改存原圖：{e}", file=sys.stderr)
+        return content, fname, local_path, rel_path
 
 def process_images(html, article_id):
     """

@@ -1,4 +1,4 @@
-name: 每日自動同步（Vocus ＋ 每週精選）
+name: 每日自動同步（Vocus ＋ 每週精選 ＋ YouTube）
 
 # ── 觸發時機 ──────────────────────────────────────────────────────────────────
 on:
@@ -12,7 +12,7 @@ on:
 # ── 工作 ──────────────────────────────────────────────────────────────────────
 jobs:
   sync:
-    name: 同步 Vocus 文章 ＋ 抓每週精選候選
+    name: 同步 Vocus 文章 ＋ 抓每週精選候選 ＋ 抓 YouTube 影片
     runs-on: ubuntu-latest
     permissions:
       contents: write   # 需要寫入權限才能 push 新檔案
@@ -31,10 +31,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      # 3. 安裝套件（含 beautifulsoup4 用於頁面解析）
+      # 3. 安裝套件（含 beautifulsoup4 用於頁面解析、pillow 用於圖片還原原圖＋壓縮）
       - name: 安裝相依套件
         run: |
-          pip install requests beautifulsoup4 pyyaml lxml
+          pip install requests beautifulsoup4 pyyaml lxml pillow
 
       # 4. 執行 Vocus RSS 同步（新文章 + 修改偵測）
       - name: 同步 Vocus 文章
@@ -44,15 +44,19 @@ jobs:
       - name: 抓取每週精選候選
         run: python scripts/fetch_weekly.py
 
-      # 6. 重建 data/*.json（articles + weekly + community + course）
+      # 6. 抓玲玲 YouTube 頻道最新影片（自動更新 content/community.yml 的 videos 清單）
+      - name: 抓取 YouTube 最新影片
+        run: python scripts/fetch_youtube.py
+
+      # 7. 重建 data/*.json（articles + weekly + community + course）
       - name: 重建 data JSON
         run: python scripts/build.py
 
-      # 7. 提交並推送（若有任何異動）
+      # 8. 提交並推送（若有任何異動）
       - name: 提交並推送更新
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add content/articles/ assets/images/ content/weekly/ data/
-          git diff --staged --quiet || git commit -m "auto: 每日同步 Vocus + 每週精選候選 [skip ci]"
+          git add content/articles/ assets/images/ content/weekly/ content/community.yml data/
+          git diff --staged --quiet || git commit -m "auto: 每日同步 Vocus + 每週精選候選 + YouTube 影片 [skip ci]"
           git push

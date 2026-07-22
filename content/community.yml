@@ -1,25 +1,40 @@
-channel: "https://www.youtube.com/c/VickyMommy"
-playlist: "https://www.youtube.com/playlist?list=PLb-qrt1jdBmwVdzX33Af17oitqQsMoNJY"
-ipasChannel: "https://www.youtube.com/@ipas6553"
-ipasStudy: "https://ipas-study.github.io/ipas-ai-study/"
-line: "https://lin.ee/JM7WXWo"
-fb: "https://www.facebook.com/HiVickyMommy"
-ig: "https://www.instagram.com/vickytsai927/"
-socialImage: "assets/images/community.jpg"
-socialIntro: "由 Vicky Mommy 經營的 AI 學習社群：AI 應用規劃師訪談、iPAS 小聚與活動紀錄、AI 生活應用。挑一支適合你的影片開始吧！"
-
+channel: https://www.youtube.com/c/VickyMommy
+playlist: https://www.youtube.com/playlist?list=PLb-qrt1jdBmwVdzX33Af17oitqQsMoNJY
+ipasChannel: https://www.youtube.com/@ipas6553
+ipasStudy: https://ipas-study.github.io/ipas-ai-study/
+line: https://lin.ee/JM7WXWo
+fb: https://www.facebook.com/HiVickyMommy
+ig: https://www.instagram.com/vickytsai927/
+socialImage: assets/images/community.jpg
+socialIntro: 由 Vicky Mommy 玲玲 經營的 AI 學習社群：AI 應用規劃師訪談、iPAS 小聚與活動紀錄、AI 生活應用。挑一支適合你的影片開始吧！
 videos:
-  - id: "L0BTTmsCr6k"
-    title: "【AI 應用交流分享會 7】iPAS 獲證學長姊的考前陪伴分享會"
-  - id: "m-y10bR6DZI"
-    title: "【AI 應用交流分享會 6】Sandy × Vicky｜AI 影片、AI 複製人、104 AI 通用素養檢測"
-  - id: "iTOMiP0uxFs"
-    title: "【AI 應用交流分享會 5】企業 AI 導入流程與案例分享｜OpenCloud 龍蝦應用"
-  - id: "a8ijPPUpdVc"
-    title: "【AI 應用交流分享會 4】Jenny × Vicky｜AI 應用規劃師、資策會生成式 AI"
-  - id: "F-z1GKE-KvA"
-    title: "【AI 應用交流分享會 3】CCChen × Vicky｜初級證照攻略與科目重點"
-  - id: "ceAwiCdy2uE"
-    title: "【AI 應用交流分享會 2】江江教練 × Vicky｜隱性知識提煉術、三層次會議"
-  - id: "JrEsQ7c8YFg"
-    title: "經濟部 iPAS 採訪心得｜考照經驗分享＋全職媽媽的成長故事"
+- id: UGLhdR3PIR8
+  title: 4500+企業認同：iPAS 能力鑑定 🚀
+- id: g6Kzhkoyncs
+  title: 女力學院講座《品牌塑造者：我的品牌故事》@woomanpower
+- id: KtfGNhg67G0
+  title: 合約、保險條款、公司治理，都是金融法務的日常 | AI 應用規劃師
+- id: FScBkaQMJGY
+  title: 驚豔開箱 iPAS 證照！打卡必備📸 AI 應用規劃師&物聯網應用工程師
+- id: c5va3ylPOtw
+  title: 考 iPAS 證照：技能若停滯，淘汰則是必然！ AI 應用規劃師&物聯網應用工程師
+- id: CdcmU5Eam8U
+  title: 【 2026 生成式 AI 年會 】Agent First 帶來什麼新想像？15 位講者讓我看見更多可能❤️
+- id: 1lTzJytR4lc
+  title: 輔仁大學AI免費課程：跨世代學習社群 | iPAS AI 應用規劃師
+- id: 1eqBSxsbVGI
+  title: AI 助供應商克服危機，快速尋找替代供應商 - AI 應用規劃師
+- id: 1zvDOxElnvI
+  title: 【端午節 AI 創意素材分享會】6 位 AI 應用規劃師陪你過端午 | 用 AI 製作端午節創意圖片、影片、音樂、Vibe Coding 小遊戲
+- id: 9gdiyY3mwxU
+  title: 【 端午節 AI 創作分享會 】「小小香包」AI 創作影片 | AI 應用規劃師聯合分享會
+- id: N0Hy6zVklNk
+  title: 阿嬤切菜都沒事？食品廠暗藏致命危機？ iPAS 食品品保工程師
+- id: GzQ-VCcD0yU
+  title: 考 iPAS 證照，業界入門捷徑！食品品保工程師
+- id: HiXmZsOy_kw
+  title: 當屆通過率 3 成 8 的 iPAS AI 考試，他們卻創造了超過 6 成合格率！！！AI 應用規劃師
+- id: iNlmPPPd2Vc
+  title: iPAS AI 為校長決策支援！AI 應用規劃師
+- id: bVK_0LSUcks
+  title: 《鑑賢思齊》– iPAS應用大現場 EP02 | 塑膠材料應用工程師
