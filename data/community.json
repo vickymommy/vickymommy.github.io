@@ -10,6 +10,10 @@
   "socialIntro": "由 Vicky Mommy 玲玲 經營的 AI 學習社群：AI 應用規劃師訪談、iPAS 小聚與活動紀錄、AI 生活應用。挑一支適合你的影片開始吧！",
   "videos": [
     {
+      "id": "DDAr2PvHwqc",
+      "title": "【女力學院講座】品牌塑造者：從全職媽媽到 AI 賦能學伴，把真實日常長成品牌力量 @woomanpower @sherrys500"
+    },
+    {
       "id": "Aq9uWM_UTE0",
       "title": "看到考題不太高興？！因為 iPAS 題目太靈活！！！淨零碳規劃管理師"
     },
@@ -64,10 +68,6 @@
     {
       "id": "9gdiyY3mwxU",
       "title": "【 端午節 AI 創作分享會 】「小小香包」AI 創作影片 | AI 應用規劃師聯合分享會"
-    },
-    {
-      "id": "N0Hy6zVklNk",
-      "title": "阿嬤切菜都沒事？食品廠暗藏致命危機？ iPAS 食品品保工程師"
     }
   ]
 }
