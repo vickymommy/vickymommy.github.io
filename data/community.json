@@ -10,6 +10,10 @@
   "socialIntro": "由 Vicky Mommy 玲玲 經營的 AI 學習社群：AI 應用規劃師訪談、iPAS 小聚與活動紀錄、AI 生活應用。挑一支適合你的影片開始吧！",
   "videos": [
     {
+      "id": "8iRCCjymBsU",
+      "title": "iPAS 跨領域學習：如何快速轉換身份並突破職涯框架"
+    },
+    {
       "id": "8Z4fhb0Yw04",
       "title": "新北教育局全額補助iPAS報名費，考過再享升遷加分💰"
     },
@@ -64,10 +68,6 @@
     {
       "id": "1lTzJytR4lc",
       "title": "輔仁大學AI免費課程：跨世代學習社群 | iPAS AI 應用規劃師"
-    },
-    {
-      "id": "1eqBSxsbVGI",
-      "title": "AI 助供應商克服危機，快速尋找替代供應商 - AI 應用規劃師"
     }
   ]
 }
