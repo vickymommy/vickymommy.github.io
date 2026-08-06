@@ -8,6 +8,8 @@ ig: https://www.instagram.com/vickytsai927/
 socialImage: assets/images/community.jpg
 socialIntro: 由 Vicky Mommy 玲玲 經營的 AI 學習社群：AI 應用規劃師訪談、iPAS 小聚與活動紀錄、AI 生活應用。挑一支適合你的影片開始吧！
 videos:
+- id: AVkuVIcMIXA
+  title: 考取國家級 iPAS 證書提升職場競爭力！
 - id: 8iRCCjymBsU
   title: iPAS 跨領域學習：如何快速轉換身份並突破職涯框架
 - id: 8Z4fhb0Yw04
@@ -36,5 +38,3 @@ videos:
   title: 考 iPAS 證照：技能若停滯，淘汰則是必然！ AI 應用規劃師&物聯網應用工程師
 - id: CdcmU5Eam8U
   title: 【 2026 生成式 AI 年會 】Agent First 帶來什麼新想像？15 位講者讓我看見更多可能❤️
-- id: 1lTzJytR4lc
-  title: 輔仁大學AI免費課程：跨世代學習社群 | iPAS AI 應用規劃師
