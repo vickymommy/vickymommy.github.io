@@ -8,6 +8,8 @@ ig: https://www.instagram.com/vickytsai927/
 socialImage: assets/images/community.jpg
 socialIntro: 由 Vicky Mommy 玲玲 經營的 AI 學習社群：AI 應用規劃師訪談、iPAS 小聚與活動紀錄、AI 生活應用。挑一支適合你的影片開始吧！
 videos:
+- id: MIS_SMr2JfQ
+  title: iPAS 淨零碳規劃管理師初級中級像玩樂高 🧩
 - id: PKDLGNoHDNQ
   title: 洗滌塔是用來處理酸鹼氣體的環保設備 《 鑑賢思齊 – iPAS應用大現場 》
 - id: T97FGd4NsiQ
@@ -36,5 +38,3 @@ videos:
   title: 女力學院講座《品牌塑造者：我的品牌故事》@woomanpower
 - id: KtfGNhg67G0
   title: 合約、保險條款、公司治理，都是金融法務的日常 | AI 應用規劃師
-- id: FScBkaQMJGY
-  title: 驚豔開箱 iPAS 證照！打卡必備📸 AI 應用規劃師&物聯網應用工程師
