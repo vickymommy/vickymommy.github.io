@@ -8,6 +8,8 @@ ig: https://www.instagram.com/vickytsai927/
 socialImage: assets/images/community.jpg
 socialIntro: 由 Vicky Mommy 玲玲 經營的 AI 學習社群：AI 應用規劃師訪談、iPAS 小聚與活動紀錄、AI 生活應用。挑一支適合你的影片開始吧！
 videos:
+- id: 8oWidT_LEL4
+  title: 【iPAS REAL TALK】台北場：50 位獲證者齊聚，討論獲證之後，如何讓證照發揮價值？
 - id: MIS_SMr2JfQ
   title: iPAS 淨零碳規劃管理師初級中級像玩樂高 🧩
 - id: PKDLGNoHDNQ
@@ -36,5 +38,3 @@ videos:
   title: 4500+企業認同：iPAS 能力鑑定 🚀
 - id: g6Kzhkoyncs
   title: 女力學院講座《品牌塑造者：我的品牌故事》@woomanpower
-- id: KtfGNhg67G0
-  title: 合約、保險條款、公司治理，都是金融法務的日常 | AI 應用規劃師
