@@ -1,6 +1,6 @@
 {
   "_說明": "待玲玲審核的每週精選候選。請勿手動編輯，由 GitHub Action 自動更新。",
-  "count": 1145,
+  "count": 1151,
   "items": [
     {
       "id": "f85419d0",
@@ -50,6 +50,19 @@
       "pub_date": "2026-08-29",
       "fetch_date": "2026-08-29",
       "auto_excerpt": "備份與資料保護業者Veeam於8月25日發布Veeam ONE 13.1 Patch 0，修補虛擬化與備份環境監控平臺Veeam ONE重大漏洞CVE-2026-65641，13.1.0.7034以前的所有13.1版都受影響，用戶應升級至已修補的13.1.0.7233版。",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "ce214535",
+      "title": "美國 FDA 核准首款 ET 全線新藥！藥華藥 Ropeg 橫跨兩大血癌領域",
+      "url": "https://finance.technews.tw/2026/08/29/aml/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-08-29",
+      "fetch_date": "2026-08-29",
+      "auto_excerpt": "藥華藥今日宣布旗下新藥 Ropeginterferon alfa-2b（Ropeg，P1101）獲美國食品藥物 […]",
       "note": "",
       "status": "pending",
       "publish_week": ""
@@ -107,6 +120,19 @@
       "publish_week": ""
     },
     {
+      "id": "9c99b3c7",
+      "title": "NASA 韋伯望遠鏡捕捉「獅子星雲」，紅外線視角揭開垂死恆星的壯麗終章",
+      "url": "https://technews.tw/2026/08/30/lion-nebula/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-08-29",
+      "fetch_date": "2026-08-29",
+      "auto_excerpt": "韋伯太空望遠鏡近日釋出了行星狀星雲 NGC 2392 的最新紅外線影像。這個因外觀神似獅子而得名的「獅子星雲」 […]",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
       "id": "7aed8e5a",
       "title": "【金融 AI 的生產力變現鴻溝】40% 機構實現獲利增長：年預算破 10 萬美元、微調自研專屬模型是關鍵",
       "url": "https://techorange.com/2026/08/29/ai-in-financial-services-report/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss",
@@ -115,6 +141,19 @@
       "pub_date": "2026-08-29",
       "fetch_date": "2026-08-29",
       "auto_excerpt": "根據劍橋替代金融中心聯合世界銀行、國際貨幣基金組織、國際清算銀行，以及世界經濟論壇發佈的《2026 年全球金融服務 AI 報告》（The 2026 Global AI in Financial Services Report），全球金融業正處於中期過渡階段。 然而在此過渡期中，行業正顯現出「普及率高、獲利轉化低」的失衡反差。 全球 AI 採用率雖高達 81%，實質實現獲利增長的機構卻僅有 40%。此變現差距進一步體現在傳統與新興機構的「非對稱轉型」上：數位原生的金融科技（Fintech）不僅在成熟階段以 47% 對 30% 領先傳統機構，於全面轉型階段（19% 對比 6%）更展現出三倍的領先優…",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "73565970",
+      "title": "首創「AI for All」全民免費代幣！韓國豪擲 10 兆韓元實現算力自由",
+      "url": "https://finance.technews.tw/2026/08/29/ai-for-all/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-08-29",
+      "fetch_date": "2026-08-29",
+      "auto_excerpt": "韓國政府最新宣布計劃讓全體民眾免費使用生成式 AI 服務，目標是在讓更多韓國人連結到本土的 AI 聊天機器人， […]",
       "note": "",
       "status": "pending",
       "publish_week": ""
@@ -141,6 +180,19 @@
       "pub_date": "2026-08-28",
       "fetch_date": "2026-08-29",
       "auto_excerpt": "AI 平台 Hugging Face 推出第二款機器人 Microduck，售價 399 美元。這款外型可愛、只有一隻眼睛的雙足機器人不僅會唱歌，使用者還能透過強化學習、模擬環境及開源軟體，教它學習新的動作與技能。Hugging Face 表示，希望藉此讓 AI 與機器人更容易走入一般消費者的生活。 Microduck 目前已開放預購，市場反應相當熱烈。Hugging Face 共同創辦人 Thomas Wolf 接受《Bloomberg》訪問時表示，自開放預購後，平均每 4 秒就能賣出 1 台 Microduck，累計銷售額約達 50 萬美元。公司目標是售出超過 2 萬台，首批產品預計在聖誕…",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "5c8451a9",
+      "title": "輝達財報出爐股價跌轉升！但擔保金額超越單季營收，輝達循環融資風險成焦點",
+      "url": "https://finance.technews.tw/2026/08/29/nvidia-earnings-stock-rebound-jensen-huang-revolving-financing-concern/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-08-29",
+      "fetch_date": "2026-08-29",
+      "auto_excerpt": "輝達公布財報又救全村！盤後除美股股價漲過 4%，也帶動美股美光、台積電台股 27 日上攻。第二季營收達 962 […]",
       "note": "",
       "status": "pending",
       "publish_week": ""
@@ -180,6 +232,32 @@
       "pub_date": "2026-08-28",
       "fetch_date": "2026-08-29",
       "auto_excerpt": "文／CYBERBIZ 技術長 李健華 過去一年，我最常被問的問題是：「你們的 AI 功能什麼時候上線？」 但真正讓我印象深刻的，是另一句話，一位已經導入 AI 工具的品牌營運主管私下跟我說：「上線了啊，可是三個月後，大家還是用原本的方式做事。」 Gartner 在 2025 年就預警，超過四成的 Agentic AI 專案會在 2027 年前被取消，原因不是技術不到位，而是成本失控、商業價值不清、風險控制不足，翻成白話也就是老闆花了錢、工程師接了 API、模型也真的很聰明，但沒有人真的敢用它。 身為一個這幾年大部分時間都花在把 AI 塞進電商系統的人，我想聊一個比「AI 有多強」更關鍵、但很少…",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "3857c071",
+      "title": "守護原始資料，NetApp活用儲存快照副本技術，助企業因應AI時代下的資料存取風險",
+      "url": "https://www.ithome.com.tw/news/178501",
+      "source_name": "iThome 科技新聞",
+      "category": "tool",
+      "pub_date": "2026-08-29",
+      "fetch_date": "2026-08-29",
+      "auto_excerpt": "AI日益普及帶來許多便利之餘，然而，近期陸續傳出幾起AI誤刪資料的事故，引發恐慌，企業該如何預防這類意外的發生？隨著越來越多企業建置大數據資料分析環境與AI工廠基礎設施，以及因應接踵而來的勒索軟體網路攻擊與資料外洩威脅，企業如何具備足夠的資料保護能力？長期推廣企業儲存系統與資料保護領域的NetApp台灣技術總監許宏俊認為，維持原始資料的完整性與可靠性，提升資料存取行為的分析能力，靈活運用快照副本，可以",
+      "note": "",
+      "status": "pending",
+      "publish_week": ""
+    },
+    {
+      "id": "2c027b50",
+      "title": "AI 設計「胞內抗體」有望為阿茲海默症、巴金森氏症與漸凍症開啟新療法",
+      "url": "https://technews.tw/2026/08/30/ai-designed-intrabodies-could-unlock-new-treatments-for-alzheimers-parkinsons-and-mnd/",
+      "source_name": "TechNews 科技新報",
+      "category": "tool",
+      "pub_date": "2026-08-29",
+      "fetch_date": "2026-08-29",
+      "auto_excerpt": "英國艾塞克斯大學（University of Essex）運用人工智慧（AI）重新設計抗體，開發出可直接在人類 […]",
       "note": "",
       "status": "pending",
       "publish_week": ""
