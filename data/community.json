@@ -10,6 +10,10 @@
   "socialIntro": "由 Vicky Mommy 玲玲 經營的 AI 學習社群：AI 應用規劃師訪談、iPAS 小聚與活動紀錄、AI 生活應用。挑一支適合你的影片開始吧！",
   "videos": [
     {
+      "id": "n2-fwMI57OQ",
+      "title": "AI 做不好別自己改？這才是養出「AI 分身」的關鍵"
+    },
+    {
       "id": "lwfZBpOfMnE",
       "title": "【AI 應用交流分享會】AI 分身是什麼？林思翰 Hans：別再只跟 AI 聊天，讓 AI 真正接手你的工作"
     },
@@ -64,10 +68,6 @@
     {
       "id": "jQtjQz17wBU",
       "title": "醫院冰水主機碳排驚人 💰 減碳大作戰刻不容緩 | iPAS 淨零碳規劃管理師"
-    },
-    {
-      "id": "JMuyXrT4BAI",
-      "title": "AI 應用規劃師 社群聚會"
     }
   ]
 }
