@@ -8,6 +8,10 @@ ig: https://www.instagram.com/vickytsai927/
 socialImage: assets/images/community.jpg
 socialIntro: 由 Vicky Mommy 玲玲 經營的 AI 學習社群：AI 應用規劃師訪談、iPAS 小聚與活動紀錄、AI 生活應用。挑一支適合你的影片開始吧！
 videos:
+- id: u0XupdR0zeM
+  title: 只要輸入主題！AI 幫你做簡報＋解說影片｜ChatGPT＋FlexClip 新手也能學會
+- id: Uj6hbxy_qms
+  title: iPAS 考試電腦當機？教你冷靜應變與補救方法
 - id: o3QS1ULKP_Y
   title: 公部門導入 AI 需謹慎：政府與企業的應用策略差異
 - id: vVErW2Sm4u4
@@ -34,7 +38,3 @@ videos:
   title: iPAS 跨領域學習：如何快速轉換身份並突破職涯框架
 - id: 8Z4fhb0Yw04
   title: 新北教育局全額補助iPAS報名費，考過再享升遷加分💰
-- id: b3dddIn0tdg
-  title: 全球首創🚀新北AI教育局
-- id: DDAr2PvHwqc
-  title: 【女力學院講座】品牌塑造者：從全職媽媽到 AI 賦能學伴，把真實日常長成品牌力量 @woomanpower @sherrys500
