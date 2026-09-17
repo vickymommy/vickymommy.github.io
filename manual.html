@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>玲玲操作手冊｜Vicky Mommy 網站</title>
+<style>
+  :root{
+    --bg:#fdf6f0; --card:#ffffff; --ink:#3b2f2a; --accent:#e08a6b; --accent-dark:#c96b4a;
+    --muted:#8a7c74; --border:#eee0d8; --code:#f4ece5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:24px 20px 80px;}
+  h1{font-size:1.7rem;border-bottom:3px solid var(--accent);padding-bottom:10px;}
+  h2{font-size:1.3rem;color:var(--accent-dark);margin-top:2.2em;border-left:6px solid var(--accent);padding-left:10px;}
+  h3{font-size:1.08rem;color:var(--accent-dark);margin-top:1.6em;}
+  table{width:100%;border-collapse:collapse;margin:1em 0;font-size:0.95rem;}
+  th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--code);}
+  code{background:var(--code);padding:2px 6px;border-radius:4px;font-size:0.92em;}
+  pre{background:var(--code);padding:14px;border-radius:8px;overflow-x:auto;}
+  blockquote{background:#fff7ee;border-left:4px solid var(--accent);margin:1em 0;padding:0.6em 1em;border-radius:0 6px 6px 0;}
+  a{color:var(--accent-dark);}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 22px;margin:1em 0;box-shadow:0 2px 10px rgba(0,0,0,.03);}
+  .quick{background:#fff9f4;border:2px solid var(--accent);border-radius:16px;padding:20px 22px;margin-bottom:2em;}
+  .quick h2{margin-top:0.4em;}
+  .badge{display:inline-block;background:var(--accent);color:#fff;border-radius:20px;padding:3px 12px;font-size:0.85rem;}
+  .toc{font-size:0.95rem;}
+  hr{border:none;border-top:1px solid var(--border);margin:2em 0;}
+  /* password gate */
+  #gate{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:99;padding:20px;}
+  #gate .box{background:#fff;padding:32px 28px;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.08);max-width:360px;width:100%;text-align:center;}
+  #gate input{width:100%;padding:10px 12px;font-size:1rem;border:1px solid var(--border);border-radius:8px;margin:14px 0;}
+  #gate button{width:100%;padding:10px;font-size:1rem;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;}
+  #gate button:hover{background:var(--accent-dark);}
+  #gate .err{color:#c0392b;font-size:0.9rem;min-height:1.2em;}
+  #content{display:none;}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="box">
+    <h2 style="margin-top:0;border:none;color:var(--ink);">🔒 玲玲操作手冊</h2>
+    <p style="color:var(--muted);font-size:0.9rem;">這裡有網站後台操作說明，僅供內部使用，請輸入通關密碼</p>
+    <input type="password" id="pw" placeholder="輸入密碼">
+    <button onclick="tryUnlock()">進入</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<div id="content">
+<div class="wrap">
+
+<h1>Vicky Mommy 網站｜玲玲操作手冊（完整版）</h1>
+
+<p style="color:var(--muted);font-size:0.92rem;">
+整併日期：2026-09-17　｜　本手冊整併自 5 份舊文件，原始檔已歸檔於 <code>01.建置記錄/歷程資料/舊版手冊草稿/</code><br>
+上半部是「快速參考」，急著查東西時看這裡就夠；下半部是「完整說明」，第一次學或想搞懂原理時看。
+</p>
+
+<div class="quick">
+<h2>📋 快速參考卡（急用查這裡）</h2>
+
+<h3>🔗 常用連結</h3>
+<table>
+<tr><th>用途</th><th>網址</th></tr>
+<tr><td>後台（日常管理用）</td><td><a href="https://app.pagescms.org/">app.pagescms.org</a></td></tr>
+<tr><td>網站（前台）</td><td><a href="https://vickymommy.github.io/">vickymommy.github.io</a></td></tr>
+<tr><td>GitHub 倉庫</td><td><a href="https://github.com/vickymommy/vickymommy.github.io">github.com/vickymommy/…</a></td></tr>
+<tr><td>LINE 共學團</td><td>lin.ee/JM7WXWo</td></tr>
+</table>
+
+<h3>👤 帳號與角色</h3>
+<table>
+<tr><th>帳號</th><th>用途</th></tr>
+<tr><td><b>vickytsai927</b></td><td>玲玲的 GitHub 帳號（內容管理登入用）</td></tr>
+<tr><td><b>justin-n8n</b></td><td>Justin 的 GitHub 帳號（程式/版面維護）</td></tr>
+<tr><td><b>vickymommy</b></td><td>GitHub 組織（網站的家）</td></tr>
+</table>
+<blockquote>⚠️ 記得開啟 GitHub 兩步驟驗證（2FA），詳見本手冊「九、GitHub 兩步驟驗證設定」。</blockquote>
+
+<h3>✍️ 寫新文章（快速版）</h3>
+<ol>
+<li>進後台 → 點「心情日誌（文章）」</li>
+<li>右上角按「Add an entry」</li>
+<li>填標題、日期、分類、封面圖、摘要、內文</li>
+<li>按「Save」</li>
+<li>等 1～2 分鐘，網站上看得到了 ✅</li>
+</ol>
+<blockquote>⚠️ 這是給「網站獨家文章」用的。若是你在<b>方格子</b>寫的文章，不用在這裡新增，系統每天凌晨會自動同步過去（見「四、文章是怎麼進來網站的」）。</blockquote>
+
+<h3>🏷️ 文章分類對照</h3>
+<p>AI 學習應用｜媽媽自我成長｜親子生活指南｜親子旅遊｜親子手作</p>
+<p>每篇文章只能選一個分類，從下拉選單選擇，選完按 Save。</p>
+
+<h3>📰 每週精選審核（快速版）</h3>
+<ol>
+<li>進後台 → 點「分享天地（每週精選）」</li>
+<li>點進你想推薦的候選項目</li>
+<li>填「Vicky 心情分享」（這是重點！）</li>
+<li>狀態改「已發布」，填發布週次（例：2026-W25）</li>
+<li>按「Save」✅</li>
+</ol>
+<p>候選是系統每天自動抓的，你只需要挑選 + 加心得就好！</p>
+
+<h3>🆘 遇到問題怎麼辦（快速版）</h3>
+<table>
+<tr><th>問題</th><th>怎麼辦</th></tr>
+<tr><td>存完沒出現？</td><td>等 1～2 分鐘，還沒再找 Justin</td></tr>
+<tr><td>刪掉文章了？</td><td>不用急，Justin 能從 GitHub 找回來</td></tr>
+<tr><td>圖片上傳失敗？</td><td>確認不超過 5MB、檔名用英文</td></tr>
+<tr><td>按鈕是英文？</td><td>Save=存檔、Edit=編輯、Delete=刪除，正常的</td></tr>
+</table>
+<p>緊急聯絡 Justin（GitHub：justin-n8n）</p>
+</div>
+
+<hr>
+<h1 style="border:none;">📖 完整說明</h1>
+
+<h2>一、怎麼進入後台</h2>
+<ol>
+<li>打開瀏覽器，前往：<b>https://app.pagescms.org/</b></li>
+<li>點「Sign in with GitHub」</li>
+<li>用 GitHub 帳號 <b>vickytsai927</b> 登入</li>
+<li>點選「<b>vickymommy / vickymommy.github.io</b>」</li>
+<li>進入後，左側出現選單，就可以開始操作了</li>
+</ol>
+<blockquote>第一次登入時 GitHub 會問你授權，按「Authorize」同意就好。之後再進來不需要重新登入（除非清掉瀏覽器記憶）。</blockquote>
+
+<h2>二、後台整體結構一覽</h2>
+<pre>📂 Content（內容）
+  ├── 🗒 心情日誌（文章）          ← 管理所有文章
+  ├── ⭐ 分享天地（每週精選）       ← 審核候選、發布精選
+  └── 📡 每週精選來源管理           ← 設定自動抓取哪些網站
+
+📂 設定
+  ├── 💬 社群交流圈（設定）         ← 管理社群連結、影片清單
+  └── 📚 課程（設定）               ← 管理課程資訊</pre>
+<blockquote>📌 選單底部另有一個「Actions」項目，那是 PagesCMS 自己的功能，<b>空的是正常的，我們不用它</b>。要手動觸發方格子同步，請見「三-6 Actions（手動觸發同步）」。</blockquote>
+
+<h2>三、各功能區詳解</h2>
+
+<h3>3-1 心情日誌（文章）</h3>
+<p><b>這個區在做什麼？</b> 顯示所有文章（包含從方格子自動同步進來的 + 在後台手動新增的）。你可以查看文章狀態、新增獨家文章、修改分類或標籤。</p>
+<blockquote>⚠️ <b>方格子同步來的文章，不要在這裡改內文</b>。要改內文請去方格子改，網站會自動更新。</blockquote>
+<p><b>新增獨家文章：步驟</b></p>
+<ol>
+<li>點左側「心情日誌（文章）」</li>
+<li>右上角點綠色「Add an entry」</li>
+<li>依序填寫欄位（見下表）</li>
+<li>右上角按「Save」</li>
+<li>約 1～2 分鐘後，網站上就能看到這篇文章</li>
+</ol>
+<table>
+<tr><th>欄位</th><th>必填？</th><th>說明</th><th>範例</th></tr>
+<tr><td>標題</td><td>✅</td><td>文章標題</td><td>給媽媽的 AI 學習起點</td></tr>
+<tr><td>發布日期</td><td>✅</td><td>選一個日期</td><td>2026-06-13</td></tr>
+<tr><td>分類</td><td>✅</td><td>從下拉選一個</td><td>AI 學習應用</td></tr>
+<tr><td>封面圖</td><td>建議填</td><td>上傳圖片，建議 16:9、至少 800px 寬</td><td>點 Upload 上傳</td></tr>
+<tr><td>摘要</td><td>✅</td><td>顯示在文章卡片，1～2句話</td><td>這篇文章分享了我第一次用 AI…</td></tr>
+<tr><td>標籤</td><td>可選</td><td>關鍵字，可多個</td><td>AI、媽媽成長</td></tr>
+<tr><td>原文連結（方格子）</td><td>❌留空</td><td>獨家文章不填；填了會被同步覆蓋</td><td>（空白）</td></tr>
+<tr><td>閱讀分鐘數</td><td>可選</td><td>預估</td><td>5</td></tr>
+<tr><td>內文</td><td>✅</td><td>文章正文，可用編輯器工具列排版</td><td>（正文內容）</td></tr>
+</table>
+<p><b>修改現有文章：步驟</b> 點「心情日誌（文章）」→ 找到文章點「Edit」→ 修改欄位 → 按「Save」</p>
+<p><b>上傳封面圖片</b>：在文章編輯頁點「封面圖」旁的「Upload」，選擇圖片檔（jpg/png/webp/gif）。建議寬度 800px 以上、比例接近 16:9；檔名用英文或數字（例如 <code>cover-ai-2026.jpg</code>）。</p>
+
+<h3>3-2 分享天地（每週精選）</h3>
+<p><b>這個區在做什麼？</b> 系統每天自動抓取各網站的新文章/工具，放在這裡等你審核。覺得值得推薦的，填上「Vicky 心情分享」，設定週次後發布，前台就會出現。</p>
+<blockquote>💡 系統每天凌晨 2 點抓一次，候選可能一次累積很多。挑你自己真的覺得有用的就好。</blockquote>
+<p><b>✅ 要發布的：</b></p>
+<ol>
+<li>填寫「Vicky 心情分享」— <b>這是網站的靈魂</b>，要告訴讀者「Vicky 親自試過，覺得這個有用，因為…」</li>
+<li>把「狀態」改成「已發布」</li>
+<li>填「發布週次」— 格式 <code>2026-W25</code>；同週審核通過的填同樣週次，前台會整理在同一區塊</li>
+<li>按「Save」</li>
+</ol>
+<p><b>❌ 不想用的：</b> 把「狀態」改成「不採用」，或不管它</p>
+<p><b>自己手動新增精選：</b> 按「Add an entry」→ 填標題、連結、來源、類型 → 一定要填「Vicky 心情分享」→ 狀態選「已發布」→ 填發布週次 → 按「Save」</p>
+<blockquote>💡 YouTube 影片也能加入精選！在「連結」欄位填入 YouTube 網址即可。</blockquote>
+
+<h3>3-3 每週精選來源管理</h3>
+<p>設定系統自動抓取的網站來源，可自行新增、暫停、刪除。新增後<b>隔天凌晨 2 點</b>才開始抓。</p>
+<p><b>新增來源</b>：點「每週精選來源管理」→「Add item」→ 填來源名稱、RSS 網址、類型、每次抓幾篇（建議3~5）、啟用勾選 → Save</p>
+<p><b>暫停來源</b>：點進該來源 → 取消「啟用此來源」勾選 → Save</p>
+
+<h3>3-4 社群交流圈（設定）</h3>
+<p>管理社群連結、YouTube 影片清單、介紹文字與圖片。新增影片：「影片清單」→「Add item」→ 填 YouTube 影片 ID（網址 <code>v=</code> 後面那串字）與標題 → Save</p>
+
+<h3>3-5 課程（設定）</h3>
+<p>管理課程名稱、說明、大綱、報名連結，改完按 Save。</p>
+
+<h3>3-6 Actions（手動觸發同步）</h3>
+<p>方格子同步平時<b>每天凌晨 2 點自動執行</b>。想立刻同步：</p>
+<ol>
+<li>開啟 <a href="https://github.com/vickymommy/vickymommy.github.io/actions">github.com/vickymommy/vickymommy.github.io/actions</a></li>
+<li>左側找「daily_sync」點它</li>
+<li>右側點「Run workflow」→「Run workflow」</li>
+<li>等 3～10 分鐘後確認網站</li>
+</ol>
+<blockquote>⚠️ 不要連續觸發多次。</blockquote>
+
+<h2>四、文章是怎麼進來網站的？（重要！先看這裡）</h2>
+<p>網站文章有<b>兩條路</b>，先搞懂這個，後面規則就都合理了：</p>
+<p><b>路線 A：方格子自動同步</b>（你不需要做任何事）— 每天凌晨 2 點自動抓新文章、含圖片。</p>
+<p><b>路線 B：後台直接新增</b>（適合網站獨家內容）— 例如網站公告、課程心得。</p>
+<p><b>為什麼有這個區分？</b>（選讀）方格子有 RSS feed，讓 GitHub 上的自動程式定期抓新文章、自動更新網站，玲玲不用多做事。兩條路靠文章的「來源」欄位區隔：有方格子網址 → 自動同步管；空白 → 後台管，同步不會動它。</p>
+<blockquote>
+❌ <b>不要在 PagesCMS 後台修改「從方格子來的文章」的內文</b>——下次同步會被方格子版本覆蓋。<br>
+✅ <b>要改文章，就去方格子改</b> → 下次同步自動帶過來。
+</blockquote>
+
+<h2>五、玲玲的每週工作建議</h2>
+<p><b>每天不用做什麼</b>：系統自動同步，方格子發文隔天自動出現。</p>
+<p><b>建議每週做一次：</b></p>
+<ol>
+<li><b>審核每週精選候選</b>（15~30分鐘）：「分享天地」逐筆看過，值得的填心得、改已發布、填週次</li>
+<li><b>查看文章是否正常</b>（可選，5分鐘）：「心情日誌」確認最新文章已同步</li>
+<li><b>有新影片/活動才做</b>：分別到「社群交流圈」「課程（設定）」更新</li>
+</ol>
+
+<h2>六、使用情境決策表</h2>
+<table>
+<tr><th>想做的事</th><th>去哪個區</th><th>備註</th></tr>
+<tr><td>方格子新文章想立刻出現</td><td>GitHub Actions 手動觸發</td><td>或等隔天02:00</td></tr>
+<tr><td>發一篇方格子沒有的文章</td><td>心情日誌→Add an entry</td><td>來源欄位留空</td></tr>
+<tr><td>改文章分類/摘要</td><td>心情日誌→Edit</td><td></td></tr>
+<tr><td>改方格子文章內文</td><td>去方格子改</td><td>後台改會被覆蓋</td></tr>
+<tr><td>審核本週候選</td><td>分享天地（每週精選）</td><td>每週例行</td></tr>
+<tr><td>自己新增精選</td><td>分享天地→Add an entry</td><td></td></tr>
+<tr><td>新增抓取來源</td><td>每週精選來源管理→Add item</td><td>隔天生效</td></tr>
+<tr><td>暫停抓取來源</td><td>每週精選來源管理</td><td></td></tr>
+<tr><td>新增YouTube影片</td><td>社群交流圈（設定）</td><td></td></tr>
+<tr><td>課程異動</td><td>課程（設定）</td><td></td></tr>
+<tr><td>社群連結換了</td><td>社群交流圈（設定）</td><td></td></tr>
+</table>
+
+<h2>七、儲存後要等多久？</h2>
+<table>
+<tr><th>操作</th><th>等待時間</th></tr>
+<tr><td>文章新增/修改</td><td>1～2分鐘</td></tr>
+<tr><td>每週精選發布</td><td>1～2分鐘</td></tr>
+<tr><td>社群/課程設定</td><td>1～2分鐘</td></tr>
+<tr><td>RSS來源新增</td><td>隔天凌晨2:00</td></tr>
+<tr><td>方格子新文章</td><td>隔天早上</td></tr>
+<tr><td>手動觸發Actions</td><td>3～10分鐘</td></tr>
+</table>
+<blockquote>等超過5分鐘還沒更新？去 <a href="https://github.com/vickymommy/vickymommy.github.io/actions">GitHub Actions</a> 看有沒有報錯，或聯絡 Justin。</blockquote>
+
+<h2>八、常見問題與緊急狀況</h2>
+<p><b>Q：不小心在後台改了方格子文章內文？</b> A：不用太擔心，下次同步方格子版本會蓋回來。想保留先截圖。</p>
+<p><b>Q：每週精選候選清單沒有新項目？</b> A：可能是某個RSS來源失效，去「每週精選來源管理」確認，或聯絡Justin。</p>
+<p><b>Q：存完一直沒看到更新？</b> A：等超過5分鐘去GitHub Actions查看，截圖傳給Justin。</p>
+<p><b>Q：方格子發文隔天網站還沒出現？</b> A：先確認方格子文章是公開發布非草稿，若已公開仍沒出現找Justin。</p>
+<p><b>Q：不小心刪掉文章？</b> A：可以救回來，GitHub有版本歷史，告訴Justin是哪篇。</p>
+<p><b>Q：可以先存草稿嗎？</b> A：目前按Save即發布。每週精選可先維持「待審」，文章可填未來日期。</p>
+<p><b>Q：圖片上傳失敗？</b> A：確認不超過5MB、檔名不含中文或特殊符號。</p>
+<p><b>Q：按鈕是英文？</b> A：Save=儲存、Edit=編輯、Delete=刪除、Add an entry=新增一筆、Add item=清單新增一項、Cancel=取消。</p>
+
+<h2>九、GitHub 兩步驟驗證設定（2FA）</h2>
+<blockquote><b>為什麼要做？</b> 開啟後登入除了密碼還要多驗證一步，讓帳號更安全。</blockquote>
+<p><b>準備工作</b>：手機安裝 <b>GitHub Mobile</b> app（App Store/Google Play搜尋「GitHub」下載並登入），或準備可收簡訊的手機。</p>
+<p><b>設定步驟：</b></p>
+<ol>
+<li>電腦瀏覽器開 github.com，用帳號（vickytsai927）登入</li>
+<li>點右上角大頭照 →「Settings」</li>
+<li>左側「Password and authentication」，往下找「Two-factor authentication」</li>
+<li>點「Enable two-factor authentication」</li>
+<li>選擇驗證方式：</li>
+</ol>
+<p><b>✅ 方法A：GitHub Mobile（推薦）</b>：選「GitHub Mobile」→ 手機App確認 → 完成。日後登入手機收通知按「確認」即可。</p>
+<p><b>✅ 方法B：SMS簡訊（備用）</b>：選「SMS/Text message」→ 輸入手機號（+886開頭）→ 輸入驗證碼 → 完成。</p>
+<p>6. <b>務必截圖/記錄「Recovery codes（備用碼）」</b>，存放安全的地方。手機遺失或收不到驗證時可用來登入。</p>
+<p><b>完成後</b>：「Two-factor methods」旁會顯示「Configured」。</p>
+<p><b>遇到問題</b>：找不到Settings→確認已登入；沒收到簡訊→等1分鐘再試或改用Mobile方式；其他問題聯絡Justin。</p>
+<blockquote>設定完成後請通知 Justin 確認 ✅</blockquote>
+
+<h2>十、緊急聯絡</h2>
+<p>如果後台壞了，或有什麼看不懂的，請找 <b>Justin（GitHub：justin-n8n）</b>。</p>
+<ul>
+<li>網站：<a href="https://vickymommy.github.io/">vickymommy.github.io</a></li>
+<li>後台：<a href="https://app.pagescms.org/">app.pagescms.org</a></li>
+<li>GitHub 倉庫：<a href="https://github.com/vickymommy/vickymommy.github.io">github.com/vickymommy/vickymommy.github.io</a></li>
+</ul>
+
+<hr>
+<p style="color:var(--muted);font-size:0.85rem;">本手冊由 Justin 與 Claude 協作維護，網站架構有重大變動時會同步更新。若發現手冊內容跟實際後台不符，請直接告訴 Justin。</p>
+
+</div>
+</div>
+
+<script>
+// 簡單前端密碼保護（防君子不防小人，避免意外流量/被搜尋到，非真正資安機制）
+const PASSWORD_HASH_PLACEHOLDER = "vickymommy";
+function tryUnlock(){
+  const val = document.getElementById('pw').value;
+  if(val === PASSWORD_HASH_PLACEHOLDER){
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    try{ sessionStorage.setItem('vm_manual_unlocked','1'); }catch(e){}
+  } else {
+    document.getElementById('err').textContent = '密碼錯誤，請再試一次';
+  }
+}
+document.getElementById('pw').addEventListener('keydown', function(e){ if(e.key==='Enter') tryUnlock(); });
+try{
+  if(sessionStorage.getItem('vm_manual_unlocked')==='1'){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('content').style.display='block';
+  }
+}catch(e){}
+</script>
+
+</body>
+</html>
