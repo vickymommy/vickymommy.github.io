@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write   # 需要寫入權限才能 push 新檔案
+      issues: write      # 2026-09-17 新增：失敗時要能自動建立提醒 Issue
 
     steps:
       # 1. 取得最新倉庫
@@ -60,3 +61,20 @@ jobs:
           git add content/articles/ assets/images/ content/weekly/ content/community.yml data/
           git diff --staged --quiet || git commit -m "auto: 每日同步 Vocus + 每週精選候選 + YouTube 影片 [skip ci]"
           git push
+
+      # 9. 2026-09-17 新增：任何前面的步驟失敗，就自動建立一個 GitHub Issue 通知
+      #    （不需要額外設定密鑰，用 GitHub Actions 內建的 token 即可）
+      - name: 失敗時建立通知 Issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --repo "${{ github.repository }}" \
+            --title "⚠️ 每日自動同步失敗（$(date -u +%Y-%m-%d)）" \
+            --body "daily_sync 這次自動執行失敗了，網站可能沒有同步到最新的方格子文章、每週精選候選或 YouTube 影片。
+
+請到這裡查看詳細錯誤原因：
+${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+不用緊張：現有文章和網站內容不受影響，只是這次「自動更新」暫停了一次。查完錯誤原因後，可以手動關閉這個 Issue。"

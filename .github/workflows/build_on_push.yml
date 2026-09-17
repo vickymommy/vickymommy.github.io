@@ -23,6 +23,7 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     permissions:
       contents: write
+      issues: write   # 2026-09-17 新增：失敗時要能自動建立提醒 Issue
 
     steps:
       - name: Checkout 倉庫
@@ -48,3 +49,19 @@ jobs:
           git add data/
           git diff --staged --quiet || git commit -m "auto: 重建 data JSON [skip ci]"
           git push
+
+      # 2026-09-17 新增：失敗時自動建立通知 Issue（例如玲玲在 PagesCMS 存檔的內容格式有誤，導致重建失敗）
+      - name: 失敗時建立通知 Issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --repo "${{ github.repository }}" \
+            --title "⚠️ 內容重建失敗（$(date -u +%Y-%m-%d)）" \
+            --body "剛剛在 PagesCMS 存檔後，網站自動重建內容失敗了，可能是某篇文章或設定的格式有問題。
+
+請到這裡查看詳細錯誤原因：
+${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+網站目前顯示的內容不受影響，只是剛剛那次修改還沒有更新上去。查完錯誤原因後，可以手動關閉這個 Issue。"
