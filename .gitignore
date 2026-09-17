@@ -1,0 +1,30 @@
+# 2026-09-17 補上：避免開發過程中不小心把暫存/系統檔案 commit 進去
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# 作業系統
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 編輯器
+.vscode/
+.idea/
+*.swp
+
+# 常見暫存/壓縮/備份檔
+*.tmp
+*.bak
+*.zip
+*.log
+
+# 環境變數/憑證（本專案目前沒有用到，先預防）
+.env
+.env.*
+*.pem
+*.key

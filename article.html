@@ -15,6 +15,8 @@
 <div id="site-header"></div>
 <main id="article-root"></main>
 <div id="site-footer"></div>
+<!-- 2026-09-17 資安補強：文章內文含格式化 HTML，發布前先用 DOMPurify 白名單消毒，避免被同步進來的外部內容夾帶惡意 script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
 <script src="assets/js/site.js"></script>
 </body>
 </html>

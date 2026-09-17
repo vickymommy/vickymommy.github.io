@@ -1,12 +1,54 @@
 /* Vicky Mommy 玲玲 網站 — 共用前台程式 v2（fetch 架構）
    資料來源：data/articles.json、data/community.json、data/course.json
    文章內文：content/articles/<id>.md（按需 fetch）
-   新增文章：在後台（PagesCMS）操作，GitHub Action 自動重建 JSON。 */
+   新增文章：在後台（PagesCMS）操作，GitHub Action 自動重建 JSON。
+
+   2026-09-17 資安補強：
+   - 所有「可能來自外部/使用者輸入」的純文字欄位（標題、摘要、標籤、來源網址、
+     社群/課程設定文字、YouTube 影片標題等）一律用 escapeHtml() 處理，避免
+     stored-XSS（例如方格子文章被植入惡意 HTML、或後台欄位不小心貼入程式碼）。
+   - 文章內文（body）是唯一「刻意允許 HTML 格式」的欄位（PagesCMS 富文字編輯器
+     產出），改用 DOMPurify 做白名單消毒，而不是整段跳過檢查。
+   - 這兩個改動不影響任何現有功能或畫面呈現，純粹是「顯示前先清洗一次」。 */
 
 const CAT_LABELS = {
   ai: 'AI 學習應用', growth: '媽媽自我成長',
   parenting: '親子生活指南', travel: '親子旅遊', diy: '親子手作'
 };
+
+/* ---------- 資安：escape / 消毒工具 ---------- */
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/* 用在 href="..." / url('...') 等屬性值：只允許 http(s)/mailto/相對路徑，
+   其餘（例如 javascript:）一律擋掉，避免屬性注入或危險協定。 */
+function safeUrl(url) {
+  const u = String(url || '').trim();
+  if (!u) return '#';
+  if (/^(https?:|mailto:)/i.test(u)) return escapeHtml(u);
+  if (/^[a-z0-9_\-./?#=&%]+$/i.test(u)) return escapeHtml(u); // 站內相對路徑
+  return '#';
+}
+
+/* 文章內文（body）：唯一允許 HTML 格式的欄位，用 DOMPurify 白名單消毒。
+   DOMPurify 沒載入成功時（例如離線開發環境），保守起見全部 escape 成純文字，
+   而不是讓未消毒的 HTML 直接進 DOM。 */
+function sanitizeBody(html) {
+  if (typeof DOMPurify !== 'undefined') {
+    return DOMPurify.sanitize(html, {
+      ALLOWED_TAGS: ['p','br','strong','b','em','i','u','a','ul','ol','li','h2','h3','h4','blockquote','img','figure','figcaption','code','pre','span'],
+      ALLOWED_ATTR: ['href','src','alt','title','target','rel','loading']
+    });
+  }
+  return escapeHtml(html);
+}
 
 /* ---------- 全域資料 ---------- */
 let ARTICLES  = [];
@@ -56,18 +98,24 @@ function injectChrome(active) {
 
 /* ---------- 卡片 HTML ---------- */
 function cardHTML(a) {
+  const title = escapeHtml(a.title);
+  const excerpt = escapeHtml(a.excerpt || '');
+  const date = escapeHtml(a.date);
+  const id = encodeURIComponent(a.id);
   const cover = a.cover
-    ? '<div class="thumb" style="background-image:url(\'' + a.cover + '\')"><span class="tag">' + (CAT_LABELS[a.category] || '') + '</span></div>'
+    ? '<div class="thumb" style="background-image:url(\'' + safeUrl(a.cover) + '\')"><span class="tag">' + (CAT_LABELS[a.category] || '') + '</span></div>'
     : '<div class="thumb thumb-blank"><span class="tag">' + (CAT_LABELS[a.category] || '') + '</span></div>';
-  return '<a class="card" href="article.html?id=' + a.id + '">' + cover +
-    '<div class="body"><h3>' + a.title + '</h3><p>' + (a.excerpt || '') + '</p>' +
-    '<div class="meta"><span>' + a.date + '</span><span>閱讀 ' + (a.readMin || 5) + ' 分鐘</span></div></div></a>';
+  return '<a class="card" href="article.html?id=' + id + '">' + cover +
+    '<div class="body"><h3>' + title + '</h3><p>' + excerpt + '</p>' +
+    '<div class="meta"><span>' + date + '</span><span>閱讀 ' + (Number(a.readMin) || 5) + ' 分鐘</span></div></div></a>';
 }
 
 function ytCard(v) {
-  return '<a class="vcard" href="https://www.youtube.com/watch?v=' + v.id + '" target="_blank" rel="noopener noreferrer">' +
-    '<div class="vthumb"><img src="https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg" loading="lazy" alt=""><span class="vplay">&#9658;</span></div>' +
-    '<div class="vtitle">' + v.title + '</div></a>';
+  const vid = encodeURIComponent(v.id);
+  const title = escapeHtml(v.title);
+  return '<a class="vcard" href="https://www.youtube.com/watch?v=' + vid + '" target="_blank" rel="noopener noreferrer">' +
+    '<div class="vthumb"><img src="https://img.youtube.com/vi/' + vid + '/hqdefault.jpg" loading="lazy" alt=""><span class="vplay">&#9658;</span></div>' +
+    '<div class="vtitle">' + title + '</div></a>';
 }
 
 /* ---------- 首頁精選（最新 6 篇）---------- */
@@ -128,7 +176,7 @@ async function renderArticle() {
     if (!el) { el = document.createElement('meta'); document.head.appendChild(el); }
     el.setAttribute(attr, val);
   }
-  const pageUrl = 'https://vickymommy.github.io/article.html?id=' + a.id;
+  const pageUrl = 'https://vickymommy.github.io/article.html?id=' + encodeURIComponent(a.id);
   const ogImg   = a.cover || 'https://vickymommy.github.io/assets/images/vicky.webp';
   setMeta('meta[property="og:title"]',       'content', a.title + '｜Vicky Mommy 玲玲');
   setMeta('meta[property="og:description"]', 'content', a.excerpt || document.querySelector('meta[name="description"]')?.content || '');
@@ -139,33 +187,37 @@ async function renderArticle() {
   if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
   canon.href = pageUrl;
 
+  const title = escapeHtml(a.title);
+  const date = escapeHtml(a.date);
+  const source = safeUrl(a.source || '#');
+
   /* 先渲染頭部，body 區放「載入中」*/
   box.innerHTML =
     '<div class="article-head"><div class="wrap" style="max-width:760px">' +
     '<span class="cat-tag">' + (CAT_LABELS[a.category] || '') + '</span>' +
-    '<h1>' + a.title + '</h1>' +
-    '<div class="info"><span>' + a.date + '</span><span>閱讀 ' + (a.readMin || 5) + ' 分鐘</span><span>Vicky Mommy 玲玲</span></div>' +
+    '<h1>' + title + '</h1>' +
+    '<div class="info"><span>' + date + '</span><span>閱讀 ' + (Number(a.readMin) || 5) + ' 分鐘</span><span>Vicky Mommy 玲玲</span></div>' +
     '</div></div>' +
     '<div id="article-body-slot"><p style="text-align:center;padding:40px;color:var(--ink-soft)">內文載入中…</p></div>' +
-    '<div class="article-tags">' + (a.tags || []).map(t => '<span>#' + t + '</span>').join('') + '</div>' +
+    '<div class="article-tags">' + (a.tags || []).map(t => '<span>#' + escapeHtml(t) + '</span>').join('') + '</div>' +
     '<div class="article-foot"><a class="btn ghost" href="articles.html">回文章列表</a>' +
     '<a class="btn" href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">加入媽咪 AI 賦能共學團</a></div>';
 
   /* 非同步取得 .md 內文 */
   try {
-    const mdText = await fetch('content/articles/' + id + '.md').then(r => {
+    const mdText = await fetch('content/articles/' + encodeURIComponent(id) + '.md').then(r => {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.text();
     });
     const body = stripFrontmatter(mdText);
     const slot = document.getElementById('article-body-slot');
     if (slot) slot.outerHTML = body
-      ? '<div class="article-body">' + body + '</div>'
-      : '<div class="pending">這篇文章的完整內文正在整理中。你可以先到 <a href="' + a.source + '" target="_blank">原文連結</a> 閱讀。</div>';
+      ? '<div class="article-body">' + sanitizeBody(body) + '</div>'
+      : '<div class="pending">這篇文章的完整內文正在整理中。你可以先到 <a href="' + source + '" target="_blank" rel="noopener noreferrer">原文連結</a> 閱讀。</div>';
   } catch (e) {
     const slot = document.getElementById('article-body-slot');
     if (slot) slot.innerHTML =
-      '<div class="pending">內文暫時無法載入。你可以先到 <a href="' + (a.source || '#') + '" target="_blank">原文連結</a> 閱讀。</div>';
+      '<div class="pending">內文暫時無法載入。你可以先到 <a href="' + source + '" target="_blank" rel="noopener noreferrer">原文連結</a> 閱讀。</div>';
   }
 }
 
@@ -176,17 +228,17 @@ function renderCommunity() {
   const E = COMMUNITY;
   box.innerHTML =
     '<section><div class="wrap">' +
-    '<div class="sec-head"><span class="pill">社群交流圈</span><h2>Vicky 的 AI 社群交流圈</h2><p>' + (E.socialIntro || '') + '</p></div>' +
-    '<div class="community-hero"><img src="' + (E.socialImage || '') + '" alt="社群交流圈"></div>' +
+    '<div class="sec-head"><span class="pill">社群交流圈</span><h2>Vicky 的 AI 社群交流圈</h2><p>' + escapeHtml(E.socialIntro || '') + '</p></div>' +
+    '<div class="community-hero"><img src="' + safeUrl(E.socialImage || '') + '" alt="社群交流圈"></div>' +
     '<div class="chip-row">' +
-      '<a class="btn" href="' + (E.playlist || '#') + '" target="_blank" rel="noopener noreferrer">AI應用交流分享會</a>' +
-      '<a class="btn ghost" href="' + (E.channel || '#') + '" target="_blank" rel="noopener noreferrer">YouTube 頻道</a>' +
+      '<a class="btn" href="' + safeUrl(E.playlist || '#') + '" target="_blank" rel="noopener noreferrer">AI應用交流分享會</a>' +
+      '<a class="btn ghost" href="' + safeUrl(E.channel || '#') + '" target="_blank" rel="noopener noreferrer">YouTube 頻道</a>' +
     '</div>' +
     '<div class="vgrid">' + (E.videos || []).map(ytCard).join('') + '</div>' +
     '<div class="join-row">' +
-      '<a class="com2" href="' + (E.line || '#') + '" target="_blank" rel="noopener noreferrer"><h4>媽咪 AI 賦能共學團</h4><p>1000+ 夥伴一起學</p></a>' +
-      '<a class="com2" href="' + (E.fb || '#') + '" target="_blank" rel="noopener noreferrer"><h4>Facebook</h4><p>HiVickyMommy</p></a>' +
-      '<a class="com2" href="' + (E.ig || '#') + '" target="_blank" rel="noopener noreferrer"><h4>Instagram</h4><p>@vickytsai927</p></a>' +
+      '<a class="com2" href="' + safeUrl(E.line || '#') + '" target="_blank" rel="noopener noreferrer"><h4>媽咪 AI 賦能共學團</h4><p>1000+ 夥伴一起學</p></a>' +
+      '<a class="com2" href="' + safeUrl(E.fb || '#') + '" target="_blank" rel="noopener noreferrer"><h4>Facebook</h4><p>HiVickyMommy</p></a>' +
+      '<a class="com2" href="' + safeUrl(E.ig || '#') + '" target="_blank" rel="noopener noreferrer"><h4>Instagram</h4><p>@vickytsai927</p></a>' +
     '</div></div></section>';
 }
 
@@ -204,9 +256,9 @@ function renderIpas() {
     '<section><div class="wrap">' +
     '<div class="sec-head"><span class="pill">iPAS 專區</span><h2>iPAS AI 應用規劃師</h2></div>' +
     '<div class="chip-row">' +
-      '<a class="btn" href="' + (E.ipasStudy || '#') + '" target="_blank" rel="noopener noreferrer">前往 iPAS 備考站</a>' +
-      '<a class="btn ghost" href="' + (E.playlist || '#') + '" target="_blank" rel="noopener noreferrer">AI應用交流分享會</a>' +
-      '<a class="btn ghost" href="' + (E.ipasChannel || '#') + '" target="_blank" rel="noopener noreferrer">iPAS 官方頻道</a>' +
+      '<a class="btn" href="' + safeUrl(E.ipasStudy || '#') + '" target="_blank" rel="noopener noreferrer">前往 iPAS 備考站</a>' +
+      '<a class="btn ghost" href="' + safeUrl(E.playlist || '#') + '" target="_blank" rel="noopener noreferrer">AI應用交流分享會</a>' +
+      '<a class="btn ghost" href="' + safeUrl(E.ipasChannel || '#') + '" target="_blank" rel="noopener noreferrer">iPAS 官方頻道</a>' +
       '<a class="btn ghost" href="https://www.ipas.org.tw/AIAP" target="_blank" rel="noopener noreferrer">官方專區</a>' +
     '</div>' +
     '<h3 class="block-title">iPAS 相關影片</h3>' +
@@ -226,14 +278,14 @@ function renderCourses() {
     '<section><div class="wrap">' +
     '<div class="sec-head"><span class="pill">課程</span><h2>跟著Vicky一起學</h2><p>給想開始、但不知道從哪裡下手的媽媽與初學者。</p></div>' +
     '<div class="course-card">' +
-    '<h3>' + (c.title || '') + '</h3>' +
-    '<div class="course-sub">' + (c.sub || '') + '</div>' +
-    '<p class="course-desc">' + (c.desc || '') + '</p>' +
-    '<ul class="course-outline">' + (c.outline || []).map(o => '<li>' + o + '</li>').join('') + '</ul>' +
-    '<div class="course-meta">' + (c.meta || '') + '　｜　' + (c.suitable || '') + '</div>' +
+    '<h3>' + escapeHtml(c.title || '') + '</h3>' +
+    '<div class="course-sub">' + escapeHtml(c.sub || '') + '</div>' +
+    '<p class="course-desc">' + escapeHtml(c.desc || '') + '</p>' +
+    '<ul class="course-outline">' + (c.outline || []).map(o => '<li>' + escapeHtml(o) + '</li>').join('') + '</ul>' +
+    '<div class="course-meta">' + escapeHtml(c.meta || '') + '　｜　' + escapeHtml(c.suitable || '') + '</div>' +
     '<div class="chip-row" style="margin-top:18px">' +
-      '<a class="btn" href="' + (c.link || E.line || '#') + '" target="_blank" rel="noopener noreferrer">前往課程頁面（報名）</a>' +
-      '<a class="btn ghost" href="' + (E.channel || '#') + '" target="_blank" rel="noopener noreferrer">先看免費影片</a>' +
+      '<a class="btn" href="' + safeUrl(c.link || E.line || '#') + '" target="_blank" rel="noopener noreferrer">前往課程頁面（報名）</a>' +
+      '<a class="btn ghost" href="' + safeUrl(E.channel || '#') + '" target="_blank" rel="noopener noreferrer">先看免費影片</a>' +
     '</div></div></div></section>';
 }
 
