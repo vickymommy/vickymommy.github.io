@@ -12,8 +12,8 @@
    - 這兩個改動不影響任何現有功能或畫面呈現，純粹是「顯示前先清洗一次」。 */
 
 const CAT_LABELS = {
-  ai: 'AI 學習應用', growth: '媽媽自我成長',
-  parenting: '親子生活指南', travel: '親子旅遊', diy: '親子手作'
+  ai: 'AI 學習', growth: '媽媽自我成長',
+  parenting: '育兒知識', travel: '親子旅遊', diy: '玩具手作 DIY'
 };
 
 /* ---------- 資安：escape / 消毒工具 ---------- */

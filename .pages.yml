@@ -41,11 +41,11 @@ content:
         type: select
         options:
           values:
-            - { value: ai,        label: AI 學習應用 }
+            - { value: ai,        label: AI 學習 }
             - { value: growth,    label: 媽媽自我成長 }
-            - { value: parenting, label: 親子生活指南 }
+            - { value: parenting, label: 育兒知識 }
             - { value: travel,    label: 親子旅遊 }
-            - { value: diy,       label: 親子手作 }
+            - { value: diy,       label: 玩具手作 DIY }
       - { name: cover,    label: 封面圖,              type: image }
       - { name: excerpt,  label: 摘要（卡片顯示）,   type: text }
       - { name: tags,     label: 標籤,               type: string, list: true }

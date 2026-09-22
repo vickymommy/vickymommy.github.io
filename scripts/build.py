@@ -53,11 +53,11 @@ def build_articles():
     out = {
         '_說明': '由 GitHub Action 自動從 content/articles/*.md 重建，請勿手動編輯此檔。',
         'categories': {
-            'ai': 'AI 學習應用',
+            'ai': 'AI 學習',
             'growth': '媽媽自我成長',
-            'parenting': '親子生活指南',
+            'parenting': '育兒知識',
             'travel': '親子旅遊',
-            'diy': '親子手作',
+            'diy': '玩具手作 DIY',
         },
         'articles': articles,
     }
