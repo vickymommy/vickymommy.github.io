@@ -11,6 +11,17 @@
   },
   "articles": [
     {
+      "id": "6aaf4979fd89780001a347e9",
+      "title": "從全職媽媽到 AI 應用規劃師｜沒想到一張 iPAS 證書，帶我走進中廣接受夏韻芬主持人專訪",
+      "category": "growth",
+      "date": "2026-09-20",
+      "cover": "assets/images/6aaf4979fd89780001a347e9_cover.png",
+      "excerpt": "Vicky 帶著 PassBot，來到中廣囉！❤️\n\n當初真的完全沒想到，因為 iPAS AI 應用規劃師這個身分，會慢慢打開好多原本不可能出現在我生命裡的機會。\n\n2026/9/17，我來到 中廣流行網 i like radio，接受《理財生活通》夏韻芬主持人的訪談。",
+      "tags": [],
+      "source": "https://vocus.cc/article/6aaf4979fd89780001a347e9",
+      "readMin": 11
+    },
+    {
       "id": "6a91b212fd89780001bc053f",
       "title": "《鑑賢思齊》– iPAS應用大現場｜EP00～EP10 精華總整理，看見 11 種「把證照用出來」的真實故事。",
       "category": "growth",
@@ -173,7 +184,7 @@
     {
       "id": "69ace97b",
       "title": "AI 時代孩子真正需要的競爭力是什麼？小漢堡體育班教會我的 3 件核心特質",
-      "category": "parenting",
+      "category": "ai",
       "date": "2026-03-08",
       "cover": "assets/images/ae6c9bf9-5b77-4e25-98e9-d1d057edd47d.png",
       "excerpt": "不是學會用 AI 就能比別人厲害。一場家長會，讓我對「未來競爭力」有了另一種深刻體悟。",
@@ -706,7 +717,7 @@
     {
       "id": "662c1ff4",
       "title": "我們都一樣，也都不一樣：理解、尊重、支持每個孩子的獨特之處",
-      "category": "parenting",
+      "category": "growth",
       "date": "2024-04-28",
       "cover": "assets/images/53195d8b-79e6-4941-a64c-94d74929e1b9.png",
       "excerpt": "每個孩子都該受到尊重與包容，特教生需要特殊的支持與理解。教孩子欣賞每個人的獨特之處。",
@@ -868,6 +879,28 @@
       "readMin": 5
     },
     {
+      "id": "64decbbdfd897800017be08f",
+      "title": "《爸媽不瞎忙》獻給辛勤奮鬥在時間漩渦中父母們的家庭幸福方案。",
+      "category": "growth",
+      "date": "2023-08-18",
+      "cover": "assets/images/64decbbdfd897800017be08f_cover.jpg",
+      "excerpt": "《爸媽不瞎忙》是一本關於時間管理和角色平衡的指南。作者不僅分享了長年在家創業的經驗和心得之外，更介紹了許多方法，幫助忙碌的父母們在繁忙的育兒生活中持續學習前進。把握「碎片時間」，建立家庭行事曆，並鼓勵親子共學。這本書不僅提供時間管理策略，更讓我們思考如何在忙碌中實現幸福，平衡事業、家庭和個人成長。\n",
+      "tags": [],
+      "source": "https://vocus.cc/article/64decbbdfd897800017be08f",
+      "readMin": 6
+    },
+    {
+      "id": "64d5d35ffd89780001fb7813",
+      "title": "全職媽媽的影像創作之旅，真實分享經營自媒體三年多的心路歷程與感想。",
+      "category": "growth",
+      "date": "2023-08-11",
+      "cover": "assets/images/64d5d35ffd89780001fb7813_cover.jpg",
+      "excerpt": "「如何成為一位全職媽媽兼職 YouTuber？」這是最近觀眾問我的問題。\n在這個問題背後，隱含著更多更深層次的疑問，像是：如何在全職媽媽的角色中，探索除了家庭之外的渴望和夢想？如何重新定義自己，相信自己的價值不僅僅在於家庭當中？如何利用零碎的時間持續學習成長，並將影像創作融入生活，成為一種日常習慣？",
+      "tags": [],
+      "source": "https://vocus.cc/article/64d5d35ffd89780001fb7813",
+      "readMin": 14
+    },
+    {
       "id": "64d2f65f",
       "title": "親子版環球影城遊園攻略：五步驟節省 70% 排隊時間，輕鬆暢遊大阪",
       "category": "travel",
@@ -888,6 +921,28 @@
       "tags": [],
       "source": "https://vocus.cc/article/64cc5878fd89780001dc4f9c",
       "readMin": 5
+    },
+    {
+      "id": "64c75c46fd897800019ae9d3",
+      "title": "《工作必須有錢有愛有意義》從全職媽媽視角，我如何解讀這本書，重新看待我的工作。",
+      "category": "growth",
+      "date": "2023-07-31",
+      "cover": "assets/images/64c75c46fd897800019ae9d3_cover.jpg",
+      "excerpt": "在這本書裡，提到了許多有關理想工作、個人品牌和生活意義的觀點，如何把興趣轉化成為事業，如何讓工作和生活對齊你的人生價值。雖然這是一本寫給斜槓者和創業者看的書，但我認為書中分享了很多觀念，是我們每個人都必須重新思考的課題，而我以一個「全職媽媽」的角度來看這本書，也從書中也得到了不少啟發。",
+      "tags": [],
+      "source": "https://vocus.cc/article/64c75c46fd897800019ae9d3",
+      "readMin": 7
+    },
+    {
+      "id": "64bfe2c4fd89780001a64fef",
+      "title": "【數位過勞】告別遠距工作的數位過勞，日本精神科・睡眠科雙專科醫師的休息提案。",
+      "category": "growth",
+      "date": "2023-07-25",
+      "cover": "assets/images/64bfe2c4fd89780001a64fef_cover.jpg",
+      "excerpt": "你ㄧ天花了多久的時間，在電腦和手機上呢？科技產品雖然讓我們的生活變得更加便利，但是長時間使用這些設備，卻也帶來了不少問題。近年來，遠距工作者的人數大量增加，數位過勞的情形，已經越來越普遍，成為現代人不可忽視的健康問題了。",
+      "tags": [],
+      "source": "https://vocus.cc/article/64bfe2c4fd89780001a64fef",
+      "readMin": 6
     },
     {
       "id": "64b0e5a6",
@@ -1011,6 +1066,28 @@
       "readMin": 5
     },
     {
+      "id": "645341b4fd897800018c2fbe",
+      "title": "【防災科學教育館】模擬火場逃生、921地震體驗、變身小小消防員 ｜ 台北市免費親子室內景點！",
+      "category": "travel",
+      "date": "2023-05-04",
+      "cover": "assets/images/645341b4fd897800018c2fbe_cover.jpg",
+      "excerpt": "台北市內湖區的防災科學教育館，可以免費預約參觀，帶孩子學習防災知識、模擬火場逃生、921地震體驗、變身小小消防員，和3D背景拍照，不僅讓孩子學習到如何應對突發災害，也讓大人們重新認識防災的重要性。",
+      "tags": [],
+      "source": "https://vocus.cc/article/645341b4fd897800018c2fbe",
+      "readMin": 5
+    },
+    {
+      "id": "64523b58fd89780001ea1c13",
+      "title": "全職媽媽如何培養反脆弱能力？",
+      "category": "growth",
+      "date": "2023-05-03",
+      "cover": "assets/images/64523b58fd89780001ea1c13_cover.jpg",
+      "excerpt": "作為一名全職媽媽，必須隨時面對各種挑戰和風險，需要具備強大的抗壓能力，以及應變各種突發狀況的應變能力，這時，培養「反脆弱」的能力就顯得相當重要。脆弱的相反並不是堅固，而是「反脆弱」。在《黑天鵝效應》這本書裡面說明，黑天鵝是指看起來幾乎不可能發生的事情卻發生了，而且造成了非常大的衝擊。",
+      "tags": [],
+      "source": "https://vocus.cc/article/64523b58fd89780001ea1c13",
+      "readMin": 5
+    },
+    {
       "id": "64507df0",
       "title": "孩子的第一堂生命教育課：如何陪伴孩子面對離別，學習珍惜當下",
       "category": "parenting",
@@ -1037,6 +1114,28 @@
       "readMin": 5
     },
     {
+      "id": "644a0a91fd89780001941f9c",
+      "title": "【台東四日遊 Day3-4】鹿野梅花鹿公園被梅花鹿狂追 | 知本老爺酒店新春闖關遊戲 | 知本國家森林遊樂區接觸大自然",
+      "category": "travel",
+      "date": "2023-04-27",
+      "cover": "assets/images/644a0a91fd89780001941f9c_cover.jpg",
+      "excerpt": "台東旅遊第3-4天，在「綺麗渡假村」有很多戶外泳池和漂亮的別墅區；在「鹿野梅花鹿公園」被梅花鹿狂追；在「知本老爺酒店」泡湯、煮溫泉蛋、和卑南族原住民一起跳舞，還有春節特別活動闖關遊戲超好玩；在「知本國家森林遊樂區」玩木製玩具、走長長的空中棧道。台東四日遊，收穫了滿滿的美好回憶，快跟上這趟旅程吧！",
+      "tags": [],
+      "source": "https://vocus.cc/article/644a0a91fd89780001941f9c",
+      "readMin": 7
+    },
+    {
+      "id": "6440b7d2fd89780001cf7190",
+      "title": "【台東四日遊 Day2】原生應用植物園與鴕鳥相遇 | 初鹿牧場品味牛奶玩滑草 | 綺麗渡假村超大兒童遊戲室",
+      "category": "travel",
+      "date": "2023-04-20",
+      "cover": "assets/images/6440b7d2fd89780001cf7190_cover.jpg",
+      "excerpt": "台東四日遊第二天，我們來到了原生應用植物園、初鹿牧場和綺麗渡假村。\n\n在原生應用植物園餵羊餵魚餵鴕鳥、拿起超大顆鴕鳥蛋、用葉子編織成蚱蜢和各種小動物。初鹿牧場各種牛奶製品令人眼花撩亂，餅乾、饅頭、牛奶火鍋每樣都好吃，還可以體驗滑草。綺麗渡假村多間兒童遊戲室超好放電，再泡個溫泉浴晚上超好睡。",
+      "tags": [],
+      "source": "https://vocus.cc/article/6440b7d2fd89780001cf7190",
+      "readMin": 5
+    },
+    {
       "id": "6423b604fd89780001131dda",
       "title": "【台東四日遊 Day1】台東森林公園騎自行車 | 鐵花村感受音樂與創作的能量 | 在立麗大酒店進行神秘任務",
       "category": "travel",
@@ -1048,6 +1147,17 @@
       "readMin": 3
     },
     {
+      "id": "64212dd7fd897800014a7ee3",
+      "title": "【台北市客家文化主題公園】台北市免費親子景點和生態園區",
+      "category": "travel",
+      "date": "2023-03-27",
+      "cover": "assets/images/64212dd7fd897800014a7ee3_cover.jpg",
+      "excerpt": "位於台北市汀洲路的客家文化主題公園，讓台北人不用離開台北也可以認識客家文化。\n客家文化主題公園佔地廣闊，結合了客家文化和生態園區，是一處適合親子輕旅遊的主題公園。",
+      "tags": [],
+      "source": "https://vocus.cc/article/64212dd7fd897800014a7ee3",
+      "readMin": 1
+    },
+    {
       "id": "641813ff",
       "title": "【教孩子擁抱驚喜】車子開錯路，意外吃到螃蟹大餐！",
       "category": "parenting",
@@ -1057,6 +1167,50 @@
       "tags": [],
       "source": "https://vocus.cc/article/641813fffd89780001ea1651",
       "readMin": 5
+    },
+    {
+      "id": "64145c93fd89780001c4cb9c",
+      "title": "成本 0 元達成 YT 1000 名訂閱者，全職媽媽經營自媒體的優勢、好處與壞處全解析",
+      "category": "growth",
+      "date": "2023-03-17",
+      "cover": "assets/images/64145c93fd89780001c4cb9c_cover.jpg",
+      "excerpt": "今天想來聊聊，全職媽媽經營自媒體有什麼優勢、好處和壞處，該如何選擇適合自己的自媒體，開始經營自媒體前需要考慮什麼問題，有哪些注意事項，最後也會給你一個最重要的建議。",
+      "tags": [],
+      "source": "https://vocus.cc/article/64145c93fd89780001c4cb9c",
+      "readMin": 19
+    },
+    {
+      "id": "640a9f61fd897800012c3cdf",
+      "title": "【國立臺灣博物館鐵道部園區 】鐵道迷與車車控男孩必遊景點！",
+      "category": "travel",
+      "date": "2023-03-10",
+      "cover": "assets/images/640a9f61fd897800012c3cdf_cover.jpg",
+      "excerpt": "國立臺灣博物館鐵道部園區，可以看到各種火車模型、模擬火車訂票、車廂廣播，還有定時展覽動態火車運行，看小火車奔跑在軌道上好可愛。",
+      "tags": [],
+      "source": "https://vocus.cc/article/640a9f61fd897800012c3cdf",
+      "readMin": 2
+    },
+    {
+      "id": "63f422a7fd89780001f0c1b6",
+      "title": "全職媽媽如何自我成長？透過三個步驟，重新打造理想的自己！",
+      "category": "growth",
+      "date": "2023-02-21",
+      "cover": "assets/images/63f422a7fd89780001f0c1b6_cover.jpg",
+      "excerpt": "你有沒有想像過，未來的自己是什麼模樣呢？\n在老公和孩子心中，你是怎樣的一個媽媽呢？\n當你走到生命的終點時，希望別人用怎樣的一句話來描述你呢？\n2023年我的目標是開始進行自我成長計畫，透過以下三個步驟，「心態設定」、「執行方法」、「實際行動」，希望能夠越來越接近自己心目中理想的模樣。",
+      "tags": [],
+      "source": "https://vocus.cc/article/63f422a7fd89780001f0c1b6",
+      "readMin": 11
+    },
+    {
+      "id": "63ef0bbbfd897800018ac776",
+      "title": "【雄獅文具想像力製造所】高質感桃園親子DIY觀光工廠，想像力就是你的超能力！",
+      "category": "travel",
+      "date": "2023-02-17",
+      "cover": "assets/images/63ef0bbbfd897800018ac776_cover.jpg",
+      "excerpt": "桃園室內親子景點「雄獅文具想像力製造所」是一所兼具教育、創意、熱情、美學的文具觀光工廠。\n陪伴著我們成長，童年記憶裡不可或缺的雄獅文具，在2020年成立了雄獅文具想像力製造所，打開了藝術之門，讓我們也可以進入藝術的殿堂，沉浸在美學空間裡。",
+      "tags": [],
+      "source": "https://vocus.cc/article/63ef0bbbfd897800018ac776",
+      "readMin": 4
     },
     {
       "id": "63e5a967fd897800012de127",
@@ -1089,6 +1243,17 @@
       "excerpt": "",
       "tags": [],
       "source": "https://vocus.cc/article/63c787ddfd897800015cc71c",
+      "readMin": 5
+    },
+    {
+      "id": "63c2c1dffd897800013198ec",
+      "title": "全職媽媽的自我成長之路～一段重新愛上自己的旅程",
+      "category": "growth",
+      "date": "2023-01-14",
+      "cover": "assets/images/63c2c1dffd897800013198ec_cover.jpg",
+      "excerpt": "我希望喜歡明年的自己，更甚於今年的自己。期待未來的自己變得更好，是一股強大的動力，讓我們不斷向前。",
+      "tags": [],
+      "source": "https://vocus.cc/article/63c2c1dffd897800013198ec",
       "readMin": 5
     },
     {
@@ -1125,6 +1290,50 @@
       "readMin": 5
     },
     {
+      "id": "638eea58fd897800016c5fe7",
+      "title": "【統一渡假村馬武督】豐富遊樂設施的親子休閒度假村，室內外多項闖關遊戲、巨大彈珠台等你來挑戰！",
+      "category": "travel",
+      "date": "2022-12-06",
+      "cover": "assets/images/638eea58fd897800016c5fe7_cover.jpg",
+      "excerpt": "新竹親子飯店「統一渡假村 馬武督渡假會議中心」，室內外都有超多親子遊樂設施，入住度假村完全不用煩惱要玩什麼，超適合父母們帶小孩來奔跑一整天。",
+      "tags": [],
+      "source": "https://vocus.cc/article/638eea58fd897800016c5fe7",
+      "readMin": 2
+    },
+    {
+      "id": "63802b05fd897800014bb406",
+      "title": "大板根【板根巨獸．遠古生物展】森林溫泉酒店出現了遠古巨獸？",
+      "category": "travel",
+      "date": "2022-11-25",
+      "cover": "assets/images/63802b05fd897800014bb406_cover.jpg",
+      "excerpt": "大板根森林溫泉酒店，將擬真遠古生物及史前恐龍搬到森林園區裡，有霸王龍、三角龍、猶因他獸、長頸駝、古巨蜥、板齒獸…等，還有7公尺高的金剛通通集合了。一邊爬山一邊探險，來場與遠古巨獸的驚奇相遇吧！",
+      "tags": [],
+      "source": "https://vocus.cc/article/63802b05fd897800014bb406",
+      "readMin": 2
+    },
+    {
+      "id": "637302d6fd89780001d804b3",
+      "title": "【馬武督探索森林】仙境般夢幻的柳衫密林 | 探訪森林裡最美的教室「綠光小學」",
+      "category": "travel",
+      "date": "2022-11-15",
+      "cover": "assets/images/637302d6fd89780001d804b3_cover.jpg",
+      "excerpt": "「馬武督探索森林」是偶像劇《綠光森林》和電影《賽德克·巴萊》的取景地。園區內高聳的柳衫林和木造的綠光小學，營造出仙境般的夢幻感。\n",
+      "tags": [],
+      "source": "https://vocus.cc/article/637302d6fd89780001d804b3",
+      "readMin": 1
+    },
+    {
+      "id": "6369f58afd89780001bfbec1",
+      "title": "【六福莊&六福村】一次暢遊親子生態旅館和主題遊樂園，兩天一夜不夠玩！和動物一起生活初體驗",
+      "category": "travel",
+      "date": "2022-11-08",
+      "cover": "assets/images/6369f58afd89780001bfbec1_cover.png",
+      "excerpt": "「關西六福莊生態度假旅館」+「六福村主題遊樂園」一起玩！\n六福莊一直在我們的住宿清單裡，這次終於帶堡包們圓夢啦！我們是購買套票行程，含一晚六福莊住宿及兩天六福村門票手環（無限制進出次數），一次輕鬆出遊生態度假旅館和主題遊樂園。",
+      "tags": [],
+      "source": "https://vocus.cc/article/6369f58afd89780001bfbec1",
+      "readMin": 3
+    },
+    {
       "id": "63687a99",
       "title": "【幼兒防疫飲食對策】如何從飲食提升孩子免疫力？關鍵營養素有哪些",
       "category": "parenting",
@@ -1145,6 +1354,17 @@
       "tags": [],
       "source": "https://vocus.cc/article/6363cf9dfd897800019f0a37",
       "readMin": 5
+    },
+    {
+      "id": "6360bb9dfd89780001ff896e",
+      "title": "【萬聖變裝野餐派對】南崁兒童藝術村 | 萬聖節到兒童藝文中心找妖怪！",
+      "category": "travel",
+      "date": "2022-11-01",
+      "cover": "assets/images/6360bb9dfd89780001ff896e_cover.png",
+      "excerpt": "「桃園南崁兒童藝術村」是個適合親子共玩共學的小型藝文空間，室內有許多文創商店和親子課程教室，室外也有小火車、沙坑、一片大草原適合舉辦各種戶外市集和音樂會。",
+      "tags": [],
+      "source": "https://vocus.cc/article/6360bb9dfd89780001ff896e",
+      "readMin": 2
     },
     {
       "id": "6356b6ce",
@@ -1189,6 +1409,28 @@
       "tags": [],
       "source": "https://vocus.cc/article/633bd5b0fd897800017590de",
       "readMin": 5
+    },
+    {
+      "id": "633a5b6bfd8978000168db45",
+      "title": "【長榮海事博物館】體驗航海、探索海洋文化的發現之旅",
+      "category": "travel",
+      "date": "2022-10-03",
+      "cover": "assets/images/633a5b6bfd8978000168db45_cover.jpg",
+      "excerpt": "長榮海事博物館由「財團法人張榮發基金會」所建立，是台灣最具規模的海洋博物館之一。致力於保存、傳播和展示船舶的歷史、藝術與科學。透過多元化的展示方式，讓觀眾深入了解航海文化的發展與演變。從遠古時代的竹木船隻，到現代的貨櫃船、客輪和軍艦，博物館內展出眾多的船舶模型，並且設有多種互動體驗和遊戲。",
+      "tags": [],
+      "source": "https://vocus.cc/article/633a5b6bfd8978000168db45",
+      "readMin": 3
+    },
+    {
+      "id": "6333be5afd897800015af374",
+      "title": "終究還是錯過了最美的那個夕陽！",
+      "category": "growth",
+      "date": "2022-09-28",
+      "cover": "assets/images/6333be5afd897800015af374_cover.jpg",
+      "excerpt": "那是我等了很久，一直在心裡計畫好的行程。在我生日那天，要拍下最美的夕陽顏色，是我最喜歡的顏色，黃澄澄的亮光遍布整片天空，透過樹葉縫隙灑落草地一閃一閃的，就像是我專屬的幸運色一樣，能為我帶來活力，而在我生日這一天的夕陽光輝，是和我最心靈相通的色彩。",
+      "tags": [],
+      "source": "https://vocus.cc/article/6333be5afd897800015af374",
+      "readMin": 4
     }
   ]
 }

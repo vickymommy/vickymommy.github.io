@@ -173,7 +173,14 @@ def get_build_id():
 
 def collect_article_ids():
     """
-    從各房間頁面 HTML 收集文章 ID（HTML 包含該房間所有文章的 SSR 資料）。
+    透過 Vocus 官方 API（api.vocus.cc）逐一抓各房間的完整內容清單，取得文章 ID。
+
+    【2026-09-22 修正】原本用房間頁 HTML 的 SSR 資料 regex 抓文章 ID，但 Vocus
+    房間頁 SSR 只內嵌「第一頁」資料（預設 20 筆／頁，無限捲動靠前端再打 API 補
+    後面幾頁），導致文章數較多的房間（例如「媽媽自我成長」「親子旅遊」）只同步
+    到最新 20 篇，舊文章永遠同步不到。改成直接打房間的 contents API，帶大的
+    num 參數一次拿到該房間全部內容（API 回傳的 "count" 就是該房間真實文章總數，
+    可用來驗證有沒有抓齊）。
     同時抓 /content 主頁補足未分類文章。
     回傳：{article_id: room_name_or_None}
     """
@@ -181,25 +188,39 @@ def collect_article_ids():
 
     print(f"\n📂 收集文章清單（共 {len(ROOM_IDS)} 個分類房間）")
 
-    # 各房間頁
+    # 各房間：打 API 一次拿全部內容（num 給大值，避免分頁漏抓）
     for room_id in ROOM_IDS:
-        url = f"{SALON_BASE_URL}/room/{room_id}"
+        api_url = (
+            f"https://api.vocus.cc/api/v2/site/rooms/{room_id}/contents"
+            f"?num=300&order=desc&page=1&roomId={room_id}&sort=publishAt&type="
+        )
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=20)
+            resp = requests.get(api_url, headers=HEADERS, timeout=20)
             resp.raise_for_status()
+            data = resp.json()
         except Exception as e:
-            print(f"  ⚠️ 無法抓房間頁 {room_id}：{e}", file=sys.stderr)
+            print(f"  ⚠️ 無法抓房間 API {room_id}：{e}", file=sys.stderr)
             continue
 
-        # 房間名稱從靜態對照表取得（避免從 HTML 解析到文章標題）
+        # 房間名稱從靜態對照表取得（避免從 API 資料解析到錯誤名稱）
         room_name = ROOM_ID_TO_NAME.get(room_id)
 
-        ids = list(dict.fromkeys(re.findall(r'/article/([0-9a-f]{24})', resp.text)))
+        ids = []
+        for item in data.get("contents", []):
+            obj = item.get("article")
+            if not obj:
+                continue  # 略過非文章類型內容（例如純貼文 post）
+            aid = obj.get("_id")
+            if aid and aid not in ids:
+                ids.append(aid)
+
         for aid in ids:
             if aid not in article_map:
                 article_map[aid] = room_name
 
-        print(f"  房間 {room_id[:8]}...：{len(ids)} 篇")
+        total_count = data.get("count", len(ids))
+        flag = "" if len(ids) >= total_count else f"  ⚠️ API count={total_count} 但只拿到 {len(ids)} 筆，可能還有漏"
+        print(f"  房間 {room_id[:8]}...：{len(ids)} 篇（該房間總數 {total_count}）{flag}")
         time.sleep(0.5)
 
     # /content 頁面補足未分類文章
