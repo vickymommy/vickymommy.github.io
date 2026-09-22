@@ -58,6 +58,8 @@ def build_articles():
             'parenting': '育兒知識',
             'travel': '親子旅遊',
             'diy': '玩具手作 DIY',
+            'event': 'AI 活動 & 聚會',
+            'share': 'AI 應用交流分享會',
         },
         'articles': articles,
     }

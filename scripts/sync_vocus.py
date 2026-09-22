@@ -52,6 +52,8 @@ SALON_BASE_URL = f"https://vocus.cc/salon/{SALON_ID}"
 
 # 各分類房間 ID（房間新增/刪除時需更新此清單）
 ROOM_IDS = [
+    "6ab08110767a998fe9b12d33",   # AI 活動 & 聚會
+    "6ab0d5b8767a998fe9bb80d7",   # AI 應用交流分享會
     "67886c95fd89780001d67de3",   # AI 學習
     "6442523ffd89780001ddccdc",   # 媽媽自我成長
     "64424703fd89780001726386",   # 育兒知識
@@ -61,6 +63,8 @@ ROOM_IDS = [
 
 # 房間 ID → 房間名稱（靜態對應，避免從 HTML 解析到錯誤標題）
 ROOM_ID_TO_NAME = {
+    "6ab08110767a998fe9b12d33": "AI 活動 & 聚會",
+    "6ab0d5b8767a998fe9bb80d7": "AI 應用交流分享會",
     "67886c95fd89780001d67de3": "AI 學習",
     "6442523ffd89780001ddccdc": "媽媽自我成長",
     "64424703fd89780001726386": "育兒知識",
@@ -70,6 +74,8 @@ ROOM_ID_TO_NAME = {
 
 # 房間名稱 → 網站分類對照
 ROOM_CATEGORY_MAP = {
+    "AI 活動 & 聚會":  "event",
+    "AI 應用交流分享會": "share",
     "AI 學習":       "ai",
     "媽媽自我成長":    "growth",
     "育兒知識":       "parenting",

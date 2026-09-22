@@ -42,6 +42,8 @@ content:
         options:
           values:
             - { value: ai,        label: AI 學習 }
+            - { value: event,     label: AI 活動 & 聚會 }
+            - { value: share,     label: AI 應用交流分享會 }
             - { value: growth,    label: 媽媽自我成長 }
             - { value: parenting, label: 育兒知識 }
             - { value: travel,    label: 親子旅遊 }

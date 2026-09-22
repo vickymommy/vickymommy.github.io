@@ -5,7 +5,9 @@
     "growth": "媽媽自我成長",
     "parenting": "育兒知識",
     "travel": "親子旅遊",
-    "diy": "玩具手作 DIY"
+    "diy": "玩具手作 DIY",
+    "event": "AI 活動 & 聚會",
+    "share": "AI 應用交流分享會"
   },
   "articles": [
     {
@@ -44,7 +46,7 @@
     {
       "id": "6a60732dfd89780001a20e90",
       "title": "近 20 位 iPAS AI 應用規劃師面對面交流 💕【iPAS 獲證者交流群】、【媽咪 AI 賦能共學團】社群聚會 ",
-      "category": "growth",
+      "category": "event",
       "date": "2026-07-23",
       "cover": "assets/images/6a60732dfd89780001a20e90_cover.png",
       "excerpt": "2026/7/18，是我們社群第一次的主題式聚會 ( 之前都只是約餐廳吃飯，再一起去參加官方小聚 )。當天來了「iPAS 獲證者交流群」將近 20 位的 AI 應用規劃師朋友，另外也有「媽咪 AI 賦能共學團」的群友一起來參加。",
@@ -55,7 +57,7 @@
     {
       "id": "6a49cb9bfd89780001fd3af7",
       "title": "2026 生成式 AI 年會｜Agent First 帶來什麼新想像？15 位講者讓我看見更多可能 ❤️",
-      "category": "ai",
+      "category": "event",
       "date": "2026-07-05",
       "cover": "assets/images/6a49cb9bfd89780001fd3af7_cover.png",
       "excerpt": "這次參加 2026 生成式 AI 年會，是 Vicky 第一次參加 AI 演講活動，真的覺得收穫滿滿，也非常感動。今年年會的主題是「Agent First」。一整天總共有 15 位講者分享，每一位講者都從不同角度切入，讓我看見 AI 正在真實進入企業、工作流程，還有我們每個人的生活之中。",
@@ -82,7 +84,7 @@
     {
       "id": "6a143b7f",
       "title": "從全職媽媽到校園講者：我回到輔大日文系，分享 iPAS AI 應用規劃師帶給我的改變",
-      "category": "ai",
+      "category": "event",
       "date": "2026-05-25",
       "cover": "assets/images/8c5be06c-4773-4e77-823f-6ae6b432c4b8.jpg",
       "excerpt": "2026/5/21 我回到母校輔仁大學日文系，完成人生第一場校園演講：《文科生不設限：運用 iPAS AI 應用規劃師，翻轉 12 年職涯空白》。",
@@ -112,7 +114,7 @@
     {
       "id": "6a075e22",
       "title": "【AI 應用交流分享會7】iPAS 獲證學長姊的考前陪伴分享會",
-      "category": "ai",
+      "category": "share",
       "date": "2026-05-15",
       "cover": "assets/images/8475c12e-7484-4b64-9bbd-5dbeba09bcfc.jpg",
       "excerpt": "你不是一個人戰鬥。考試前一晚，Vicky 邀請獲證學長姐們舉辦【媽咪 AI 賦能共學團】第 7 場交流分享會。",
@@ -126,7 +128,7 @@
     {
       "id": "6a02c96c",
       "title": "iPAS 獲證學長姐的考前陪伴分享會",
-      "category": "ai",
+      "category": "share",
       "date": "2026-05-12",
       "cover": "assets/images/f6b5851e-65b5-43c1-bbbf-f65f23649aa0.png",
       "excerpt": "一場專為 iPAS 考生設計的考前暖心陪跑活動，用真實經驗陪伴學弟妹穩定心情、熟悉考場、建立信心。",
@@ -201,7 +203,7 @@
     {
       "id": "697457bb",
       "title": "開箱 AI 新創！詠鋐智能 Chimes AI 如何解決傳統產業比電子業更難導入的 AI 痛點",
-      "category": "ai",
+      "category": "event",
       "date": "2026-01-24",
       "cover": "assets/images/f031c223-01de-4ad8-b87b-01b4e7a95105.png",
       "excerpt": "第一次受邀參加 AI 新創公司活動。原來 AI 不只在高科技業，傳產、捷運、社工服務裡早就默默運作。",
@@ -231,7 +233,7 @@
     {
       "id": "6925483b",
       "title": "經濟部 AI 競賽優選，在經濟部 AI 成果發表會裡演講，這個月好多重大突破",
-      "category": "ai",
+      "category": "event",
       "date": "2025-11-25",
       "cover": "assets/images/207cb808-6831-4714-8298-4a2d39726054.png",
       "excerpt": "想跟你分享兩件最近讓我非常感動的事。寫下來時心裡會想：『哇…原來我真的做到了。』",
@@ -261,7 +263,7 @@
     {
       "id": "68cd1360",
       "title": "接受經濟部 iPAS 採訪，AI 學習為我解鎖人生成就，也讓未來有了更多可能",
-      "category": "growth",
+      "category": "event",
       "date": "2025-09-19",
       "cover": "assets/images/f2cf88ad-f94e-43be-9f92-bac39ff2f38d.jpg",
       "excerpt": "疫情期間因孩子線上課買了第一台電腦，利用零碎的 Me Time 用 ChatGPT 在家自學，一路走到今天。",
@@ -336,7 +338,7 @@
     {
       "id": "68303150",
       "title": "【經濟部 iPAS 獲證者專場活動】以「AI 應用規劃師」身分參加，現場直擊＋心得分享",
-      "category": "ai",
+      "category": "event",
       "date": "2025-05-23",
       "cover": "assets/images/20fed4bf-d028-4a82-a00d-51500b79f382.png",
       "excerpt": "來到 IEAT 會議中心，以 AI 應用規劃師身分參加經濟部 iPAS 獲證者專場，現場都是各行各業的菁英。",

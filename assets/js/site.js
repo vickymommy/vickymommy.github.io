@@ -13,7 +13,8 @@
 
 const CAT_LABELS = {
   ai: 'AI 學習', growth: '媽媽自我成長',
-  parenting: '育兒知識', travel: '親子旅遊', diy: '玩具手作 DIY'
+  parenting: '育兒知識', travel: '親子旅遊', diy: '玩具手作 DIY',
+  event: 'AI 活動 & 聚會', share: 'AI 應用交流分享會'
 };
 
 /* ---------- 資安：escape / 消毒工具 ---------- */
