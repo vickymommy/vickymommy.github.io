@@ -8,7 +8,7 @@
 
 - 網站：https://vickymommy.github.io/ （Vicky Mommy 玲玲的個人網站；GitHub Pages 靜態網站，沒有伺服器、沒有資料庫）
 - repo：`vickymommy/vickymommy.github.io`（GitHub 組織 `vickymommy`，**公開 repo**：寫進來的任何東西全世界都看得到）
-- **維護者有兩位**（2026-11-18：Justin 是組織 Owner，玲玲是 repo 協作者 write；預定玲玲也升 Owner）：
+- **維護者有兩位**（2026-11-18：Justin 是組織 Owner；玲玲已被邀請成為組織 Owner，接受前是 repo 協作者 write）：
   - 玲玲（GitHub `vickytsai927`）：網站主人，管內容；改程式時通常請 ChatGPT 幫忙
   - Justin（GitHub `justin-n8n`）：建置者，玲玲可能請他協助維護；他用 Claude Code
 - 兩人可能各自、在不同時間、用不同的 AI 改網站，所以第 6 節的「兩人共用規矩」一定要遵守。
