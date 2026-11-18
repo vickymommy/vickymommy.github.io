@@ -1,28 +1,27 @@
 #!/usr/bin/env python3
 """
-fetch_youtube.py — 每日自動從玲玲的 YouTube 頻道 RSS 抓最新影片，更新 content/community.yml
+fetch_youtube.py — 每天抓玲玲 YouTube「指定播放清單」的最新影片，寫進 data/videos.json
 
-背景：
-  「社群交流圈」「iPAS 專區」頁面顯示的影片清單，原本是 content/community.yml 裡
-  手動維護的固定清單，玲玲上傳新影片不會自動出現。
-  YouTube 頻道本身有公開的 RSS Feed（不需 API Key），格式：
-    https://www.youtube.com/feeds/videos.xml?channel_id=<頻道ID>
-  這支腳本讀取該 RSS（固定回傳該頻道最新 15 支影片），自動合併進
-  content/community.yml 的 videos 清單，取代人工維護。
+【2026-11-18 改版】
+  以前：抓整個頻道最新 15 支（不分主題，生活影片、Shorts 都會混進來），寫進 content/community.yml。
+  現在：只抓 content/youtube.yml 列的播放清單（AI 相關），每個清單用 YouTube 公開的
+        播放清單 RSS（不需 API 金鑰）：
+          https://www.youtube.com/feeds/videos.xml?playlist_id=<播放清單ID>
+        RSS 每個清單最多回傳 15 支，網站每個清單只顯示最新幾支（showPerPlaylist），夠用。
+
+不會出錯的設計：
+  - 某個清單抓失敗、或抓到 0 支 → 保留 data/videos.json 裡這個清單上一次的影片，不清空。
+  - 有任何清單出問題 → 記在 data/videos.json 的 "errors"，workflow 下一步會自動開 GitHub Issue 通知。
+  - 程式本身一律正常結束（exit 0），不讓 YouTube 暫時連不上擋住方格子文章的同步與部署。
 
 執行方式（GitHub Action 或本機）：
   cd vickymommy.github.io
   pip install requests pyyaml
   python scripts/fetch_youtube.py
-
-注意：
-  - 只更新 videos 清單，其餘欄位（channel/playlist/line/fb/ig/socialIntro 等）
-    維持 content/community.yml 原有內容，不會被覆蓋。
-  - 影片標題等資訊由 RSS 提供，無法人工覆寫；若要排除某支影片（例如非教學相關的
-    生活動態），可在下方 EXCLUDE_VIDEO_IDS 加入影片 ID。
 """
 
-import os, re, sys
+import json, os, sys
+from datetime import datetime, timedelta, timezone
 import xml.etree.ElementTree as ET
 
 import requests
@@ -33,19 +32,11 @@ except ImportError:
     print("缺少 pyyaml，執行 pip install pyyaml", file=sys.stderr)
     sys.exit(1)
 
-BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-COMMUNITY_YML = os.path.join(BASE, "content", "community.yml")
-
-# 玲玲的 YouTube 頻道 ID（從 https://www.youtube.com/c/VickyMommy 解析取得，
-# 頻道自訂網址若日後變動，頻道 ID 本身不會變）
-CHANNEL_ID = "UCcQrEf8kKplpj0dW9M5QJLg"
-FEED_URL = f"https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}"
-
-# 保留最新幾支影片（RSS 本身固定回傳最新 15 支）
-MAX_VIDEOS = 15
-
-# 若有不想顯示在網站上的影片，把 video ID 加進這裡（由 Justin 維護）
-EXCLUDE_VIDEO_IDS = set()
+BASE        = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG_YML  = os.path.join(BASE, "content", "youtube.yml")
+OUT_JSON    = os.path.join(BASE, "data", "videos.json")
+FEED_URL    = "https://www.youtube.com/feeds/videos.xml?playlist_id={}"
+TAIPEI      = timezone(timedelta(hours=8))
 
 HEADERS = {
     "User-Agent": (
@@ -54,74 +45,78 @@ HEADERS = {
         "Chrome/120.0.0.0 Safari/537.36"
     ),
 }
-
 NS = {
     "a":  "http://www.w3.org/2005/Atom",
     "yt": "http://www.youtube.com/xml/schemas/2015",
 }
 
 
-def fetch_latest_videos():
-    """回傳 [{'id':..., 'title':..., 'published':...}, ...]，依發布時間新到舊。"""
-    try:
-        resp = requests.get(FEED_URL, headers=HEADERS, timeout=20)
-        resp.raise_for_status()
-    except Exception as e:
-        print(f"❌ 抓取 YouTube RSS 失敗：{e}", file=sys.stderr)
-        return None
-
-    try:
-        root = ET.fromstring(resp.content)
-    except ET.ParseError as e:
-        print(f"❌ RSS 解析失敗：{e}", file=sys.stderr)
-        return None
-
+def fetch_playlist(pid):
+    """回傳 [{'id','title','published'}, ...]（新到舊）；失敗丟例外。"""
+    resp = requests.get(FEED_URL.format(pid), headers=HEADERS, timeout=20)
+    resp.raise_for_status()
+    root = ET.fromstring(resp.content)
     videos = []
     for entry in root.findall("a:entry", NS):
-        vid_el   = entry.find("yt:videoId", NS)
-        title_el = entry.find("a:title", NS)
-        pub_el   = entry.find("a:published", NS)
-        if vid_el is None or title_el is None:
-            continue
-        vid = vid_el.text
-        if vid in EXCLUDE_VIDEO_IDS:
+        vid = entry.findtext("yt:videoId", default="", namespaces=NS)
+        if not vid:
             continue
         videos.append({
             "id":        vid,
-            "title":     title_el.text or "",
-            "published": pub_el.text if pub_el is not None else "",
+            "title":     entry.findtext("a:title", default="", namespaces=NS),
+            "published": entry.findtext("a:published", default="", namespaces=NS),
         })
-
     videos.sort(key=lambda v: v["published"], reverse=True)
-    return videos[:MAX_VIDEOS]
+    return videos
 
 
 def main():
-    if not os.path.isfile(COMMUNITY_YML):
-        print(f"❌ 找不到 {COMMUNITY_YML}", file=sys.stderr)
-        sys.exit(1)
+    with open(CONFIG_YML, encoding="utf-8") as f:
+        cfg = yaml.safe_load(f) or {}
 
-    with open(COMMUNITY_YML, encoding="utf-8") as f:
-        data = yaml.safe_load(f) or {}
+    old = {}
+    if os.path.isfile(OUT_JSON):
+        try:
+            with open(OUT_JSON, encoding="utf-8") as f:
+                old = {p.get("key"): p for p in json.load(f).get("playlists", [])}
+        except Exception:
+            old = {}
 
-    old_videos = data.get("videos") or []
-    old_ids = [v.get("id") for v in old_videos]
+    playlists, errors = [], []
+    for p in cfg.get("playlists") or []:
+        key, pid, title = p.get("key"), p.get("id"), p.get("title", "")
+        try:
+            videos = fetch_playlist(pid)
+            if not videos:
+                raise ValueError("抓到 0 支影片（播放清單可能被改成私人或刪除）")
+            print(f"✅ {title}：{len(videos)} 支")
+        except Exception as e:
+            videos = (old.get(key) or {}).get("videos", [])
+            msg = f"{title}（{pid}）抓取失敗：{e}；保留上次的 {len(videos)} 支"
+            print(f"⚠️ {msg}", file=sys.stderr)
+            errors.append(msg)
+        playlists.append({
+            "key":    key,
+            "id":     pid,
+            "title":  title,
+            "intro":  p.get("intro", ""),
+            "url":    f"https://www.youtube.com/playlist?list={pid}",
+            "videos": videos,
+        })
 
-    videos = fetch_latest_videos()
-    if videos is None:
-        print("⚠️ 抓取失敗，保留 content/community.yml 原有影片清單，不覆蓋")
-        return
-
-    new_ids = [v["id"] for v in videos]
-    added = [v for v in new_ids if v not in old_ids]
-
-    data["videos"] = [{"id": v["id"], "title": v["title"]} for v in videos]
-
-    with open(COMMUNITY_YML, "w", encoding="utf-8") as f:
-        yaml.dump(data, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
-
-    print(f"✅ 已更新 content/community.yml，共 {len(videos)} 支影片"
-          + (f"（新增 {len(added)} 支：{', '.join(added)}）" if added else "（無新影片）"))
+    out = {
+        "_說明":          "由 scripts/fetch_youtube.py 每天自動產生，請勿手動編輯；要改播放清單請改 content/youtube.yml。",
+        "updated":        datetime.now(TAIPEI).strftime("%Y-%m-%d %H:%M"),
+        "channel":        cfg.get("channel", ""),
+        "channelIntro":   cfg.get("channelIntro", ""),
+        "showPerPlaylist": int(cfg.get("showPerPlaylist", 3)),
+        "playlists":      playlists,
+        "errors":         errors,
+    }
+    os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
+    with open(OUT_JSON, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
+    print(f"✓ {len(playlists)} 個播放清單 → data/videos.json" + (f"（{len(errors)} 個有問題）" if errors else ""))
 
 
 if __name__ == "__main__":

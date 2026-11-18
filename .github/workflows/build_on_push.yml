@@ -37,7 +37,11 @@ jobs:
           python-version: '3.11'
 
       - name: 安裝相依套件
-        run: pip install pyyaml
+        run: pip install pyyaml requests
+
+      # 2026-11-18：後台改了 content/youtube.yml（播放清單）時，馬上重抓影片，不用等隔天 02:00
+      - name: 重抓 YouTube 播放清單
+        run: python scripts/fetch_youtube.py
 
       - name: 重建 data JSON
         run: python scripts/build.py

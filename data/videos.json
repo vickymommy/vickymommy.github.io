@@ -1,0 +1,350 @@
+{
+  "_說明": "由 scripts/fetch_youtube.py 每天自動產生，請勿手動編輯；要改播放清單請改 content/youtube.yml。",
+  "updated": "2026-11-18 13:03",
+  "channel": "https://www.youtube.com/@VickyMommy",
+  "channelIntro": "串聯 AI 應用規劃師，分享適合媽媽與初學者的 AI 生活應用。親子生活、旅遊、育兒、手作和更多影片都在頻道裡！",
+  "showPerPlaylist": 3,
+  "playlists": [
+    {
+      "key": "events",
+      "id": "PLTjEk5yqNjac",
+      "title": "AI 活動 & 聚會",
+      "intro": "iPAS 小聚、AI 活動與講座的現場紀錄。",
+      "url": "https://www.youtube.com/playlist?list=PLTjEk5yqNjac",
+      "videos": [
+        {
+          "id": "WYsVXRRCfW8",
+          "title": "【親子天下教育創新國際年會 ( 上午場 )】AI時代，最該教孩子什麼？不只是算力，更要有心力！@parentingtv",
+          "published": "2026-09-24T02:47:08+00:00"
+        },
+        {
+          "id": "XF4P-tP_rF0",
+          "title": "YouTuber 怎麼用 AI？直擊 Google Gemini 創作者工作坊，學會 AI 時代的 YouTube 創作新方法 @GoogleTaiwan",
+          "published": "2026-09-20T09:21:38+00:00"
+        },
+        {
+          "id": "8oWidT_LEL4",
+          "title": "【iPAS REAL TALK】台北場：50 位獲證者齊聚，討論獲證之後，如何讓證照發揮價值？",
+          "published": "2026-08-23T07:33:16+00:00"
+        },
+        {
+          "id": "wuwaZfbk9zM",
+          "title": "近 20 位 iPAS AI 應用規劃師面對面交流 💕【iPAS 獲證者交流群】、【媽咪 AI 賦能共學團】社群聚會 💕",
+          "published": "2026-07-23T04:28:46+00:00"
+        },
+        {
+          "id": "CdcmU5Eam8U",
+          "title": "【 2026 生成式 AI 年會 】Agent First 帶來什麼新想像？15 位講者讓我看見更多可能❤️",
+          "published": "2026-06-29T00:06:53+00:00"
+        },
+        {
+          "id": "MJXnysPQO1M",
+          "title": "【The Last Council 末日議會 - AI 議題派對】全職媽媽潛入「末日議會」，AI 真的要取代我們了嗎？",
+          "published": "2026-03-29T01:27:09+00:00"
+        },
+        {
+          "id": "xNJeNzmxbjc",
+          "title": "【iPAS 實踐小聚】AI 淨零雙軌轉型 | 2026智慧城市展暨淨零城市展 | 經濟部 iPAS AI 應用規劃師 & 淨零碳規劃管理師",
+          "published": "2026-03-22T00:47:45+00:00"
+        },
+        {
+          "id": "jgMfNJKarjQ",
+          "title": "20251119_AI人才培育推動成果發表會花絮",
+          "published": "2026-02-12T01:40:10+00:00"
+        },
+        {
+          "id": "RyxqoElKPqU",
+          "title": "開箱 AI 新創！詠鋐智能 Chimes AI 如何解決傳統產業比電子業更難導入的 AI 痛點",
+          "published": "2026-01-23T10:52:10+00:00"
+        },
+        {
+          "id": "ImcHmd7IqL8",
+          "title": "⭐️ AI 應用規劃師小聚 ⭐️ 實戰 x 經驗交流座談會   北部場",
+          "published": "2025-12-22T05:51:37+00:00"
+        },
+        {
+          "id": "SkkVFpJGViQ",
+          "title": "💕 Vicky 5分鐘演講影片💕經濟部 AI 人才培育推動成果發表會",
+          "published": "2025-11-26T01:52:36+00:00"
+        },
+        {
+          "id": "jMmHmIjLuB4",
+          "title": "【經濟部 AI 人才培育推動成果發表會】全職媽媽登上台北國際會議中心舞台的自學 AI 歷程 💕",
+          "published": "2025-11-24T12:14:58+00:00"
+        },
+        {
+          "id": "Lu1ZLI9AAo0",
+          "title": "【 經濟部 AI 競賽優選】AI x 城市智慧節點—商模提案競賽 | 決賽現場實況 + 智慧桿參訪 + 5 分鐘簡報內容",
+          "published": "2025-11-22T12:10:40+00:00"
+        },
+        {
+          "id": "JrEsQ7c8YFg",
+          "title": "經濟部 iPAS 採訪心得｜AI 應用規劃師考照經驗分享＋全職媽媽的成長故事",
+          "published": "2025-09-09T09:54:07+00:00"
+        },
+        {
+          "id": "QMNf9yLk2a8",
+          "title": "【全職媽媽人生成就解鎖】受邀經濟部 iPAS 採訪，我的 AI 學習之路 ✨ AI 應用規劃師 ✨",
+          "published": "2025-09-05T10:07:52+00:00"
+        }
+      ]
+    },
+    {
+      "key": "interviews",
+      "id": "PLJUkqYg4ZDUE",
+      "title": "Vicky 專訪影片",
+      "intro": "媒體與節目專訪，聽 Vicky 分享全職媽媽學 AI 的故事。",
+      "url": "https://www.youtube.com/playlist?list=PLJUkqYg4ZDUE",
+      "videos": [
+        {
+          "id": "LZJOVk_Kwc0",
+          "title": "【靠自學並考上AI證照，提升自我價值永不嫌晚】專訪 經濟部iPAS AI 應用規劃師、媽咪AI 賦能共學團創辦人 蔡宛玲｜理財生活通 2026.09.17",
+          "published": "2026-09-18T05:00:10+00:00"
+        },
+        {
+          "id": "CUbhzLC9g7A",
+          "title": "不懂程式也能學AI！二寶媽成功挑戰「國家級證照」，還創立AI共學團│遠見40週年系列影音",
+          "published": "2026-08-10T07:58:24+00:00"
+        }
+      ]
+    },
+    {
+      "key": "ipas",
+      "id": "PLb-qrt1jdBmx81sk5YXYsIRo-YK6Vn2vx",
+      "title": "《鑑賢思齊》– iPAS應用大現場",
+      "intro": "iPAS 官方 Podcast，George 和 Vicky 主持，採訪各領域 iPAS 獲證者「把證照用出來」的真實故事。",
+      "url": "https://www.youtube.com/playlist?list=PLb-qrt1jdBmx81sk5YXYsIRo-YK6Vn2vx",
+      "videos": [
+        {
+          "id": "GSkD-q33UVQ",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP15. 產學連結，實力再進化！用iPAS驗證實作真功夫，打造電動車機電整合競爭力",
+          "published": "2026-10-15T04:00:30+00:00"
+        },
+        {
+          "id": "LbkA8nb33mQ",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP14. 綠領職涯必備指南！擁有iPAS淨零認證，建立永續跨域競爭力",
+          "published": "2026-09-23T04:00:06+00:00"
+        },
+        {
+          "id": "YaeLC97VsAQ",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP13. 不只加速，更要升級！從工具使用到流程改造的終極心法",
+          "published": "2026-09-09T04:00:16+00:00"
+        },
+        {
+          "id": "ND8myRidrUA",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP12. 玩AI？叫你阿嬤來囉！用AI修復老照片，找回跨世代的感動",
+          "published": "2026-08-26T10:00:22+00:00"
+        },
+        {
+          "id": "4ksDrPJn1V4",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP11. 護理師轉戰ESG！AI + 淨零雙證照，變身最搶手的雙軸轉型人才",
+          "published": "2026-08-12T04:00:37+00:00"
+        },
+        {
+          "id": "bUZXvx9eZk0",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP10. 豈止證照而已！跨域知識大串聯，打造屬於自己的能力系統",
+          "published": "2026-08-05T04:00:03+00:00"
+        },
+        {
+          "id": "DsBuwOGwcGQ",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP09. AI時代，最重要的還是「人」！AI不僅是科技工具，更是推動教育工作的重要力量！",
+          "published": "2026-07-29T04:00:08+00:00"
+        },
+        {
+          "id": "L6gqc1mzpGw",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP08. 千萬級設備也照換！靠iPAS成功推動醫院淨零轉型",
+          "published": "2026-07-22T06:00:19+00:00"
+        },
+        {
+          "id": "h45UX66t378",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP07. 一杯咖啡的時間就搞定！利用AI工具加速保險條款審核",
+          "published": "2026-07-15T04:00:27+00:00"
+        },
+        {
+          "id": "XwMAX0Y8CfI",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP06. 狂掃50張證照拚轉型！拒絕被取代！跨界進入AI與物聯網領域",
+          "published": "2026-07-08T04:00:28+00:00"
+        },
+        {
+          "id": "ovdenLTwFic",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP05. 缺料危機也不怕！用AI模擬談判策略，打造最強採購韌性",
+          "published": "2026-06-24T04:00:36+00:00"
+        },
+        {
+          "id": "RAh295ke5eM",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP04. 守護食安16年！挑戰iPAS，守護品牌價值的關鍵之戰",
+          "published": "2026-06-10T04:00:30+00:00"
+        },
+        {
+          "id": "9ys8SuXtwLk",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP03. 校長親自示範AI治校！行政減量超有感，NotebookLM竟成審題神器",
+          "published": "2026-06-03T04:00:02+00:00"
+        },
+        {
+          "id": "F1oTILbKhgQ",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP02. 隔行如隔山？靠iPAS從傳產門外漢變專業領航者",
+          "published": "2026-05-27T04:00:25+00:00"
+        },
+        {
+          "id": "QgbJoeF73fU",
+          "title": "《鑑賢思齊》– iPAS應用大現場：EP01. 3個月工作時程縮短至3天！創辦人揭秘：如何用 LLM 打造自動化追蹤系統",
+          "published": "2026-05-20T04:00:15+00:00"
+        }
+      ]
+    },
+    {
+      "key": "share",
+      "id": "PLb-qrt1jdBmwVdzX33Af17oitqQsMoNJY",
+      "title": "AI 應用交流分享會",
+      "intro": "邀請社群裡的 AI 應用規劃師，分享各行各業的 AI 應用。",
+      "url": "https://www.youtube.com/playlist?list=PLb-qrt1jdBmwVdzX33Af17oitqQsMoNJY",
+      "videos": [
+        {
+          "id": "KbZcleTs6vg",
+          "title": "【 AI 應用交流分享會 】iPAS AIoT 首屆初級考前重點＋實用備考技巧｜陳正健 CCChen @CCChen-168",
+          "published": "2026-10-26T08:16:02+00:00"
+        },
+        {
+          "id": "lwfZBpOfMnE",
+          "title": "【AI 應用交流分享會】AI 分身是什麼？林思翰 Hans：別再只跟 AI 聊天，讓 AI 真正接手你的工作",
+          "published": "2026-09-05T12:04:33+00:00"
+        },
+        {
+          "id": "1zvDOxElnvI",
+          "title": "【端午節 AI 創意素材分享會】6 位 AI 應用規劃師陪你過端午 | 用 AI 製作端午節創意圖片、影片、音樂、Vibe Coding 小遊戲",
+          "published": "2026-06-20T01:05:32+00:00"
+        },
+        {
+          "id": "9gdiyY3mwxU",
+          "title": "【 端午節 AI 創作分享會 】「小小香包」AI 創作影片 | AI 應用規劃師聯合分享會",
+          "published": "2026-06-13T08:18:03+00:00"
+        },
+        {
+          "id": "L0BTTmsCr6k",
+          "title": "【AI 應用交流分享會7】iPAS 獲證學長姊的考前陪伴分享會 | AI 應用規劃師 & 淨零碳規劃管理師",
+          "published": "2026-05-15T22:50:51+00:00"
+        },
+        {
+          "id": "m-y10bR6DZI",
+          "title": "【AI 應用交流分享會6】Sandy x Vicky Mommy 玲玲 | AI 影片、AI 複製人、104 人力銀行 AI 通用素養檢測",
+          "published": "2026-04-07T11:34:26+00:00"
+        },
+        {
+          "id": "iTOMiP0uxFs",
+          "title": "【AI 應用交流分享會5】AI 新創顧問與資料分析師，帶來企業 AI 導入流程與案例分享 | OpenCloud 龍蝦應用",
+          "published": "2026-02-12T10:03:06+00:00"
+        },
+        {
+          "id": "0gDjf3NYzpk",
+          "title": "【社群小幫手見面會】徵求社群小幫手共創內容 | 自我介紹 | 分享內容與形式討論",
+          "published": "2026-01-17T14:09:03+00:00"
+        },
+        {
+          "id": "a8ijPPUpdVc",
+          "title": "【AI 應用交流分享會 4】Jenny x Vicky Mommy 玲玲 | AI 應用規劃師 | 資策會「生成式 AI 美術設計能力認證」",
+          "published": "2025-12-29T23:34:20+00:00"
+        },
+        {
+          "id": "F-z1GKE-KvA",
+          "title": "【AI 應用交流分享會 3】CCChen x Vicky Mommy 玲玲 | AI 應用規劃師初級證照攻略｜科目重點 + 考試策略",
+          "published": "2025-12-06T00:24:41+00:00"
+        },
+        {
+          "id": "ceAwiCdy2uE",
+          "title": "【AI 應用交流分享會 2】江江教練 x Vicky Mommy 玲玲 | AI 應用規劃師、隱性知識提煉術、三層次會議紀錄法",
+          "published": "2025-11-30T01:38:20+00:00"
+        },
+        {
+          "id": "A3y1RLxtoic",
+          "title": "【Google 數位人才探索計畫分享會】免費學 AI 拿證照！3 位 AI 應用規劃師的實戰技巧與備考心法大公開",
+          "published": "2025-07-26T03:26:17+00:00"
+        }
+      ]
+    },
+    {
+      "key": "learning",
+      "id": "PLb-qrt1jdBmw4F5fFiuo54TA_BL7SN3db",
+      "title": "AI 學習",
+      "intro": "媽媽也學得會的 AI 工具教學與實作。",
+      "url": "https://www.youtube.com/playlist?list=PLb-qrt1jdBmw4F5fFiuo54TA_BL7SN3db",
+      "videos": [
+        {
+          "id": "BiV3DIiNBF8",
+          "title": "Google Chrome 隱藏神功能！「問問 Gemini」完整教學，從 AI 伴讀到自動化工作助手！多分頁比較、AI 換裝、Skill 製作一次學會！",
+          "published": "2026-10-30T08:01:39+00:00"
+        },
+        {
+          "id": "n8AvL5GRUag",
+          "title": "馬斯克飛天車真的來了？我用 AI 把科技新聞變成孩子愛玩的遊戲！AI 畫圖、科學影片、互動遊戲一次完成！",
+          "published": "2026-10-22T09:49:45+00:00"
+        },
+        {
+          "id": "bKA8_n7i9Ww",
+          "title": "【GPT-6 智慧介面】Intelligent UI 是什麼？媽媽也能輕鬆上手｜分帳、時間管理、學習遊戲 5 個生活應用實測",
+          "published": "2026-10-13T09:07:16+00:00"
+        },
+        {
+          "id": "u0XupdR0zeM",
+          "title": "只要輸入主題！AI 幫你做簡報＋解說影片｜ChatGPT＋FlexClip 新手也能學會",
+          "published": "2026-09-11T09:42:16+00:00"
+        },
+        {
+          "id": "CyrGQ-K8-4Y",
+          "title": "iPAS 考前必看｜iPAS 經濟部產業人才能力鑑定【電腦測驗操作說明】：作答畫面、標記題目、試題總覽一次看懂",
+          "published": "2026-05-16T01:08:39+00:00"
+        },
+        {
+          "id": "hn-SurC3X_c",
+          "title": "AI 工具學不完？3分鐘找出你的「能力盲區」！數產署 x 工研院免費資源： AI產業人才認定指引 × AI技能速測",
+          "published": "2026-03-25T09:51:08+00:00"
+        },
+        {
+          "id": "6jjWzIZb20o",
+          "title": "【2025 AI 作品集】AI 應用規劃師媽媽的 52 種 AI 生活應用 | 從寫日記、陪孩子創作遊戲網頁，到贏得國家級 AI 競賽，平凡媽媽的成長祕訣 ✨",
+          "published": "2026-03-04T07:25:25+00:00"
+        },
+        {
+          "id": "PKEzulPigDE",
+          "title": "FlexClip 線上剪輯結合 AI，忙碌媽媽 / 內容創作者必學的 10 倍速剪輯工作流！",
+          "published": "2025-12-12T10:00:50+00:00"
+        },
+        {
+          "id": "X-cuxs0TBQc",
+          "title": "經濟部 iPAS AI 應用規劃師🏅 AI 應用規劃師的價值、四大核心職責、認證路徑一次解析🎯",
+          "published": "2025-12-04T04:25:46+00:00"
+        },
+        {
+          "id": "EOgg5FOo47A",
+          "title": "【AI 複製人新手教學】用 Vidnoz AI 做出會說話的複製人影片 | 新聞播報、幼兒教育、商品推薦、活動宣傳都可以！",
+          "published": "2025-11-27T10:00:32+00:00"
+        },
+        {
+          "id": "35crsLnhwEI",
+          "title": "2025/5/16 (五) 免費講座【你也能用 ChatGPT 考上 AI 證照】AI應用規劃師（經濟部）| AI素養級認證（台灣人工智慧學校）",
+          "published": "2025-11-19T22:45:24+00:00"
+        },
+        {
+          "id": "OZm65Thie5g",
+          "title": "【Veo3.1】豐富的早餐盛宴",
+          "published": "2025-10-17T01:08:58+00:00"
+        },
+        {
+          "id": "MCXZd2Ih06M",
+          "title": "AI 幫我做堡包日常短片？用 Lovart 創作動畫全紀錄 | AI 自動生成動態短片超簡單✨",
+          "published": "2025-10-14T14:43:08+00:00"
+        },
+        {
+          "id": "gjd7EToHbGA",
+          "title": "Lovart 全能 AI 設計代理完整實測 ，一句話做完品牌周邊素材，提升創作效率的超級幫手來了！",
+          "published": "2025-10-02T11:01:22+00:00"
+        },
+        {
+          "id": "YO6ZfuaPotg",
+          "title": "【Readkidz】零基礎也能做超可愛兒童繪本 🎨📖 一站式 AI 生成＋動畫完成 ✨🎬",
+          "published": "2025-09-02T08:15:26+00:00"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -207,3 +207,21 @@ footer a:hover{color:var(--brand)}
 .item.has-yt{flex-direction:column}
 .item.has-yt .ico{display:none}
 .item.has-yt>div{width:100%}
+
+/* ── YouTube 播放清單（2026-11-18：影片頁、首頁、iPAS、社群共用）─────── */
+.yt-channel{display:flex;gap:22px;align-items:center;max-width:860px;margin:0 auto 10px;background:#fff;
+  border:1px solid var(--line);border-radius:var(--radius);padding:24px 28px;box-shadow:var(--shadow)}
+.yt-channel img{width:96px;height:96px;border-radius:50%;object-fit:cover;flex:none}
+.yt-channel h3{font-size:20px;margin-bottom:4px}
+.yt-channel p{color:var(--ink-soft);font-size:14.5px;margin-bottom:12px}
+.yt-channel .chip-row{justify-content:flex-start;margin-bottom:0}
+.pl-block{margin-top:40px}
+.pl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.pl-head .block-title{margin:0 0 4px}
+.pl-intro{color:var(--ink-soft);font-size:14.5px;margin:0 0 14px 17px}
+.pl-more{font-weight:700;color:var(--brand);font-size:14.5px;white-space:nowrap}
+.pl-more:hover{text-decoration:underline}
+.yt-more{text-align:center;margin-top:46px;padding:26px;background:var(--brand-soft);border-radius:var(--radius)}
+.yt-more p{margin-bottom:14px;color:var(--brand-deep);font-weight:600}
+.yt-updated{text-align:center;color:var(--ink-soft);font-size:12.5px;margin-top:18px}
+@media(max-width:560px){.yt-channel{flex-direction:column;text-align:center}.yt-channel .chip-row{justify-content:center}}

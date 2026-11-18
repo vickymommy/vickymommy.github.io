@@ -65,18 +65,32 @@ content:
     fields:
       - { name: socialIntro, label: 社群介紹文, type: text }
       - { name: socialImage, label: 社群主圖,   type: image }
-      - name: videos
-        label: 影片清單
-        type: object
-        list: true
-        fields:
-          - { name: id,    label: YouTube 影片 ID, type: string }
-          - { name: title, label: 影片標題,        type: string }
       - { name: line,     label: LINE 共學團連結, type: string }
       - { name: fb,       label: Facebook,        type: string }
       - { name: ig,       label: Instagram,       type: string }
       - { name: channel,  label: YouTube 頻道,    type: string }
       - { name: playlist, label: 播放清單,        type: string }
+
+  # ---------- 5. YouTube 影片（2026-11-18） ----------
+  # 網站只放這裡列的播放清單的最新影片（每天 02:00 自動更新），其餘連到 YouTube 頻道。
+  # 影片本身不用在這裡加：玲玲把影片放進 YouTube 的播放清單，隔天網站就會出現。
+  - name: youtube
+    label: YouTube 影片（設定）
+    type: file
+    path: content/youtube.yml
+    fields:
+      - { name: channel,         label: YouTube 頻道網址,           type: string }
+      - { name: channelIntro,    label: 頻道介紹（影片頁最上面）,   type: text }
+      - { name: showPerPlaylist, label: 每個清單顯示幾支,           type: number }
+      - name: playlists
+        label: 播放清單
+        type: object
+        list: true
+        fields:
+          - { name: key,   label: 英文代號（不要改）,                   type: string }
+          - { name: id,    label: 播放清單 ID（網址 list= 後面那一串）, type: string }
+          - { name: title, label: 網站上顯示的名稱,                     type: string }
+          - { name: intro, label: 一句介紹,                             type: string }
 
   # ---------- 4. 課程（單頁設定） ----------
   - name: course

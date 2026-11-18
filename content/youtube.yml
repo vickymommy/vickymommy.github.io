@@ -1,0 +1,38 @@
+# =====================================================================
+# YouTube 影片設定（2026-11-18 建立）
+# 網站只放下面這幾個「播放清單」的最新影片，其餘影片一律連到 YouTube 頻道。
+# 每天 02:00 由 scripts/fetch_youtube.py 讀這個檔，抓各播放清單最新影片
+# → 寫進 data/videos.json（不用 API 金鑰，用 YouTube 公開的播放清單 RSS）。
+#
+# 要加／減／換順序：改下面 playlists 清單就好（後台 PagesCMS「YouTube 影片（設定）」也能改）。
+#   id    ＝播放清單網址 list= 後面那一串（例：https://www.youtube.com/playlist?list=PLTjEk5yqNjac）
+#   key   ＝英文代號，網站程式用它決定哪個清單放在哪一頁（不要隨便改；新清單取一個沒用過的英文字）
+#   title ＝網站上顯示的名稱
+#   intro ＝一句介紹
+# =====================================================================
+
+channel: https://www.youtube.com/@VickyMommy
+channelIntro: 串聯 AI 應用規劃師，分享適合媽媽與初學者的 AI 生活應用。親子生活、旅遊、育兒、手作和更多影片都在頻道裡！
+showPerPlaylist: 3
+
+playlists:
+  - key: events
+    id: PLTjEk5yqNjac
+    title: AI 活動 & 聚會
+    intro: iPAS 小聚、AI 活動與講座的現場紀錄。
+  - key: interviews
+    id: PLJUkqYg4ZDUE
+    title: Vicky 專訪影片
+    intro: 媒體與節目專訪，聽 Vicky 分享全職媽媽學 AI 的故事。
+  - key: ipas
+    id: PLb-qrt1jdBmx81sk5YXYsIRo-YK6Vn2vx
+    title: 《鑑賢思齊》– iPAS應用大現場
+    intro: iPAS 官方 Podcast，George 和 Vicky 主持，採訪各領域 iPAS 獲證者「把證照用出來」的真實故事。
+  - key: share
+    id: PLb-qrt1jdBmwVdzX33Af17oitqQsMoNJY
+    title: AI 應用交流分享會
+    intro: 邀請社群裡的 AI 應用規劃師，分享各行各業的 AI 應用。
+  - key: learning
+    id: PLb-qrt1jdBmw4F5fFiuo54TA_BL7SN3db
+    title: AI 學習
+    intro: 媽媽也學得會的 AI 工具教學與實作。

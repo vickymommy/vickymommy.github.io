@@ -1,4 +1,4 @@
-name: 每日自動同步（Vocus ＋ 每週精選 ＋ YouTube）
+name: 每日自動同步（方格子 ＋ YouTube 播放清單）
 
 # ── 觸發時機 ──────────────────────────────────────────────────────────────────
 on:
@@ -12,7 +12,7 @@ on:
 # ── 工作 ──────────────────────────────────────────────────────────────────────
 jobs:
   sync:
-    name: 同步 Vocus 文章 ＋ 抓每週精選候選 ＋ 抓 YouTube 影片
+    name: 同步方格子文章 ＋ 抓 YouTube 播放清單
     runs-on: ubuntu-latest
     permissions:
       contents: write   # 需要寫入權限才能 push 新檔案
@@ -43,8 +43,9 @@ jobs:
 
       # 5.（2026-11-18 移除「分享天地／每週精選候選」：玲玲沒時間審，備份在 Justin 本機專案 99.封存/分享天地_20261118/）
 
-      # 6. 抓玲玲 YouTube 頻道最新影片（自動更新 content/community.yml 的 videos 清單）
-      - name: 抓取 YouTube 最新影片
+      # 6. 抓 content/youtube.yml 列的 YouTube 播放清單最新影片 → data/videos.json
+      #    （2026-11-18 改版：只放指定的 AI 播放清單；抓失敗會保留舊資料，最後一步開 Issue 通知）
+      - name: 抓取 YouTube 播放清單
         run: python scripts/fetch_youtube.py
 
       # 7. 重建 data/*.json（articles + community + course）
@@ -56,9 +57,24 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add content/articles/ assets/images/ content/community.yml data/
+          git add content/articles/ assets/images/ data/
           git diff --staged --quiet || git commit -m "auto: 每日同步 Vocus + YouTube 影片 [skip ci]"
           git push
+
+      # 8b. 2026-11-18 新增：YouTube 有播放清單抓不到（網站已保留舊影片，不會空白）→ 開 Issue 通知
+      - name: YouTube 抓取有問題時開 Issue
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ERR=$(python -c "import json;print(chr(10).join(json.load(open('data/videos.json',encoding='utf-8')).get('errors',[])))")
+          if [ -n "$ERR" ]; then
+            gh issue create --repo "${{ github.repository }}"               --title "⚠️ YouTube 播放清單抓取有問題（$(date -u +%Y-%m-%d)）"               --body "網站已保留上次的影片，不會變空白。問題如下：
+
+          $ERR
+
+          常見原因：播放清單被改成私人、刪除，或 content/youtube.yml 的 ID 打錯。執行紀錄：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi
 
       # 9. 2026-09-17 新增：任何前面的步驟失敗，就自動建立一個 GitHub Issue 通知
       #    （不需要額外設定密鑰，用 GitHub Actions 內建的 token 即可）

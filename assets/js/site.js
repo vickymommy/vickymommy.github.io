@@ -1,5 +1,5 @@
 /* Vicky Mommy 玲玲 網站 — 共用前台程式 v2（fetch 架構）
-   資料來源：data/articles.json、data/community.json、data/course.json
+   資料來源：data/articles.json、data/community.json、data/course.json、data/videos.json（2026-11-18 起）
    文章內文：content/articles/<id>.md（按需 fetch）
    新增文章：在後台（PagesCMS）操作，GitHub Action 自動重建 JSON。
 
@@ -55,8 +55,9 @@ function sanitizeBody(html) {
 let ARTICLES  = [];
 let COMMUNITY = {};
 let COURSE    = {};
+let VIDEOS    = { playlists: [] };   // 2026-11-18：YouTube 播放清單（data/videos.json）
 
-/* ---------- 資料初始化（一次 fetch 三支 JSON）---------- */
+/* ---------- 資料初始化（一次 fetch 四支 JSON）---------- */
 async function initData() {
   try {
     const [artData, comm, course] = await Promise.all([
@@ -70,6 +71,12 @@ async function initData() {
   } catch (e) {
     console.error('[Vicky Mommy 玲玲] 資料載入失敗：', e);
   }
+  /* 影片另外載，失敗也不影響文章 */
+  try {
+    VIDEOS = await fetch('data/videos.json').then(r => r.json());
+  } catch (e) {
+    console.error('[Vicky Mommy 玲玲] 影片資料載入失敗：', e);
+  }
 }
 
 /* ---------- 頁首頁尾 ---------- */
@@ -82,6 +89,7 @@ function injectChrome(active) {
     '<nav class="menu">' +
       nav('home',      'index.html',     '首頁') +
       nav('articles',  'articles.html',  '心情日誌') +
+      nav('videos',    'videos.html',    '影片') +
       nav('ipas',      'ipas.html',      'iPAS 專區') +
       nav('courses',   'courses.html',   '課程') +
       nav('community', 'community.html', '社群交流圈') +
@@ -91,7 +99,7 @@ function injectChrome(active) {
   document.getElementById('site-footer').innerHTML =
     '<footer><div class="wrap"><div class="foot-grid">' +
     '<div><h4>Vicky Mommy 玲玲</h4><p style="font-size:13.5px;line-height:1.7">從今天生活裡的一個小地方開始，持續學習、持續分享。</p></div>' +
-    '<div><h4>逛逛</h4><a href="articles.html">心情日誌</a><a href="ipas.html">iPAS 專區</a><a href="courses.html">課程</a><a href="community.html">社群交流圈</a></div>' +
+    '<div><h4>逛逛</h4><a href="articles.html">心情日誌</a><a href="videos.html">影片</a><a href="ipas.html">iPAS 專區</a><a href="courses.html">課程</a><a href="community.html">社群交流圈</a></div>' +
     '<div><h4>Vicky天地</h4><a href="https://www.youtube.com/c/VickyMommy" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">LINE 共學團</a><a href="https://www.facebook.com/HiVickyMommy" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/vickytsai927/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.threads.net/@vickytsai927" target="_blank" rel="noopener noreferrer">Threads</a><a href="mailto:vickytsai927@gmail.com">合作邀約信箱</a></div>' +
     '</div><div class="foot-bottom">&copy; 2026 Vicky Mommy 玲玲</div></div></footer>';
 }
@@ -116,6 +124,63 @@ function ytCard(v) {
   return '<a class="vcard" href="https://www.youtube.com/watch?v=' + vid + '" target="_blank" rel="noopener noreferrer">' +
     '<div class="vthumb"><img src="https://img.youtube.com/vi/' + vid + '/hqdefault.jpg" loading="lazy" alt=""><span class="vplay">&#9658;</span></div>' +
     '<div class="vtitle">' + title + '</div></a>';
+}
+
+/* ---------- YouTube 播放清單（2026-11-18）----------
+   資料：data/videos.json（每天由 scripts/fetch_youtube.py 依 content/youtube.yml 產生）
+   原則：網站只放幾支，點了都到 YouTube 看；完整內容以 YouTube 頻道為主。 */
+function ytChannelUrl() { return VIDEOS.channel || 'https://www.youtube.com/@VickyMommy'; }
+function findPlaylist(key) { return (VIDEOS.playlists || []).find(p => p.key === key); }
+
+function playlistBlock(p, n) {
+  if (!p || !(p.videos || []).length) return '';
+  const count = n || VIDEOS.showPerPlaylist || 3;
+  return '<div class="pl-block">' +
+    '<div class="pl-head"><h3 class="block-title">' + escapeHtml(p.title) + '</h3>' +
+    '<a class="pl-more" href="' + safeUrl(p.url) + '" target="_blank" rel="noopener noreferrer">看完整播放清單 →</a></div>' +
+    (p.intro ? '<p class="pl-intro">' + escapeHtml(p.intro) + '</p>' : '') +
+    '<div class="vgrid">' + p.videos.slice(0, count).map(ytCard).join('') + '</div>' +
+    '</div>';
+}
+
+function ytMoreBox(text) {
+  return '<div class="yt-more"><p>' + escapeHtml(text) + '</p>' +
+    '<a class="btn" href="' + safeUrl(ytChannelUrl()) + '" target="_blank" rel="noopener noreferrer">前往 Vicky 的 YouTube 頻道</a></div>';
+}
+
+/* 影片頁（videos.html） */
+function renderVideos() {
+  const box = document.getElementById('videos-root');
+  if (!box) return;
+  const ch = ytChannelUrl();
+  box.innerHTML =
+    '<section><div class="wrap">' +
+    '<div class="sec-head"><span class="pill">影片</span><h2>Vicky 的 YouTube 頻道</h2><p>挑幾支精選放在這裡，完整影片都在 YouTube，歡迎訂閱！</p></div>' +
+    '<div class="yt-channel"><img src="assets/images/vicky.webp" alt="Vicky Mommy 玲玲">' +
+      '<div><h3>Vicky Mommy 玲玲</h3><p>' + escapeHtml(VIDEOS.channelIntro || '') + '</p>' +
+      '<div class="chip-row">' +
+        '<a class="btn" href="' + safeUrl(ch + '?sub_confirmation=1') + '" target="_blank" rel="noopener noreferrer">訂閱頻道</a>' +
+        '<a class="btn ghost" href="' + safeUrl(ch + '/playlists') + '" target="_blank" rel="noopener noreferrer">看所有播放清單</a>' +
+      '</div></div></div>' +
+    (VIDEOS.playlists || []).map(p => playlistBlock(p)).join('') +
+    ytMoreBox('親子生活、親子旅遊、育兒知識、玩具手作、K-POP 舞蹈……更多影片都在 YouTube 頻道') +
+    (VIDEOS.updated ? '<p class="yt-updated">影片清單自動更新：' + escapeHtml(VIDEOS.updated) + '</p>' : '') +
+    '</div></section>';
+}
+
+/* 首頁：最新 AI 影片 3 支（所有播放清單合併、去重、依發布時間） */
+function renderHomeVideos() {
+  const box = document.getElementById('home-videos');
+  if (!box) return;
+  const seen = new Set(), all = [];
+  (VIDEOS.playlists || []).forEach(p => (p.videos || []).forEach(v => {
+    if (!seen.has(v.id)) { seen.add(v.id); all.push(v); }
+  }));
+  all.sort((a, b) => (a.published < b.published ? 1 : -1));
+  box.innerHTML = all.length
+    ? '<div class="vgrid">' + all.slice(0, 3).map(ytCard).join('') + '</div>' +
+      '<div class="chip-row" style="margin-top:26px"><a class="btn ghost" href="videos.html">看更多影片</a></div>'
+    : '';
 }
 
 /* ---------- 首頁精選（最新 6 篇）---------- */
@@ -234,7 +299,8 @@ function renderCommunity() {
       '<a class="btn" href="' + safeUrl(E.playlist || '#') + '" target="_blank" rel="noopener noreferrer">AI應用交流分享會</a>' +
       '<a class="btn ghost" href="' + safeUrl(E.channel || '#') + '" target="_blank" rel="noopener noreferrer">YouTube 頻道</a>' +
     '</div>' +
-    '<div class="vgrid">' + (E.videos || []).map(ytCard).join('') + '</div>' +
+    playlistBlock(findPlaylist('events')) +
+    playlistBlock(findPlaylist('share')) +
     '<div class="join-row">' +
       '<a class="com2" href="' + safeUrl(E.line || '#') + '" target="_blank" rel="noopener noreferrer"><h4>媽咪 AI 賦能共學團</h4><p>1000+ 夥伴一起學</p></a>' +
       '<a class="com2" href="' + safeUrl(E.fb || '#') + '" target="_blank" rel="noopener noreferrer"><h4>Facebook</h4><p>HiVickyMommy</p></a>' +
@@ -261,8 +327,8 @@ function renderIpas() {
       '<a class="btn ghost" href="' + safeUrl(E.ipasChannel || '#') + '" target="_blank" rel="noopener noreferrer">iPAS 官方頻道</a>' +
       '<a class="btn ghost" href="https://www.ipas.org.tw/AIAP" target="_blank" rel="noopener noreferrer">官方專區</a>' +
     '</div>' +
-    '<h3 class="block-title">iPAS 相關影片</h3>' +
-    '<div class="vgrid">' + (E.videos || []).map(ytCard).join('') + '</div>' +
+    playlistBlock(findPlaylist('ipas')) +
+    playlistBlock(findPlaylist('share')) +
     '<h3 class="block-title">iPAS 相關文章（' + arts.length + ' 篇）</h3>' +
     '<div class="grid">' + arts.map(cardHTML).join('') + '</div>' +
     '</div></section>';
@@ -294,6 +360,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   injectChrome(document.body.dataset.page);
   await initData();
   renderFeatured();
+  renderHomeVideos();
+  renderVideos();
   renderListing();
   await renderArticle();
   renderCommunity();
