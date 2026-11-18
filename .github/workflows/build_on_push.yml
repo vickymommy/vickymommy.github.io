@@ -52,7 +52,13 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
           git diff --staged --quiet || git commit -m "auto: 重建 data JSON [skip ci]"
-          git push
+          # 2026-11-18：另一個 workflow（或玲玲在後台存檔）可能剛好也推了 → 先拉最新再推，最多試 3 次
+          #   -X theirs＝衝突時用這次重新產生的版本（data/*.json 都是程式產生的）
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push && exit 0
+            echo "推送第 $i 次失敗，5 秒後重試"; sleep 5
+          done
+          exit 1
 
       # 2026-09-17 新增：失敗時自動建立通知 Issue（例如玲玲在 PagesCMS 存檔的內容格式有誤，導致重建失敗）
       - name: 失敗時建立通知 Issue
