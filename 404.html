@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2026-11-18：找不到的網址（例如已移除的 manual.html、舊版 articles/xxx.html）都會到這頁。
+     舊版文章網址 /articles/<id>.html 自動轉到 article.html?id=<id>，其他 3 秒後回首頁。 -->
+<meta name="robots" content="noindex">
+<title>Vicky Mommy 玲玲｜找不到這個頁面</title>
+<style>
+  :root { --bg:#fffaf5; --fg:#4a3b32; --link:#c0603a; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1f1a17; --fg:#eee3da; --link:#f0a07a; } }
+  body { margin:0; padding:48px 16px; background:var(--bg); color:var(--fg);
+         font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif; text-align:center; line-height:1.8; }
+  a { color:var(--link); }
+</style>
+<script>
+  (function () {
+    var m = location.pathname.match(/\/articles\/([0-9a-f]+)\.html$/i);
+    var to = m ? '/article.html?id=' + encodeURIComponent(m[1]) : '/';
+    if (m) { location.replace(to); return; }
+    setTimeout(function () { location.replace(to); }, 3000);
+  })();
+</script>
+</head>
+<body>
+  <p>找不到這個頁面，3 秒後帶你回到 <a href="/">首頁</a>。</p>
+  <p><a href="/articles.html">看所有文章</a></p>
+</body>
+</html>

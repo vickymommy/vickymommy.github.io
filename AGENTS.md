@@ -2,7 +2,7 @@
 
 > 這份是「網站現在怎麼運作」的正本。不管你是 ChatGPT／Codex、Claude 或其他 AI，動手改這個 repo 之前先讀完這份。
 > 寫給人看的白話版在 `docs/維護手冊.md`；誰改過什麼在 `docs/維護紀錄.md`。
-> 最後更新：2026-11-18
+> 最後更新：2026-11-18 晚（方格子修改同步 update_vocus.py、YouTube 影片改連結、清舊檔、404.html）；2026-11-18
 
 ## 1. 這是什麼、誰在維護
 
@@ -27,6 +27,7 @@ data/*.json  ──→  各頁 HTML 用 assets/js/site.js 讀進來顯示
 ```
 
 - YouTube：`scripts/fetch_youtube.py` 依 `content/youtube.yml` 列的播放清單抓 RSS，寫 `data/videos.json`（每天 02:00＋content 變動時）。
+- 修改同步：`scripts/update_vocus.py`（sync_vocus 之後）看方格子每篇的 `lastPublishAt`（玲玲「更新發布」時會變），跟 `data/vocus_versions.json` 記的比；變了而且網站上那篇沒被改過 → 自動更新內文；網站上也改過 → 不蓋掉，開 Issue「📝 方格子改過的文章，網站沒自動更新」。
 - 對帳：每天同步完 `scripts/check_sync.py` 自己再問一次方格子，跟網站比對篇數、ID、分類，寫 `data/sync_status.json`；對不上就開 GitHub Issue「⚠️ 方格子與網站文章對不上」。
 - 看門狗：`watchdog.yml` 每天台北 10:00 檢查 `sync_status.json` 有沒有超過 30 小時沒更新、所有 workflow 檔讀不讀得進去；有問題開 Issue「🐕 看門狗：每日同步可能沒有在跑」。
 - 每一頁頁尾「文章最後同步 M/D HH:MM 🟢／🟡」讀 `data/sync_status.json`：🟢＝2 天內有同步且對帳正常，🟡＝有問題（滑鼠移上去看原因）。
@@ -47,26 +48,31 @@ data/*.json  ──→  各頁 HTML 用 assets/js/site.js 讀進來顯示
 | `scripts/sync_vocus.py` | 方格子同步（房間清單 `ROOM_IDS` 在這裡，只有這一份） | 小心改 |
 | `scripts/build.py` | content → data/*.json | 可以 |
 | `scripts/fetch_youtube.py` | YouTube 播放清單 → data/videos.json | 可以 |
+| `scripts/update_vocus.py` | 方格子修改同步（見第 4 節）；`--dry-run` 只列不寫 | 小心改 |
+| `data/vocus_versions.json` | update_vocus 記每篇上次同步的發布時間與內文指紋 | ❌ 不要手改 |
 | `scripts/check_sync.py` | 每日對帳，只讀不改文章 | 可以 |
 | `scripts/check_workflows.py` | 檢查 `.github/workflows/*.yml` 讀不讀得進去 | 可以 |
-| `.github/workflows/` | `daily_sync.yml`（每日同步）、`build_on_push.yml`（content 變動重建）、`watchdog.yml`（看門狗）、`build.yml`（舊版，只能手動） | 改了一定要跑 `check_workflows.py` |
+| `.github/workflows/` | `daily_sync.yml`（每日同步）、`build_on_push.yml`（content 變動重建）、`watchdog.yml`（看門狗）；舊的 `build.yml` 2026-11-18 已移除 | 改了一定要跑 `check_workflows.py` |
 | `.pages.yml` | PagesCMS 後台設定：後台看得到哪些欄位 | 改了要到後台確認 |
 | `robots.txt`、`sitemap.xml` | 目前**封鎖搜尋引擎**（開發中）；定案後才開放 | 要玲玲同意才改 |
 | `docs/` | 白話維護手冊、交接提示詞、維護紀錄 | 可以；改網站行為時要一起更新 |
 | `weekly.html` | 轉址頁：分享天地 2026-11-18 移除後，舊連結自動回首頁 | 保留，不用改 |
-| `data/articles.js`、`data/extra.js`、`articles/*.html`、`old/`、`vocus_clean.json`、根目錄的 `下載文章.*`、`縮圖.ps1`、`補封面.ps1`、`如何執行下載腳本.md` | 2026-06 初版留下的舊檔，**現在網站沒有用到** | 不要改、不要依賴；要不要清掉由兩位維護者決定 |
+| `404.html` | 找不到的網址都到這頁：舊版 `/articles/<id>.html` 自動轉 `article.html?id=<id>`，其他 3 秒回首頁 | 可以 |
 
 ## 4. 文章的兩條路（最容易出錯的地方）
 
 - **方格子同步來的文章**：frontmatter 的 `source` 是 `https://vocus.cc/article/...`。由 `sync_vocus.py` 管。
-  - ⚠️ 已知限制：同步程式**只新增、不更新**已存在的文章（`sync_vocus.py` 的 `main()` 看到已存在就略過）。玲玲在方格子改了內文，網站不會跟著改。
-  - 要更新某篇，目前兩種做法：
+  - 新文章由 `sync_vocus.py` 加；**修改**由 `update_vocus.py` 處理（2026-11-18 起）：玲玲在方格子改完按「更新發布」，隔天 02:00 網站內文、標籤、閱讀分鐘數自動更新；**檔名、標題、發布日期、分類、摘要、封面保留網站原本的**（68 篇網站標題本來就跟方格子不同，是刻意的）。圖片用新檔名下載，舊圖留著。
+  - 如果網站上那篇內文也被改過（後台 Edit 內文，或後台存檔時編輯器重排了 HTML），`update_vocus.py` 不會蓋掉，只開一次 Issue 請人決定。
+  - 方格子內嵌的 YouTube（`<iframe>`）會被網站的 DOMPurify 擋掉，所以同步時一律改成縮圖＋「▶ 在 YouTube 觀看影片」連結（`sync_vocus.py` 的 `youtube_iframes_to_links()`）。
+  - 手動要整篇換成方格子版本，兩種做法：
     - ① **建議**：直接改那篇 `.md` 的內文（玲玲在後台「心情日誌」Edit 也是改這個檔）。同步程式不會蓋回去。
     - ② 整篇重抓（例如改了很多圖）：把那篇 `.md` 暫時移到 repo 外（**這是暫存不是刪除**，重抓成功前不要丟掉），commit 後手動跑 daily_sync，會當新文章重抓。手動改過的分類、摘要、標籤會變回自動判斷的值，重抓後要對照舊檔改回來；重抓失敗就把舊檔放回。
   - 安裝套件：`pip install requests beautifulsoup4 pyyaml lxml pillow`（跟 workflow 一樣）。
 - **網站獨家文章**：`source` 空白，在後台新增，同步程式不會碰。
 - 分類只能單選，值是 `ai`、`event`、`share`、`growth`、`parenting`、`travel`、`diy`（對照在 `.pages.yml` 與 `sync_vocus.py` 的 `ROOM_CATEGORY_MAP`）。
-- 有 `_duplicate_of` 欄位的 `.md` 是重複的空白副本，`build.py` 和對帳都會略過，不要刪（刪了同步程式會再建）。
+- 一篇文章只會有一個 `.md`。2026-06 搬來的舊文章檔名是 8 碼（例如 `633bd5b0.md`），之後同步的是 24 碼，兩種都正常；同步程式用 `source` 網址判斷文章是否已存在，不看檔名。（2026-11-18 前有 11 個 `_duplicate_of` 空白重複檔，已移除；`build.py`、`check_sync.py` 仍會略過這種檔。）
+- 2026-11-18 清掉的 2026-06 初版舊檔（`articles/*.html`、`old/`、`data/articles.js`、`data/extra.js`、`vocus_clean.json`、根目錄下載腳本、`build.yml`）只在 git 歷史裡，要找回用 `git log --all -- <路徑>`。
 
 ## 5. 改完怎麼驗證
 
@@ -103,6 +109,7 @@ data/*.json  ──→  各頁 HTML 用 assets/js/site.js 讀進來顯示
 | Issue 標題 | 意思 | 先做什麼 |
 |---|---|---|
 | ⚠️ 方格子與網站文章對不上 | 對帳發現缺文章、多文章或分類不同 | 看 Issue 內文列的文章；缺的通常手動重跑 daily_sync 就好；多的可能是玲玲把方格子文章設成不公開（只通知，不會自動刪） |
+| 📝 方格子改過的文章，網站沒自動更新 | 方格子那篇「更新發布」了，但網站上那篇也被改過，為了不蓋掉沒更新 | Issue 內文列了是哪幾篇：要保留網站版本就關掉 Issue；要換成方格子版本照第 4 節「整篇重抓」 |
 | 🐕 看門狗：每日同步可能沒有在跑 | Issue 內文會寫是哪一種：① 超過 30 小時沒同步 ② workflow 檔格式壞了 | ① 到 Actions 看 daily_sync 最近一次：紅色就看錯誤訊息修；根本沒跑（排程被 GitHub 停掉）就到 Actions 頁面按「Enable workflow」再手動跑一次 ② 跑 `check_workflows.py` 看哪個檔哪一行，修好 push（push 後看門狗會自動再檢查一次） |
 | 其他「失敗」Issue | 某個 workflow 執行失敗 | 點 Issue 裡的執行連結看錯誤訊息 |
 
@@ -110,7 +117,8 @@ data/*.json  ──→  各頁 HTML 用 assets/js/site.js 讀進來顯示
 
 ## 9. 已知限制與待決定
 
-- 方格子文章「修改」不會同步（第 4 節）。
+- 方格子文章修改：會同步內文，但標題、分類、摘要、封面維持網站原本的；要改這些請在後台改（第 4 節）。
+- 一篇文章在方格子掛兩個房間：網站只能選一個分類（要不要做複選等玲玲決定）。
 - 方格子某個房間超過 300 篇時，`sync_vocus.py` 與 `check_sync.py` 的 `num=300` 要改大。
 - 玲玲在方格子開新房間（對帳會先報「網站缺」）：
   1. 房間 ID：方格子沙龍（`https://vocus.cc/salon/651fb341fd897800018f38ed`）裡點那個房間，網址裡 24 碼英數字的那一段（跟 `ROOM_IDS` 現有的長得一樣）；不確定就請玲玲把房間網址貼過來。

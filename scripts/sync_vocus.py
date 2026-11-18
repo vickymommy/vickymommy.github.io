@@ -29,6 +29,11 @@ from urllib.parse import urlparse
 import requests
 from bs4 import BeautifulSoup
 
+# 2026-11-18：Windows 終端機預設 cp950，印 emoji 會當掉 → 一律用 UTF-8 輸出
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 try:
     import yaml
 except ImportError:
@@ -338,7 +343,21 @@ def clean_vocus_content(html):
     result = str(soup)
     # 移除 lxml 加的 <html><body> 包裝
     result = re.sub(r'^<html><body>|</body></html>$', '', result.strip())
-    return result.strip()
+    return youtube_iframes_to_links(result.strip())
+
+
+# 2026-11-18：網站的 DOMPurify 不允許 <iframe>，方格子內嵌的 YouTube 影片會整個不見。
+# 改成跟 2026-06 搬來的舊文章一樣：縮圖＋「在 YouTube 觀看」連結（觀看數也算在玲玲的頻道）。
+YT_IFRAME_RE = re.compile(
+    r'(?:<div[^>]*class="lexical__youtube"[^>]*>\s*)?'
+    r'<iframe[^>]*src="https?://(?:www\.)?youtube(?:-nocookie)?\.com/embed/([A-Za-z0-9_-]{6,})[^"]*"[^>]*>\s*</iframe>'
+    r'(?:\s*</div>)?', re.IGNORECASE)
+
+def youtube_iframes_to_links(html):
+    return YT_IFRAME_RE.sub(lambda m: (
+        f'<a class="ytlink" href="https://www.youtube.com/watch?v={m.group(1)}" target="_blank" rel="noopener">'
+        f'<img src="https://img.youtube.com/vi/{m.group(1)}/hqdefault.jpg" loading="lazy" alt="觀看 YouTube 影片">'
+        f'<span class="ytplay">▶ 在 YouTube 觀看影片</span></a>'), html)
 
 # ── 圖片下載 ──────────────────────────────────────────────────────────────────
 

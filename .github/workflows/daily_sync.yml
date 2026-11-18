@@ -37,9 +37,13 @@ jobs:
         run: |
           pip install requests beautifulsoup4 pyyaml lxml pillow
 
-      # 4. 執行 Vocus RSS 同步（新文章 + 修改偵測）
+      # 4. 同步方格子新文章（官方 API；已存在的略過，修改由 4b 處理）
       - name: 同步 Vocus 文章
         run: python scripts/sync_vocus.py
+
+      # 4b. 2026-11-18 新增：方格子「更新發布」過的文章也同步內文（網站上被改過的不蓋掉，寫報告開 Issue）
+      - name: 同步方格子修改過的文章
+        run: python scripts/update_vocus.py --report /tmp/update_report.md
 
       # 5.（2026-11-18 移除「分享天地／每週精選候選」：玲玲沒時間審，備份在 Justin 本機專案 99.封存/分享天地_20261118/）
 
@@ -95,6 +99,21 @@ jobs:
             gh issue comment "$NUM" --repo "${{ github.repository }}" --body-file /tmp/sync_report.md
           else
             gh issue create --repo "${{ github.repository }}" --title "$TITLE" --body-file /tmp/sync_report.md
+          fi
+
+      # 8d. 2026-11-18 新增：方格子改過、但網站上那篇也被改過（沒自動更新）→ 開 Issue；同名 Issue 開著就留言
+      - name: 修改同步有沒更新的文章時開 Issue
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -f /tmp/update_report.md ] || exit 0
+          TITLE="📝 方格子改過的文章，網站沒自動更新"
+          NUM=$(gh issue list --repo "${{ github.repository }}" --state open --search "in:title 網站沒自動更新" --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --repo "${{ github.repository }}" --body-file /tmp/update_report.md
+          else
+            gh issue create --repo "${{ github.repository }}" --title "$TITLE" --body-file /tmp/update_report.md
           fi
 
       # 9. 2026-09-17 新增：任何前面的步驟失敗，就自動建立一個 GitHub Issue 通知

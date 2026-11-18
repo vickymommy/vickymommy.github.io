@@ -10,6 +10,11 @@ build.py — 由 GitHub Action 自動執行（每次 push 觸發）。
 import json, os, re, sys
 import yaml
 
+# 2026-11-18：Windows 終端機預設 cp950，印 ✓／emoji 會當掉 → 一律用 UTF-8 輸出
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def parse_frontmatter(text):
