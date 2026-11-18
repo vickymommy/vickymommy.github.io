@@ -11,6 +11,61 @@
   },
   "articles": [
     {
+      "id": "6aefcd6efd897800011399c9",
+      "title": "新加坡親子自由行｜新加坡十天九夜旅遊心得",
+      "category": "travel",
+      "date": "2026-11-08",
+      "cover": "assets/images/6aefcd6efd897800011399c9_cover.jpg",
+      "excerpt": "這次帶孩子到新加坡自由行，去了很多漂亮的景點，也發現新加坡有好多有趣的科技！\n\n像是只要感應手掌就可以付款，還有機器可以全自動製作鬆餅。\n\n就連飲水機、洗手機，甚至垃圾桶，都有一些很特別的設計。\n\n另外，我覺得新加坡的建築也非常厲害！\n\n這次我們總共住了四間飯店，每一間都有不同的特色。",
+      "tags": [],
+      "source": "https://vocus.cc/article/6aefcd6efd897800011399c9",
+      "readMin": 14
+    },
+    {
+      "id": "6ada115ffd89780001244637",
+      "title": "馬斯克飛天車真的會飛？我用 Gemini Notebook、ChatGPT、Gemini，把科技新聞變成親子 AI 遊戲",
+      "category": "ai",
+      "date": "2026-10-22",
+      "cover": "assets/images/6ada115ffd89780001244637_cover.jpg",
+      "excerpt": "媽媽不懂科技，也能透過 AI 陪孩子一起探索未來世界！從搜尋資料、製作科學解說影片、草圖變 AI 圖像生成，到親子互動遊戲的實際體驗。\n\n最近 Vicky 看到馬斯克展示飛天車的新聞，看到特斯拉（Tesla）Roadster 竟然可以倒掛在軌道上，甚至短暫騰空翻轉，讓我覺得好神奇，孩子們常常在講的飛",
+      "tags": [],
+      "source": "https://vocus.cc/article/6ada115ffd89780001244637",
+      "readMin": 12
+    },
+    {
+      "id": "6ace13e3fd897800010d45bf",
+      "title": "【GPT-6 智慧介面】Intelligent UI 是什麼？媽媽也能輕鬆上手｜分帳、時間管理、學習遊戲 5 個生活應用",
+      "category": "ai",
+      "date": "2026-10-13",
+      "cover": "assets/images/6ace13e3fd897800010d45bf_cover.jpg",
+      "excerpt": "現在 ChatGPT 已經可以直接在聊天視窗裡，幫我們做出 可以操作的互動工具。\n\n例如家庭聚餐不知道怎麼分帳，可以直接做一個分帳計算器。事情太多不知道怎麼排，可以做一個今日時間規劃器。還能幫孩子製作互動數學教材、安排料理時間，或直接生成可以玩的親子 AI 素養遊戲。",
+      "tags": [],
+      "source": "https://vocus.cc/article/6ace13e3fd897800010d45bf",
+      "readMin": 16
+    },
+    {
+      "id": "6abb57cffd8978000112ab9a",
+      "title": "9/27 生日這一天，謝謝大家共譜的祝福牆 ❤️",
+      "category": "growth",
+      "date": "2026-09-29",
+      "cover": "assets/images/6abb57cffd8978000112ab9a_cover.jpg",
+      "excerpt": "今年的生日，收到了好多人的祝福，Vicky 把它拼成了一面生日祝福牆。\n\n沒想到有一天會因為 AI 和 iPAS，讓我從一個原本幾乎沒啥朋友的全職媽媽，慢慢認識了許多來自不同地方、不同產業、不同人生階段的人。\n\n原本完全不認識的我們，因為 AI 和 iPAS 聚在一起，因為分享而開始交流。",
+      "tags": [],
+      "source": "https://vocus.cc/article/6abb57cffd8978000112ab9a",
+      "readMin": 11
+    },
+    {
+      "id": "6ab4a9a5fd89780001be0319",
+      "title": "AI 時代，最該教孩子什麼？不只是算力，更要有心力｜2026 親子天下教育創新國際年會 ( 上午場 ) ",
+      "category": "event",
+      "date": "2026-09-24",
+      "cover": "assets/images/6ab4a9a5fd89780001be0319_cover.jpg",
+      "excerpt": "昨天 Vicky 參加了 2026 親子天下教育創新國際年會 上午場論壇，主題是：\n\n「從算力到心力：AI × SEL 共構未來學習」\n\n因為自己平常就在學習、分享 AI，也是一個正在陪兩個孩子長大的媽媽，所以看到這個主題時，我非常有興趣，很想要知道：\n\n當 AI 越來越強，我們到底要教給孩子什麼？",
+      "tags": [],
+      "source": "https://vocus.cc/article/6ab4a9a5fd89780001be0319",
+      "readMin": 14
+    },
+    {
       "id": "6aaf4979fd89780001a347e9",
       "title": "從全職媽媽到 AI 應用規劃師｜沒想到一張 iPAS 證書，帶我走進中廣接受夏韻芬主持人專訪",
       "category": "growth",
