@@ -334,6 +334,12 @@ def clean_vocus_content(html):
     for el in soup.find_all(["script", "style", "noscript"]):
         el.decompose()
 
+    # 2026-11-18 資安：拿掉所有 on* 事件屬性（方格子圖片帶 onerror／onload 腳本）。
+    # 前端 DOMPurify 本來就會擋，但不要把可執行的腳本存進 repo（縱深防禦）。
+    for el in soup.find_all(True):
+        for attr in [k for k in el.attrs if k.lower().startswith("on")]:
+            del el[attr]
+
     # 外部連結加 target="_blank"
     for a in soup.find_all("a", href=True):
         if a["href"].startswith("http"):

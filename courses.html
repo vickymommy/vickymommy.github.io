@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 2026-11-18 資安：內容安全政策（CSP），只允許自己網站與 cdnjs 的程式；改外部資源時要一起改這行 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'">
 <title>課程｜Vicky Mommy 玲玲</title>
 <meta name="description" content="《Vicky 的 AI 應用規劃師養成計畫》——零基礎考照與思維賦能，為想開始的媽媽與初學者設計的 AI 課程。">
 <link rel="canonical" href="https://vickymommy.github.io/courses.html">
@@ -15,12 +17,12 @@
 <meta property="og:url" content="https://vickymommy.github.io/courses.html">
 <meta property="og:image" content="https://vickymommy.github.io/assets/images/vicky.webp">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/css/style.css?v=20261118c">
+<link rel="stylesheet" href="assets/css/style.css?v=20261118d">
 </head>
 <body data-page="courses">
 <div id="site-header"></div>
 <main id="courses-root"></main>
 <div id="site-footer"></div>
-<script src="assets/js/site.js?v=20261118c"></script>
+<script src="assets/js/site.js?v=20261118d"></script>
 </body>
 </html>

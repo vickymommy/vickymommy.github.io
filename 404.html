@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2026-11-18 資安：內容安全政策（CSP），只允許自己網站與 cdnjs 的程式；改外部資源時要一起改這行 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'sha256-L8UoohTbJDPba2d6dLso3ZvWKSD/t/uq8VZfG0Fo8EE='; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'">
 <!-- 2026-11-18：找不到的網址（例如已移除的 manual.html、舊版 articles/xxx.html）都會到這頁。
      舊版文章網址 /articles/<id>.html 自動轉到 article.html?id=<id>，其他 3 秒後回首頁。 -->
 <meta name="robots" content="noindex">

@@ -33,6 +33,7 @@ function escapeHtml(str) {
 function safeUrl(url) {
   const u = String(url || '').trim();
   if (!u) return '#';
+  if (/['"()\\\s<>]/.test(u)) return '#';   // 2026-11-18 資安：也會放進 CSS url('…')，含引號、括號、反斜線、空白的網址一律不用
   if (/^(https?:|mailto:)/i.test(u)) return escapeHtml(u);
   if (/^[a-z0-9_\-./?#=&%]+$/i.test(u)) return escapeHtml(u); // 站內相對路徑
   return '#';

@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 2026-11-18 資安：內容安全政策（CSP），只允許自己網站與 cdnjs 的程式；改外部資源時要一起改這行 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'">
 <title>Vicky Mommy 玲玲｜全職媽媽用 AI 打造更幸福的生活</title>
 <meta name="description" content="一個全職媽媽用 AI 重新找回自我的故事。媽媽們走進 AI 生活的學伴，從今天生活裡的一個小地方開始，持續學習、持續分享。">
 <!-- Canonical -->
@@ -60,7 +62,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="assets/css/style.css?v=20261118c">
+<link rel="stylesheet" href="assets/css/style.css?v=20261118d">
 <!-- ★ TODO：GA4 追蹤碼 — 取得 Measurement ID 後填入下方（格式 G-XXXXXXXXXX）
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
@@ -149,6 +151,6 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="assets/js/site.js?v=20261118c"></script>
+<script src="assets/js/site.js?v=20261118d"></script>
 </body>
 </html>

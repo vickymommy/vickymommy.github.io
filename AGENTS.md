@@ -68,7 +68,7 @@ data/*.json  ──→  各頁 HTML 用 assets/js/site.js 讀進來顯示
   - 手動要整篇換成方格子版本，兩種做法：
     - ① **建議**：直接改那篇 `.md` 的內文（玲玲在後台「心情日誌」Edit 也是改這個檔）。同步程式不會蓋回去。
     - ② 整篇重抓（例如改了很多圖）：把那篇 `.md` 暫時移到 repo 外（**這是暫存不是刪除**，重抓成功前不要丟掉），commit 後手動跑 daily_sync，會當新文章重抓。手動改過的分類、摘要、標籤會變回自動判斷的值，重抓後要對照舊檔改回來；重抓失敗就把舊檔放回。
-  - 安裝套件：`pip install requests beautifulsoup4 pyyaml lxml pillow`（跟 workflow 一樣）。
+  - 安裝套件：`pip install -r requirements.txt`（版本都鎖死，跟 workflow 一樣；要升級改 `requirements.txt` 並本機測過）。
 - **網站獨家文章**：`source` 空白，在後台新增，同步程式不會碰。
 - 分類只能單選，值是 `ai`、`event`、`share`、`growth`、`parenting`、`travel`、`diy`（對照在 `.pages.yml` 與 `sync_vocus.py` 的 `ROOM_CATEGORY_MAP`）。
 - 一篇文章只會有一個 `.md`。2026-06 搬來的舊文章檔名是 8 碼（例如 `633bd5b0.md`），之後同步的是 24 碼，兩種都正常；同步程式用 `source` 網址判斷文章是否已存在，不看檔名。（2026-11-18 前有 11 個 `_duplicate_of` 空白重複檔，已移除；`build.py`、`check_sync.py` 仍會略過這種檔。）
@@ -80,7 +80,7 @@ data/*.json  ──→  各頁 HTML 用 assets/js/site.js 讀進來顯示
 2. 改了 `content/`：跑 `python scripts/build.py`，確認 `data/*.json` 有更新。
 3. 改了 `.github/workflows/`：push 前跑 `python scripts/check_workflows.py`（要 `pip install pyyaml`），必須回傳 0。**2026-09-17 曾因一個縮排錯誤，自動同步停了兩個月沒人發現。**
 4. 改了同步或對帳：跑 `python scripts/check_sync.py`，看「方格子 X 篇、網站 Y 篇；缺 0、多 0」。
-5. 改了 `assets/css/style.css` 或 `assets/js/site.js`：第 3 節那 7 個 HTML 裡的版本號要一起改，不然使用者的瀏覽器會用舊檔。格式是 `style.css?v=20261118c`（日期＋同一天第幾次的字母），7 頁要一樣。批次改：`sed -i 's/?v=20261118c/?v=新版號/g' *.html`（Windows 注意不要把換行改成 CRLF）。
+5. 改了 `assets/css/style.css` 或 `assets/js/site.js`：第 3 節那 7 個 HTML 裡的版本號要一起改，不然使用者的瀏覽器會用舊檔。格式是 `style.css?v=20261118d`（日期＋同一天第幾次的字母），7 頁要一樣。批次改：`sed -i 's/?v=20261118d/?v=新版號/g' *.html`（Windows 注意不要把換行改成 CRLF）。
 6. push 後：到 https://github.com/vickymommy/vickymommy.github.io/actions 看 workflow 是綠色；線上頁面重新整理確認。
 7. 手動跑同步：網頁 Actions →「每日自動同步」→ Run workflow；或指令 `gh workflow run daily_sync.yml -R vickymommy/vickymommy.github.io`。
 
@@ -94,6 +94,15 @@ data/*.json  ──→  各頁 HTML 用 assets/js/site.js 讀進來顯示
 6. 「網站行為」＝使用者看得到的功能或流程（新頁面、新欄位、新排程、同步方式）；只改顏色、字、排版算一般修改，記維護紀錄就好。
 7. push 被拒（遠端比較新，通常是每天的機器人 commit 或另一位剛改過）：先 `git pull --rebase` 再 push。`docs/維護紀錄.md` 撞到時，兩邊的行都保留，按日期排。
 8. 權限有變（誰升 Owner、誰退出）：改本檔第 1 節、`docs/維護手冊.md` 第一、六節、`README.md` 最後一行。
+
+## 6b. 資安設定（2026-11-18，見 `docs/維護紀錄.md`；完整分析在 Justin 本機）
+
+- **每一頁都有 CSP**（`<meta http-equiv="Content-Security-Policy">`）：程式只能來自自己網站和 `https://cdnjs.cloudflare.com`；不能用 `onclick=`、`onerror=` 這類寫在 HTML 裡的事件（請用 `addEventListener`）；不能嵌 iframe。**要加外部程式、字型、iframe 時，7 個頁面＋`404.html` 的 CSP 都要一起改**，改完看瀏覽器 console 有沒有 CSP 錯誤。`404.html` 的內嵌程式用 sha256 雜湊放行，改了那段程式要重算雜湊。
+- **DOMPurify** 鎖版本＋`integrity`（SRI）。升級時到 cdnjs 拿新版本的 SRI 雜湊，`article.html` 兩處一起改。
+- **GitHub Actions 只能用 GitHub 官方的 action**（repo 設定），而且 `uses:` 寫完整 commit SHA，後面註解版本號。不要改回 `@v4` 這種標籤。
+- **Python 套件版本鎖在 `requirements.txt`**，不要在 workflow 裡寫沒版本的 `pip install`。
+- **main 分支有 ruleset**：禁止 force push、禁止刪除。一般 push 不受影響；推不上去就先 `git pull --rebase`。
+- 同步程式會拿掉方格子內文所有 `on*` 事件屬性和 YouTube iframe，不要把它們加回來。
 
 ## 7. 禁止事項
 
