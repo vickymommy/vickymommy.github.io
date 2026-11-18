@@ -97,8 +97,8 @@ data/*.json  ──→  各頁 HTML 用 assets/js/site.js 讀進來顯示
 
 ## 6b. 資安設定（2026-11-18，見 `docs/維護紀錄.md`；完整分析在 Justin 本機）
 
-- **每一頁都有 CSP**（`<meta http-equiv="Content-Security-Policy">`）：程式只能來自自己網站和 `https://cdnjs.cloudflare.com`；不能用 `onclick=`、`onerror=` 這類寫在 HTML 裡的事件（請用 `addEventListener`）；不能嵌 iframe。**要加外部程式、字型、iframe 時，7 個頁面＋`404.html` 的 CSP 都要一起改**，改完看瀏覽器 console 有沒有 CSP 錯誤。`404.html` 的內嵌程式用 sha256 雜湊放行，改了那段程式要重算雜湊。
-- **DOMPurify** 鎖版本＋`integrity`（SRI）。升級時到 cdnjs 拿新版本的 SRI 雜湊，`article.html` 兩處一起改。
+- **每一頁都有 CSP**（轉址頁 `weekly.html` 除外；`<meta http-equiv="Content-Security-Policy">`）：程式只能來自自己網站和 `https://cdnjs.cloudflare.com`；不能用 `onclick=`、`onerror=` 這類寫在 HTML 裡的事件（請用 `addEventListener`）；不能嵌 iframe。**要加外部程式、字型、iframe 時，7 個頁面＋`404.html` 的 CSP 都要一起改**，改完看瀏覽器 console 有沒有 CSP 錯誤。`404.html` 的內嵌程式用 sha256 雜湊放行，改了那段程式要重算雜湊。
+- **DOMPurify** 鎖版本＋`integrity`（SRI）。升級時到 cdnjs 拿新版本的 SRI 雜湊，改 `article.html` 那個 `<script>` 的網址和 `integrity`（上面註解的版本號也順手改）。
 - **GitHub Actions 只能用 GitHub 官方的 action**（repo 設定），而且 `uses:` 寫完整 commit SHA，後面註解版本號。不要改回 `@v4` 這種標籤。
 - **Python 套件版本鎖在 `requirements.txt`**，不要在 workflow 裡寫沒版本的 `pip install`。
 - **main 分支有 ruleset**：禁止 force push、禁止刪除。一般 push 不受影響；推不上去就先 `git pull --rebase`。
