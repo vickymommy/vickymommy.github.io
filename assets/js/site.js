@@ -95,6 +95,7 @@ function injectChrome(active) {
       nav('community', 'community.html', '社群交流圈') +
     '</nav>' +
     '<a class="btn" href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">加入共學團</a>' +
+    '<button class="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false">&#9776;</button>' +
     '</div></header>';
   document.getElementById('site-footer').innerHTML =
     '<footer><div class="wrap"><div class="foot-grid">' +
@@ -102,6 +103,15 @@ function injectChrome(active) {
     '<div><h4>逛逛</h4><a href="articles.html">心情日誌</a><a href="videos.html">影片</a><a href="ipas.html">iPAS 專區</a><a href="courses.html">課程</a><a href="community.html">社群交流圈</a></div>' +
     '<div><h4>Vicky天地</h4><a href="https://www.youtube.com/c/VickyMommy" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">LINE 共學團</a><a href="https://www.facebook.com/HiVickyMommy" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/vickytsai927/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.threads.net/@vickytsai927" target="_blank" rel="noopener noreferrer">Threads</a><a href="mailto:vickytsai927@gmail.com">合作邀約信箱</a></div>' +
     '</div><div class="foot-bottom">&copy; 2026 Vicky Mommy 玲玲</div></div></footer>';
+
+  /* 2026-11-18：手機版選單按鈕（≤900px 才出現），點一下展開／收合 */
+  const hdr = document.querySelector('header.nav');
+  const tg  = hdr && hdr.querySelector('.menu-toggle');
+  if (tg) tg.addEventListener('click', () => {
+    const open = hdr.classList.toggle('open');
+    tg.setAttribute('aria-expanded', open ? 'true' : 'false');
+    tg.innerHTML = open ? '&#10005;' : '&#9776;';
+  });
 }
 
 /* ---------- 卡片 HTML ---------- */
@@ -188,6 +198,12 @@ function renderFeatured() {
   const box = document.getElementById('featured-grid');
   if (!box) return;
   box.innerHTML = ARTICLES.slice(0, 6).map(cardHTML).join('');
+}
+
+/* 首頁「共 N 篇」：依 data/articles.json 自動算（2026-11-18） */
+function renderArticleCount() {
+  const el = document.getElementById('article-count');
+  if (el && ARTICLES.length) el.textContent = ARTICLES.length;
 }
 
 /* ---------- 文章列表（articles.html）---------- */
@@ -360,6 +376,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   injectChrome(document.body.dataset.page);
   await initData();
   renderFeatured();
+  renderArticleCount();
   renderHomeVideos();
   renderVideos();
   renderListing();
