@@ -52,6 +52,12 @@ jobs:
       - name: 重建 data JSON
         run: python scripts/build.py
 
+      # 7b. 2026-11-18 新增：對帳（方格子 vs 網站，一篇不少、一篇不多）→ data/sync_status.json
+      #     網站頁尾「最後同步」讀這個檔；每天都會更新時間，所以每天都有一個 commit，
+      #     也順便讓 GitHub 不會因為「60 天沒活動」自動停掉排程。
+      - name: 同步對帳
+        run: python scripts/check_sync.py --report /tmp/sync_report.md
+
       # 8. 提交並推送（若有任何異動）
       - name: 提交並推送更新
         run: |
@@ -74,6 +80,21 @@ jobs:
           $ERR
 
           常見原因：播放清單被改成私人、刪除，或 content/youtube.yml 的 ID 打錯。執行紀錄：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi
+
+      # 8c. 2026-11-18 新增：對帳對不上 → 開 Issue；同一件事已經有開著的 Issue 就留言，不重複開
+      - name: 對帳有問題時開 Issue
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -f /tmp/sync_report.md ] || exit 0
+          TITLE="⚠️ 方格子與網站文章對不上"
+          NUM=$(gh issue list --repo "${{ github.repository }}" --state open --search "in:title 方格子與網站文章對不上" --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --repo "${{ github.repository }}" --body-file /tmp/sync_report.md
+          else
+            gh issue create --repo "${{ github.repository }}" --title "$TITLE" --body-file /tmp/sync_report.md
           fi
 
       # 9. 2026-09-17 新增：任何前面的步驟失敗，就自動建立一個 GitHub Issue 通知

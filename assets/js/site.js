@@ -102,7 +102,25 @@ function injectChrome(active) {
     '<div><h4>Vicky Mommy 玲玲</h4><p style="font-size:13.5px;line-height:1.7">從今天生活裡的一個小地方開始，持續學習、持續分享。</p></div>' +
     '<div><h4>逛逛</h4><a href="articles.html">心情日誌</a><a href="videos.html">影片</a><a href="ipas.html">iPAS 專區</a><a href="courses.html">課程</a><a href="community.html">社群交流圈</a></div>' +
     '<div><h4>Vicky天地</h4><a href="https://www.youtube.com/c/VickyMommy" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">LINE 共學團</a><a href="https://www.facebook.com/HiVickyMommy" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/vickytsai927/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.threads.net/@vickytsai927" target="_blank" rel="noopener noreferrer">Threads</a><a href="mailto:vickytsai927@gmail.com">合作邀約信箱</a></div>' +
-    '</div><div class="foot-bottom">&copy; 2026 Vicky Mommy 玲玲</div></div></footer>';
+    '</div><div class="foot-bottom">&copy; 2026 Vicky Mommy 玲玲<span id="sync-status" class="sync-status"></span></div></div></footer>';
+
+  /* 2026-11-18：頁尾「最後同步」健康燈（讀 data/sync_status.json，由 scripts/check_sync.py 每天產生）
+     🟢 2 天內有同步、方格子和網站篇數對得上；🟡 超過 2 天沒同步，或對帳有差異（GitHub 會開 Issue 通知） */
+  fetch('data/sync_status.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).then(s => {
+    const el = document.getElementById('sync-status');
+    if (!el || !s || !s.checkedAt) return;
+    const t = new Date(s.checkedAt);
+    if (isNaN(t)) return;
+    const fresh = (Date.now() - t.getTime()) < 48 * 3600 * 1000;
+    const good = fresh && s.articles && s.articles.ok;
+    const p = n => String(n).padStart(2, '0');
+    const tw = new Date(t.getTime() + 8 * 3600 * 1000); /* 一律顯示台北時間 */
+    const when = (tw.getUTCMonth() + 1) + '/' + tw.getUTCDate() + ' ' + p(tw.getUTCHours()) + ':' + p(tw.getUTCMinutes());
+    el.textContent = '｜文章最後同步 ' + when + (good ? ' 🟢' : ' 🟡');
+    el.title = good
+      ? '方格子 ' + s.articles.vocus + ' 篇＝網站 ' + s.articles.site + ' 篇'
+      : (fresh ? '方格子與網站文章數有差異，已通知管理員' : '超過 2 天沒有自動同步，已通知管理員');
+  }).catch(() => {});
 
   /* 2026-11-18：手機版選單按鈕（≤900px 才出現），點一下展開／收合 */
   const hdr = document.querySelector('header.nav');

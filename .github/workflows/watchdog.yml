@@ -1,0 +1,98 @@
+name: 看門狗（每日同步有沒有在跑、workflow 格式對不對）
+
+# 2026-11-18 新增（規劃書階段 2「壞了一定有人知道」）
+# 起因：9/17 daily_sync.yml 格式寫錯，排程整個不跑，也沒有任何通知，停了兩個月。
+# 這個檔案獨立於 daily_sync：daily_sync 壞掉、沒跑，這裡會發現並開 Issue。
+on:
+  schedule:
+    # 每天台灣時間 10:00（UTC 02:00），比 02:00 的同步晚 8 小時
+    - cron: '0 2 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+jobs:
+  watch:
+    name: 檢查同步時間與 workflow 格式
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Checkout 倉庫
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安裝相依套件
+        run: pip install pyyaml
+
+      # 1. 每個 workflow 讀不讀得進去（9/17 就是這裡壞掉）
+      - name: 檢查 workflow 格式
+        id: lint
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python scripts/check_workflows.py | tee /tmp/lint.txt
+
+      # 2. data/sync_status.json 的時間是不是超過 30 小時（＝昨晚 02:00 的同步沒跑或沒成功）
+      - name: 檢查最後同步時間
+        id: age
+        run: |
+          python - <<'EOF'
+          import json, os
+          from datetime import datetime, timezone
+          try:
+              s = json.load(open("data/sync_status.json", encoding="utf-8"))
+              last = datetime.fromisoformat(s["checkedAt"])
+              hours = (datetime.now(timezone.utc) - last).total_seconds() / 3600
+              msg = f"最後一次同步對帳是 {s['checkedAt'][:16].replace('T', ' ')}（台北），已經 {hours:.0f} 小時。"
+              stale = hours > 30
+          except Exception as e:
+              msg, stale = f"讀不到 data/sync_status.json：{e}", True
+          print(msg)
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+              f.write(f"stale={'true' if stale else 'false'}\n")
+          with open("/tmp/age.txt", "w", encoding="utf-8") as f:
+              f.write(msg)
+          EOF
+
+      - name: 有問題時開 Issue
+        if: steps.lint.outcome == 'failure' || steps.age.outputs.stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "看門狗發現每日自動同步可能沒有在跑。"
+            echo ""
+            if [ "${{ steps.age.outputs.stale }}" = "true" ]; then
+              echo "### 同步時間太久"
+              cat /tmp/age.txt
+              echo ""
+              echo ""
+              echo "請到 Actions 看「每日自動同步」最近的紀錄：${{ github.server_url }}/${{ github.repository }}/actions/workflows/daily_sync.yml"
+              echo ""
+            fi
+            if [ "${{ steps.lint.outcome }}" = "failure" ]; then
+              echo "### workflow 檔案格式有錯（GitHub 會整個不執行）"
+              echo '```'
+              cat /tmp/lint.txt
+              echo '```'
+              echo ""
+            fi
+            echo "網站現有內容不受影響，只是沒有自動更新。修好後可以關掉這個 Issue。"
+          } > /tmp/watchdog.md
+          NUM=$(gh issue list --repo "${{ github.repository }}" --state open --search "in:title 看門狗" --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --repo "${{ github.repository }}" --body-file /tmp/watchdog.md
+          else
+            gh issue create --repo "${{ github.repository }}" --title "🐕 看門狗：每日同步可能沒有在跑" --body-file /tmp/watchdog.md
+          fi
