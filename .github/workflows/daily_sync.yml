@@ -41,15 +41,13 @@ jobs:
       - name: 同步 Vocus 文章
         run: python scripts/sync_vocus.py
 
-      # 5. 執行每週精選抓取（存入 content/weekly/ 待審）
-      - name: 抓取每週精選候選
-        run: python scripts/fetch_weekly.py
+      # 5.（2026-11-18 移除「分享天地／每週精選候選」：玲玲沒時間審，備份在 Justin 本機專案 99.封存/分享天地_20261118/）
 
       # 6. 抓玲玲 YouTube 頻道最新影片（自動更新 content/community.yml 的 videos 清單）
       - name: 抓取 YouTube 最新影片
         run: python scripts/fetch_youtube.py
 
-      # 7. 重建 data/*.json（articles + weekly + community + course）
+      # 7. 重建 data/*.json（articles + community + course）
       - name: 重建 data JSON
         run: python scripts/build.py
 
@@ -58,8 +56,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add content/articles/ assets/images/ content/weekly/ content/community.yml data/
-          git diff --staged --quiet || git commit -m "auto: 每日同步 Vocus + 每週精選候選 + YouTube 影片 [skip ci]"
+          git add content/articles/ assets/images/ content/community.yml data/
+          git diff --staged --quiet || git commit -m "auto: 每日同步 Vocus + YouTube 影片 [skip ci]"
           git push
 
       # 9. 2026-09-17 新增：任何前面的步驟失敗，就自動建立一個 GitHub Issue 通知
@@ -72,9 +70,11 @@ jobs:
           gh issue create \
             --repo "${{ github.repository }}" \
             --title "⚠️ 每日自動同步失敗（$(date -u +%Y-%m-%d)）" \
-            --body "daily_sync 這次自動執行失敗了，網站可能沒有同步到最新的方格子文章、每週精選候選或 YouTube 影片。
+            --body "daily_sync 這次自動執行失敗了，網站可能沒有同步到最新的方格子文章或 YouTube 影片。
 
-請到這裡查看詳細錯誤原因：
-${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          請到這裡查看詳細錯誤原因：
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-不用緊張：現有文章和網站內容不受影響，只是這次「自動更新」暫停了一次。查完錯誤原因後，可以手動關閉這個 Issue。"
+          不用緊張：現有文章和網站內容不受影響，只是這次「自動更新」暫停了一次。查完錯誤原因後，可以手動關閉這個 Issue。"
+      # 2026-11-18 修正：上面 --body 的每一行都必須跟 run: 的內容一樣縮排，
+      # 9/17 版有幾行頂格寫，整個 workflow 讀不進去，從 9/17 到 11/18 都沒有執行。

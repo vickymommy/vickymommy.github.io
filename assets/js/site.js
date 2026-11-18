@@ -82,7 +82,6 @@ function injectChrome(active) {
     '<nav class="menu">' +
       nav('home',      'index.html',     '首頁') +
       nav('articles',  'articles.html',  '心情日誌') +
-      nav('weekly',    'weekly.html',    '分享天地') +
       nav('ipas',      'ipas.html',      'iPAS 專區') +
       nav('courses',   'courses.html',   '課程') +
       nav('community', 'community.html', '社群交流圈') +
@@ -92,7 +91,7 @@ function injectChrome(active) {
   document.getElementById('site-footer').innerHTML =
     '<footer><div class="wrap"><div class="foot-grid">' +
     '<div><h4>Vicky Mommy 玲玲</h4><p style="font-size:13.5px;line-height:1.7">從今天生活裡的一個小地方開始，持續學習、持續分享。</p></div>' +
-    '<div><h4>逛逛</h4><a href="articles.html">心情日誌</a><a href="weekly.html">分享天地</a><a href="ipas.html">iPAS 專區</a><a href="courses.html">課程</a><a href="community.html">社群交流圈</a></div>' +
+    '<div><h4>逛逛</h4><a href="articles.html">心情日誌</a><a href="ipas.html">iPAS 專區</a><a href="courses.html">課程</a><a href="community.html">社群交流圈</a></div>' +
     '<div><h4>Vicky天地</h4><a href="https://www.youtube.com/c/VickyMommy" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://lin.ee/JM7WXWo" target="_blank" rel="noopener noreferrer">LINE 共學團</a><a href="https://www.facebook.com/HiVickyMommy" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/vickytsai927/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.threads.net/@vickytsai927" target="_blank" rel="noopener noreferrer">Threads</a><a href="mailto:vickytsai927@gmail.com">合作邀約信箱</a></div>' +
     '</div><div class="foot-bottom">&copy; 2026 Vicky Mommy 玲玲</div></div></footer>';
 }

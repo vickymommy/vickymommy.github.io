@@ -61,7 +61,9 @@ jobs:
             --title "⚠️ 內容重建失敗（$(date -u +%Y-%m-%d)）" \
             --body "剛剛在 PagesCMS 存檔後，網站自動重建內容失敗了，可能是某篇文章或設定的格式有問題。
 
-請到這裡查看詳細錯誤原因：
-${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          請到這裡查看詳細錯誤原因：
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-網站目前顯示的內容不受影響，只是剛剛那次修改還沒有更新上去。查完錯誤原因後，可以手動關閉這個 Issue。"
+          網站目前顯示的內容不受影響，只是剛剛那次修改還沒有更新上去。查完錯誤原因後，可以手動關閉這個 Issue。"
+      # 2026-11-18 修正：上面 --body 的每一行都必須跟 run: 的內容一樣縮排，
+      # 9/17 版有幾行頂格寫，整個 workflow 讀不進去，從 9/17 到 11/18 都沒有執行。
