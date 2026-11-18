@@ -8,10 +8,15 @@ GitHub 連排程都不跑，網站停了兩個月才發現。
 
 改完任何 workflow、推上 GitHub 之前，先在本機跑：
   python scripts/check_workflows.py
-每週的 watchdog.yml 也會跑一次。全部通過回傳 0，有錯回傳 1。
+每天的 watchdog.yml 也會跑一次。全部通過回傳 0，有錯回傳 1。
 """
 import glob, os, sys
 import yaml
+
+# 2026-11-18：Windows 終端機預設 cp950，印 ✓／emoji 會當掉 → 一律用 UTF-8 輸出
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 bad = 0

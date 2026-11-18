@@ -4,7 +4,7 @@
 # 重點：這裡只列出「內容類」檔案 → 後台就只看得到這些。
 #       程式碼／版面檔（index.html、各分頁、assets/js/site.js、
 #       assets/css/style.css）刻意不列入 → 後台看不到、動不到，
-#       由 Justin 維護。這就是「你管功能/版面、玲玲管內容」的分工機制。
+#       由維護者（Justin，或玲玲請的 AI）改程式處理，見 AGENTS.md。後台只管內容。
 #
 # 資料結構（v2 已完成轉換）：
 #   - 文章：content/articles/*.md（每篇一個 Markdown）

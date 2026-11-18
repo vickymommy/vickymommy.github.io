@@ -25,6 +25,11 @@ from datetime import datetime, timedelta, timezone
 import requests
 import yaml
 
+# 2026-11-18：Windows 終端機預設 cp950，印 ✓／emoji 會當掉 → 一律用 UTF-8 輸出
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 # 房間清單、分類對照沿用 sync_vocus.py（只有一份，避免兩邊不一樣）
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from sync_vocus import ROOM_ID_TO_NAME, ROOM_CATEGORY_MAP, HEADERS, SALON_BASE_URL  # noqa: E402
