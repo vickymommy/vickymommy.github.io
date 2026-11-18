@@ -1,6 +1,6 @@
 {
   "_說明": "由 scripts/check_sync.py 每天自動產生，請勿手動編輯。網站頁尾「最後同步」讀這個檔。",
-  "checkedAt": "2026-11-18T18:51:44+08:00",
+  "checkedAt": "2026-11-18T20:19:57+08:00",
   "ok": true,
   "articles": {
     "ok": true,
@@ -355,7 +355,7 @@
   },
   "youtube": {
     "ok": true,
-    "updated": "2026-11-18 18:51",
+    "updated": "2026-11-18 20:19",
     "playlists": 5,
     "errors": []
   }
