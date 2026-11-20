@@ -1,6 +1,6 @@
 {
   "_說明": "由 scripts/fetch_youtube.py 每天自動產生，請勿手動編輯；要改播放清單請改 content/youtube.yml。",
-  "updated": "2026-11-20 07:58",
+  "updated": "2026-11-21 07:27",
   "channel": "https://www.youtube.com/@VickyMommy",
   "channelIntro": "串聯 AI 應用規劃師，分享適合媽媽與初學者的 AI 生活應用。親子生活、旅遊、育兒、手作和更多影片都在頻道裡！",
   "showPerPlaylist": 3,
@@ -12,6 +12,11 @@
       "intro": "iPAS 小聚、AI 活動與講座的現場紀錄。",
       "url": "https://www.youtube.com/playlist?list=PLTjEk5yqNjac",
       "videos": [
+        {
+          "id": "pMht9dwmOc0",
+          "title": "【iPAS Talk】AI x 資安跨域人才沙龍 | AI 時代需要什麼人才？DIGITIMES、台大、微軟、遠傳 四大領域專家分享",
+          "published": "2026-11-20T00:08:53+00:00"
+        },
         {
           "id": "uI9ySassQpU",
           "title": "【2026 資訊月暨臺灣教育科技展】AI 新十大建設、智慧教育、科技產品一次看！",
@@ -81,11 +86,6 @@
           "id": "Lu1ZLI9AAo0",
           "title": "【 經濟部 AI 競賽優選】AI x 城市智慧節點—商模提案競賽 | 決賽現場實況 + 智慧桿參訪 + 5 分鐘簡報內容",
           "published": "2025-11-22T12:10:40+00:00"
-        },
-        {
-          "id": "JrEsQ7c8YFg",
-          "title": "經濟部 iPAS 採訪心得｜AI 應用規劃師考照經驗分享＋全職媽媽的成長故事",
-          "published": "2025-09-09T09:54:07+00:00"
         }
       ]
     },
