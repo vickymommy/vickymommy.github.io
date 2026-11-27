@@ -1,6 +1,6 @@
 {
   "_說明": "由 scripts/fetch_youtube.py 每天自動產生，請勿手動編輯；要改播放清單請改 content/youtube.yml。",
-  "updated": "2026-11-26 09:15",
+  "updated": "2026-11-27 09:14",
   "channel": "https://www.youtube.com/@VickyMommy",
   "channelIntro": "串聯 AI 應用規劃師，分享適合媽媽與初學者的 AI 生活應用。親子生活、旅遊、育兒、手作和更多影片都在頻道裡！",
   "showPerPlaylist": 3,
